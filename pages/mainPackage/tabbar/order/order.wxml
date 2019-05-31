@@ -1,0 +1,56 @@
+  <view>
+    <nav navList="{{navList}}" bind:navBtn="myNavBtn"></nav>
+  </view>
+  <view class="parent-content">
+    <view class='m-t bg-white parent-item' wx:for="{{list}}" wx:key="{{item.id}}" bindtap='onOrderDetail' data-item="{{item}}">
+      <view class='item-header bd-muted-vice-bottom'>
+        <view>{{item.businessStr}}</view>
+        <view>
+          <view wx:if="{{item.statusVal == 60}}" class='text-muted'>{{item.statusText}}</view>
+          <view class="{{item.payStatus ==1 ? 'text-primary' : 'text-danger'}}" wx:else>{{item.payStatusText}}</view>
+        </view>
+      </view>
+      <view class='{{item.statusVal != 60 ? "item-content" : "item-content is-disabled"}}'>
+        <view>单号：{{item.orderNo}}</view>
+        <view>取件方式：{{item.takeModeText}}</view>
+        <view>订单状态：{{item.statusText}}</view>
+        <view>下单时间：{{filter.getDateTime(item.createTime)}}</view>
+      </view>
+      <view class='text-right item-fotter'>
+        <view>{{item.payStatus !=1 ? '需付款':'已付款'}}：
+          <text class='{{item.payStatus !=1 ? "text-danger" : "text-primary"}}' wx:if="{{item.paymentPrice || item.paymentPrice === 0}}">￥{{filter.amtFormat(item.paymentPrice)}}
+          </text>
+          <text wx:else>计算中</text>
+        </view>
+        <view wx:if="{{item.statusVal != 60 && (item.paymentPrice || item.paymentPrice === 0)}}">
+          <view wx:if="{{item.isEnablePay}}" class='btn-text' >
+            <view class='text-danger m-r-f'  wx:if="{{item.statusVal==44}}">请先付款再开箱取衣</view>
+            <button class='item-btn bd-primary text-primary ft-foten' hover-class='btn-hover' catchtap='btnOptionPay' data-item="{{item}}">付款</button>
+          </view>
+          <button class='item-btn bd-primary text-primary ft-foten btn-plain ' wx:if="{{item.isEnableCupboardSignOpen}}" hover-class='btn-hover' catchtap='btnOptionTake' data-item="{{item}}">
+            开箱取衣
+          </button>
+        </view>
+        <view>
+          <button class='item-btn bd-primary text-primary ft-foten btn-plain' wx:if="{{item.isEnableCupboardBookOpen}}" hover-class='btn-hover' catchtap='btnOptionSave' data-item="{{item}}">
+            开箱存衣
+          </button>
+        </view>
+      </view>
+    </view>
+    <view wx:if="{{list.length===0}}" class='text-center none-order'>
+      <image src='{{icon.noOrderIcon}}' mode="aspectFit"></image>
+      <view class='text-muted'>还没有订单哦</view>
+    </view>
+    <view class='text-center m-t-tt text-muted ft-foten' wx:if="{{list.length>0}}">{{loadingText}}</view>
+  </view>
+<popup popup="{{popFlag}}" bind:onPopup="onPopup">
+  <view class='bg-color pop-head'>
+    <view>您确认在【{{couBord.nameDesc}}】的智柜门前操作吗？</view>
+    <view class='m-t-one text-primary' bindtap='onEnter'>在，现在开箱</view>
+    <view class='m-t-f' bindtap='onCancel'>不在，取消</view>
+  </view>
+</popup>
+
+
+<wxs src="../../../../utils/wxs/filter.wxs" module="filter"></wxs>

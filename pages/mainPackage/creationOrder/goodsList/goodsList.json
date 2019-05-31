@@ -1,0 +1,8 @@
+{
+  "navigationBarTitleText": "商品列表",
+  "usingComponents":{
+    "nav": "/component/view/nav/nav",
+    "serviceNav":"/component/view/service_nav/service_nav",
+    "popup": "/component/view/popup/popup"
+  }
+}

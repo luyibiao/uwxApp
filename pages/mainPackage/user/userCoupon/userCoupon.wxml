@@ -1,0 +1,70 @@
+<!--pages/mainPackage/user/userCoupon/userCoupon.wxml-->
+<content>
+  <view>
+    <view class="w-bg  flex-wrap flex-wrap-between m-auto exchange-custom">
+      <view class="m-r bg-white flexratio text-center padd-t-b-t" bindtap="showPopupFn" data-params="coupon">+ 兑换优惠券礼包</view>
+      <view class="m-l bg-white flexratio text-center padd-t-b-t" bindtap='showPopupFn' data-params="code">+ 兑换优惠码</view>
+    </view>
+
+    <view wx:if="{{show.valid}}" >
+      <view class="b-danger w-bg m-auto  bd-danger bd-radius-xs bg-white group-custom padd-t-b-tt" wx:for="{{couponList}}" wx:key="index" bindtap='openCoupon' data-item="{{item}}">
+          <view class="flex-wrap flex-wrap-between">
+
+            <view  class="text-danger ft-twty flexratio text-center " style='min-width:50px' >
+              <text class='ft-foten'>￥</text>
+              <view class="ft-eiten dis-line-block">{{filter.amtFormat(item.amount)}}</view>
+            </view>
+            <view class="flexteotatio ft-tve text-cell-muted p-l-f box-dashed" style='flex:3;'>
+              <view class="ft-siten text-black">{{item.name}}</view>
+              <view>满{{filter.amtFormat(item.fullAmount)}}元可用</view>
+              <view>{{item.couponRuleName == '通用' ? item.couponRuleName : '仅限'+item.couponRuleName+'使用'}} <block wx:if="{{!item.useBalance}}">不能与余额同时使用</block></view>
+              <view>{{filter.getDate(item.timeStart)}}至{{filter.getDate(item.timeEnd)}}有效</view>
+            </view>
+          </view>
+
+      </view>
+    </view>
+
+    <view wx:if="{{!show.valid}}" wx:for="{{validCouponList}}" wx:key="index" class="m-b-tf">
+      <view class="w-bg m-auto is-disabled bd-danger group-custom bg-white bd-radius-xs padd-t-b-tt" >
+        <view class="flex-wrap flex-wrap-between">
+          <view  class="text-danger ft-twty flexratio text-center">
+            <text class='ft-siten'>￥</text>{{filter.amtFormat(item.amount)}}
+          </view>
+          <view class="flexteotatio ft-tve text-cell-muted p-l-f box-dashed">
+            <view class="ft-siten text-black">{{item.name}}</view>
+            <view>满{{filter.amtFormat(item.fullAmount)}}元可用</view>
+            <view>{{item.couponRuleName == '通用' ? item.couponRuleName : '仅限'+item.couponRuleName+'使用'}} </view>
+            <view>{{filter.getDate(item.timeStart)}}至{{filter.getDate(item.timeEnd)}}有效</view>
+          </view>
+        </view>
+
+      </view>
+    </view>
+
+
+    <view class="ft-foten text-center">
+      <text>没有更多可用券了</text>
+      <text wx:if="{{show.valid}}" class="text-info" bindtap="onShowValidFn">查看失效券</text>
+      <text wx:else class="text-info" bindtap="onShowValidFn">查看有效券</text>
+    </view>
+  </view>
+</content>
+
+<popup popup="{{popFlag}}" bind:onPopup="onPopup">
+  <view class='bg-color pop-head'>
+    <view class="padd-t">
+      <view class="ft-eiten text-black">{{popHeadName}}</view>
+    </view>
+    
+    <view class="wrap-rve wrap-text-input padd-t">
+     <input placeholder="{{popInputPla}}" placeholder-class="text-left" bindblur="checkCodeInputFn" class='text-left' value="{{code}}"></input>
+    </view>
+
+    <view class="m-t-tt m-b m-l-tf m-r-tf">
+      <button type="primary" loading="{{loading}}" plain="{{false}}" class="w-ag"  bindtap="exchangeFn">{{buttonName}}</button>
+    </view>
+  </view>
+</popup>
+
+<wxs src="../../../../utils/wxs/filter.wxs" module="filter"></wxs>

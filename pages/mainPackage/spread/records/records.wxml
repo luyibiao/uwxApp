@@ -1,0 +1,27 @@
+<!--pages/mainPackage/spread/records/records.wxml-->
+<content>
+  <view wx:if="{{headLoding}}">
+    <view class="group">
+      <view wx:for="{{auditList}}" wx:key="{{index}}">
+        <cell bindtap="toDetailFn" data-index="{{index}}">
+          <view slot="title" class=" p-l" >
+            <view class="fz-fift charge-text text-black">{{item.auditStatusText || '提现'}}</view>
+            <view class="ft-tve text-cell-muted m-t-f">{{time.dateFormat(item.tradeTime || item.createTime)}}</view>
+          </view>
+          <view slot="value" class="text-primary fz-fift">
+            {{filter.amtFormat(item.amount)}}
+          </view>
+        </cell>
+      </view>
+    </view>
+    <view wx:if="{{auditList.length===0}}" class='text-center none-order'>
+      <!-- <image src='{{icon.noOrderIcon}}' mode="aspectFit"></image> -->
+      <view class='text-muted m-t-tt'>暂无记录</view>
+    </view>
+    <view class='text-center m-t-tt text-muted ft-foten' wx:if="{{auditList.length>0}}">{{loadingText}}</view>
+    
+  </view>
+</content>
+
+<wxs src="../../../../utils/wxs/filter.wxs" module="filter"></wxs>
+<wxs src="../../../../utils/wxs/time.wxs" module="time"></wxs>

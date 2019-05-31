@@ -1,0 +1,103 @@
+navigator,button{
+  display: inline-block;
+}
+input{
+  padding:0px 15px;
+  height: 45px;
+  border:1px solid #e5e5e5;
+  box-sizing: border-box;
+}
+image{
+  width: 0;
+  height: 0;
+}
+button{
+  margin: 0;
+  transition: background-color 100ms,opacity 100ms;
+  
+}
+button::after{
+  border: none;
+}
+.btn-primary:active{
+  background-color: #2f9c24;
+}
+.btn-plain:active{
+  opacity: .6;
+}
+.btn-reset{
+  padding: 0px;
+  height: 44px;
+  line-height: 44px;
+  font-size: 16px;
+}
+.btn-plain{
+  background:none;
+}
+
+.dis-line-block{
+  display: inline-block;
+}
+
+.dis-line{
+  display: inline;
+}
+.dis-block{
+  display: block;
+}
+
+.navigator-btn{
+  padding: 10px 0px;
+}
+
+.group{
+  background-color: #efeff4;
+  box-sizing: border-box;
+}
+
+.i-triangle{
+    display: inline-block;
+    height: 8px;
+    width: 8px;
+    border-width: 2px 2px 0 0;
+    border-color: #C8C8CD;
+    border-style: solid;
+    transform: rotate(-45deg)
+}
+
+.circle{
+  display: inline-block;
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  border:1px solid #999;
+}
+
+.bg-group-border-image{
+  border-top: 3px solid transparent;
+  border-bottom: 3px solid transparent;
+  border-image: url("https://cdn.ukaocloud.cn/wxapp/bdimg/border-img.png") 42 3 repeat;
+ 
+}
+
+.text-ellipsis{
+  overflow: hidden;
+  text-overflow:ellipsis;
+  white-space: nowrap;
+}
+
+.u_icon{
+  display: inline-block;
+  width: 22px;
+  height: 22px;
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  background-position: center center;
+  vertical-align: middle;
+}
+.u_icon-check{
+  background-image: url(https://cdn.ukaocloud.cn/wxapp/icon/u_icon_check.png);
+}
+.u_icon-checked{
+  background-image: url('https://cdn.ukaocloud.cn/wxapp/icon/u_icon_checked.png');
+}

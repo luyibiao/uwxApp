@@ -1,0 +1,21 @@
+<view class="flex-wrap flex-wrap-between text-center">
+  <view class='cabinet-item-cabinet bg-white flex-item-strech ' >
+    <view>
+      <image src="{{cabinetList.length ? cabinetList[0].imgPath : ''}}" mode='widthFix' class='w-ag' style='{{cabinetList.length ? "" : "height:148px"}}'></image> 
+    </view>
+  </view>
+  <view class='cabinet-item-order m-l-f bg-white flex-item-strech wrap-rve'>
+    <view class='item-abs w-ag'>
+      <view>微信预约智能柜</view>
+    <view class='flex-wrap flex-wrap-between'>
+      <view class='flexratio ft-weight-xl hours text-right'>24</view>
+      <view class='flexratio text-left ft-foten m-t'>
+        <view class='ft-weight-xl'>HOURS</view>
+        <view>自助存洗</view>
+      </view>
+    </view>
+    <view class='m-t'><button type='primary' plain class='cabinet-btn ft-foten ' bindtap='onBespeak'>立即预约</button></view>
+    </view>
+  </view>
+</view>
+

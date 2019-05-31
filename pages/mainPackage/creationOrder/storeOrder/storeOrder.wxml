@@ -1,0 +1,65 @@
+<content>
+  <view>
+      <view class='group m-t-tt'>
+        <selfStore startFlag="{{storeFlag}}" bindcallback="onStoreInfo"></selfStore>
+      </view>
+      <!-- <cupborad startFlag="{{cupboradFlag}}" bindcallback="onCouboardInfo"></cupborad> -->
+    <view class='group m-t-tt'>
+      <uRemark bindcallback="onTextArea"></uRemark>
+    </view>
+
+    <view class='group m-t-tt' wx:if="{{orderMode.CURRENT_MODE!=orderMode.ROOR_MODE}}">
+      <cell wx:for="{{shopList}}" wx:key="{{item.id}}">
+        <view class='flex-wrap flex-wrap-between' slot="title">
+          <view class='flexratio'>{{item.name}}</view>
+          <view class='text-muted flexratio text-center ft-foten'>x{{item.cnt}}</view>
+          <view class='text-muted flexratio text-center ft-foten'>{{filter.discountFormat(item.discount)}}</view>
+          <view class='flexratio text-right'>￥{{filter.amtFormat((vipPriceShow && isVip && item.vipPrice ? item.vipPrice : item.price) *((item.discount || 100)/100))*item.cnt}}</view>
+        </view>
+        <view slot="desc-ine">￥{{filter.amtFormat(item.price)}}
+          <view class='text-danger p-l ' style= "display:inline-block;" wx:if="{{vipPriceShow}}" > 
+              {{item.vipPrice ? '￥'+filter.amtFormat(item.vipPrice) : ''}}
+              <view  class="{{item.vipPrice? 'bd-danger bd-radius-lg padd-l-r-f' :''}} "style= "display:inline-block; font-size:10px;" > {{item.vipPrice ? '会员价' : ''}}</view>
+          </view>
+        </view>
+
+      </cell>
+    </view>
+
+
+    <view class='group m-t-tt' wx:if="{{orderMode.CURRENT_MODE!=orderMode.ROOR_MODE && form.payablePrice}}">
+      <cell>
+        <view slot="title">衣物总额</view>
+        <view slot="value" class='text-danger ft-siten'>￥{{filter.amtFormat(form.payablePrice)}}</view>
+      </cell>
+    </view>
+    <view class='group m-t-tt' wx:else>
+      <clothNum bindcallback="onSelectClothNum"></clothNum>
+    </view>
+
+    <view class="m-t-tt" wx:if="{{vipPriceShow && vipAllMoney < form.payablePrice  }}">
+      <view class="m-l text-muted ft-tve">充值享受会员价</view>
+      <view class="flex-wrap flex-wrap-between bg-white m-t-f" style='padding: 5px 10px'>
+        <view class="ft-tve">
+          本订单按会员价可优惠 <text class="text-danger m-l ">￥{{filter.amtFormat(form.payablePrice - vipAllMoney)}}</text>
+        </view>
+        <view><button type='primary' bindtap="toNavgoFn" data-url="/pages/mainPackage/user/userCharge/userCharge" class="ft-foten" > 会员充值</button></view>
+      </view>
+    </view>
+
+
+    <view wx:if="{{vipPriceShow && vipAllMoney < form.payablePrice}}" class="vip-btn-fotter ft-tve  border-box text-danger flex-wrap-center " >充值享受会员价：{{filter.amtFormat(vipAllMoney)}}</view>
+    <view class='wrap-fix item-fix-bottom bg-white flex-wrap padd-t-b-t bd-muted-vice-top'>
+        <button type='primary' class='w-bg flex-item-auto' bindtap='onSubmit' >立即预约</button>
+    </view>
+  </view>
+</content>
+
+<popup popup="{{closeBitPoP}}" popstyle="bottom:0px;" popstyle="z-index:1002">
+  <view class='all-tt ft-foten'>
+    <view class="text-center marg-t-b-tt padd-t-b-t">{{closedTip}}</view>
+    <button type='primary' bindtap='closePop' class='w-ag fz-fift'>确定</button>
+  </view>
+</popup>
+
+<wxs src="../../../../utils/wxs/filter.wxs" module="filter"></wxs>

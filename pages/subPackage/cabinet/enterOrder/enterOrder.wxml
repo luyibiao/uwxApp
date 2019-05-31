@@ -1,0 +1,19 @@
+<content>
+  <view class='text-center'>
+    <view class='c-content-first text-danger'>{{params.cupboardDoor}} 箱门已开</view>
+    <view wx:if="{{params.optway==1 || params.optway==3}}">请将衣物放入箱内，关好箱门</view>
+    <view wx:elif="{{params.optway==2}}">请将衣物取出，关好箱门</view>
+  </view>
+    <view class='f-content text-center text-muted'>
+      <view>
+        <view  class='text-service' bindtap='alreadyClose'>已关好箱门</view>
+      </view>
+      <view>
+        <view>
+          <text class='m-r-f'>箱门没打开，</text>
+          <text class='text-service' bindtap='onAgainOpen'>重开箱门</text>
+        </view>
+        <view class='m-t'>客服热线<text class='text-service m-l-f' bindtap='makePhoneCall'>{{tel}}</text></view>
+      </view>
+    </view>
+</content>

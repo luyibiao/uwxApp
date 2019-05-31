@@ -1,0 +1,10 @@
+{
+  "navigationBarTitleText": "自送智能柜",
+  "usingComponents":{
+    "userProto": "/component/view/userProtocol/userProtocol",
+    "cupborad":"/component/view/cupborad/cupborad",
+    "uRemark": "/component/view/uRemark/uRemark",
+    "popup": "/component/view/popup/popup",
+    "clothNum": "/component/view/clothNum/clothNum"
+  }
+}

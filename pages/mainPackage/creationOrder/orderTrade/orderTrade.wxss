@@ -1,0 +1,14 @@
+.blance-wrap{
+  padding: 30px 0;
+}
+
+.blance{
+  font-size: 28px;
+  color: #f05050;
+ 
+}
+
+.coupon-wrap{
+  max-height: 350px;
+  overflow: auto;
+}

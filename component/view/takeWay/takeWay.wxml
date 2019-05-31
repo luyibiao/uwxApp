@@ -1,0 +1,47 @@
+<cell islink="{{wayIslink}}" bindtap="onShowPop">
+  <view slot="title" class='t-box'>
+    <view>取件方式</view>
+    <view class='text-danger ft-foten' wx:if="{{wayMoney || wayMoney===0}}">￥{{filter.amtFormat(wayMoney)}}</view>
+    <view class="ft-foten {{wayTypeText ? 'text-black' : 'text-cell-muted'}}">{{wayTypeText ? wayTypeText :'请选择取送方式'}}</view>
+  </view>
+  <view slot="desc-ine" class='text-right text-cell-muted ft-tve'>
+    <text wx:for="{{wayDescList}}" wx:key="{{index}}">
+      <text wx:if="{{(item.flag==0 || item.freeCarriageAmt==0) && index==0}}">免取送费</text>
+      <text wx:else> 
+         <text wx:if="{{index==1}}">满{{filter.amtFormat(wayDescList[index-1].freeCarriageAmt)}}元</text>未满{{filter.amtFormat(item.freeCarriageAmt)}}元取送费{{filter.amtFormat(item.sendCarriage+item.takeCarriage)}}元
+      </text>
+    </text>
+  </view>
+</cell>
+<popup popup="{{showPopup}}" popstyle="z-index:1002">
+  <view class='ts-way'>
+    <view class='text-center ft-foten  header bd-b'>请选择取送方式</view>
+    <view class='ft-foten'>
+      <view class='wrap-rve bd-b padder' wx:for="{{tsList}}"  wx:key="{{index}}" bindtap='onSelectWay' data-item="{{item}}" data-index="{{index}}">
+        <view class='icon'>
+          <icon size='18' type="success" wx:if="{{active==index}}"></icon>
+          <image src='/static/img/shop/icon/del_checkbox.png' mode="aspectFit" style='width:20px;height:18px;' wx:else></image>
+        </view>
+        <view class='m-l-tt '>
+          <view>{{filter.getValText(index,"EXPRESS_TYPE")}}取送
+            <text wx:if="{{index=='SELF'}}" class='m-l-tt ft-tve'>取送员上门取送</text>
+            <text wx:if="{{index=='SF'}}" class='m-l-tt ft-tve'>顺丰小哥上门取送</text>
+          </view>
+          <view class='text-cell-muted ft-tve'>
+            <text wx:for="{{item}}" wx:for-item="citem" wx:for-index="cindex" wx:key="{{cindex}}"> 
+              <text wx:if="{{item[0].flag==0 && cindex==0}}">免取送费</text>
+              <text wx:else>
+                <text  wx:if="{{cindex==1}}">满{{filter.amtFormat(item[cindex-1].freeCarriageAmt)}}元</text>未满{{filter.amtFormat(citem.freeCarriageAmt)}}元取送费{{filter.amtFormat(citem.sendCarriage+citem.takeCarriage)}}元
+              </text>
+            </text>
+          </view>
+        </view>
+      </view>
+    </view>
+    <view class='tsway-btn padder'>
+      <button type='primary' bindtap='onEnter'>确认</button>
+    </view>
+  </view>
+</popup>
+
+<wxs src="../../../utils/wxs/filter.wxs" module="filter"></wxs>

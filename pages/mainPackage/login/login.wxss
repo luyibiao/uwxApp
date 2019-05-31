@@ -1,0 +1,87 @@
+page{
+  overflow: hidden;
+}
+.input-content{
+  margin: 80px auto 0px;
+}
+.input-content input{
+ border-radius: 40px;
+}
+.input-content>view+view{
+  margin-top: 15px;
+}
+.wrap-img-input{
+  width: 100%;
+  border-radius: 40px;
+  padding: 0px 30px;
+  box-sizing: border-box;
+}
+.wrap-img-input image{
+  position: absolute;
+  top: 50%;
+  left: 20px;
+  transform: translateY(-50%);
+  width: 20px;
+  height: 20px;
+}
+
+.wrap-img-input input{
+  width:90%; 
+  border: none;
+}
+.c-code{
+  position: absolute;
+  top: 50%;
+  right: 20px;
+  transform: translate(0,-50%);
+  z-index: 998;
+}
+.btn{
+  margin-top: 20px;
+  border-radius: 20px;
+}
+.text-success:active{
+  color: #e5e5e5;
+}
+.user-text{
+  color: #b4b9c4;
+}
+.fotter{
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 108px;
+  text-align: center;
+}
+.wx-icon-wrap{
+  margin: 28px auto 13px;
+  display: flex;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  border: 1px solid #61c704;
+}
+.wx-icon-wrap:active{
+  opacity: .5
+}
+.wx-btn{
+  margin: auto;
+  display: flex;
+  background: none;
+}
+.wx-btn:after{ border: none; }
+.wx-icon{
+  width: 30px;
+  height: 30px;
+}
+.wx_login-text{
+  color: #878e9b
+}
+.modal-btn-auth{
+  margin-top: 40px;
+}
+.modal-btn-auth>button{
+  line-height: 35px;
+  /* height: 40px; */
+}

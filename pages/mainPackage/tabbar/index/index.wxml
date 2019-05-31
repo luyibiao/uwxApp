@@ -1,0 +1,69 @@
+<content>
+  <view class="m-b">
+    <view class='sowing-map'>
+      <view class='select-city bd-muted border-box ft-foten' bindtap='onSelect'>
+        <text>{{config.cityName}}</text>
+        <text class='u_arrow-down'></text>
+      </view>
+      <view wx:if="{{config.isClientAdve}}">
+        <swiper class='swiper' indicator-dots="{{swiper.indicatorDots}}" autoplay="{{swiper.autoplay}}" interval="{{swiper.interval}}" duration="{{swiper.duration}}" circular="{{swiper.circular}}">
+          <view wx:for="{{swiper.imgUrlList}}" class='swiper-item' wx:key="{{index}}">
+            <swiper-item>
+              <view bindtap='toImgUrl' data-url="{{item.appLink || ''}}">
+                <image src="{{item.imgPath}}" mode='aspectFit' style='width:100%;height:153px;'></image>
+              </view>
+            </swiper-item>
+        </view>
+        </swiper>
+      </view>
+    </view>
+  </view>
+
+  <!--外链菜单置顶-->
+  <view class='m-b' wx:if="{{config.showOutsideLink && config.topOutsideLink}}">
+    <chainMenu menu-list="{{swiper.menuList}}"></chainMenu>
+  </view>
+
+  <view class="protocol m-b" wx:if="{{imgAd.appLink}}" bindtap="toImgUrl" data-url="{{imgAd.appLink}}">
+    <image mode ="scaleToFill" style='width:100%;height:80px;' src='{{imgAd.imgPath}}'></image>
+  </view>
+
+
+   <!--洗衣协议-->
+  <view class='protocol m-b' wx:if="{{config.createMode.CURRENT_MODE==config.createMode.ROOR_MODE}}">
+    <protocol userprotocol="{{viewConfig.userProtocol}}"></protocol>
+  </view>
+
+  <!--经营大类-->
+  <view class='bussiness m-b' wx:else>
+    <business business-list="{{viewConfig.bussinessList}}"></business>
+  </view>
+
+  
+
+  <!--图片及视频-->
+  <view class='m-b' wx:if="{{config.showMedia}}">
+    <hPhotp media-list="{{swiper.mediaList}}"></hPhotp>
+  </view>
+
+  <!--预约智柜-->
+  <view class='cabinet m-b' wx:if="{{config.isCupboard && config.showBookCupboard}}">
+    <cabinet cabinet-list="{{viewConfig.cabinetList}}"></cabinet>
+  </view>
+
+  <!--外链菜单不置顶-->
+  <view class='m-b' wx:if="{{config.showOutsideLink && !config.topOutsideLink}}">
+    <chainMenu menu-list="{{swiper.menuList}}"></chainMenu>
+  </view>
+
+  <!--预约模式下一键下单-->
+  <view class='text-center root-order m-b' wx:if="{{config.createMode.CURRENT_MODE!=config.createMode.ROOR_MODE && config.oneKeyCreate}}">
+    <view><button type='primary' bindtap='onRootOrder'>一键下单</button></view>
+  </view>
+
+  
+
+  <!-- <button bindtap='routeShop'>跳到商品列表</button> -->
+</content>
+<checkLocal isStartLocate="{{modal.isStartLocate}}" bindcallbackFn="locateCallback"></checkLocal>
+<coupon isStartLocate="{{modal.isStartLocate}}" ></coupon>

@@ -1,0 +1,75 @@
+<content>
+  <view>
+    <view class='bg-lyellow padd-t-b-t ft-foten text-center' wx:if="{{payInfo.expTime}}">
+        <view wx:if="{{payEffective}}">本单需立即付款 剩余时间：<text class='text-danger'>{{wxTimer}}</text></view>
+        <view wx:else>该订单已过期！</view>
+    </view>
+    <view class='bg-white text-center blance-wrap ft-foten'>
+      需支付<text class='text-danger m-l-f'>￥<text class='blance m-r-f'>{{filter.amtFormat(payInfo.payablePrice)}}</text></text>
+      <text wx:if="{{payInfo.carriage}}" class='text-muted'>(含运费{{filter.amtFormat(payInfo.carriage)}})</text>
+      <text class='text-muted' wx:else>(免运费)</text>
+    </view>
+
+    <view class='group m-t-tt'>
+      <cell islink bindtap="onShowPop">
+        <view slot="title" class='ft-foten'>优惠券</view>
+        <view slot="value">
+          <view wx:if="{{discountAmount}}" class='text-danger'>-￥{{filter.amtFormat(discountAmount)}}</view>
+          <view wx:elif="{{type==2 && payInfo.uPayCard && payInfo.uPayCard.isEnable && !payInfo.uPayCard.useCoupon}}">优付卡不支持使用优惠券</view>
+          <view wx:else>无可用</view>
+        </view>
+      </cell>
+    </view>
+
+    <view class='group m-t-tt'>
+      <cell>
+        <view slot="title" class='ft-foten'>余额支付</view>
+        <view slot="value">
+          <text wx:if="{{type!=1}}">可用余额￥{{filter.amtFormat(allBalance)}}</text>
+          <text wx:else class='text-danger'>支付{{filter.amtFormat(sysAmount)}}元</text>
+          <text class='u_icon {{type==1 ? "u_icon-checked" : "u_icon-check" }} m-l' bindtap='onSelectBalance' data-type="1"></text>
+        </view>
+      </cell>
+      <cell wx:if="{{payInfo.uPayCard && payInfo.uPayCard.isEnable}}">
+        <view slot="title" class='ft-foten'>优付卡<text class='text-muted'>(支付比例{{payInfo.uPayCard.payRatio}}%)</text></view>
+        <view slot="value">
+          <text wx:if="{{type!=2}}">可用余额￥{{filter.amtFormat(payInfo.uPayCard.balance)}}</text>
+          <text class='text-danger' wx:else>支付￥{{filter.amtFormat(sysAmount)}}</text>
+          <text class='u_icon {{type==2 ? "u_icon-checked" : "u_icon-check" }} m-l' bindtap='onSelectBalance' data-type="2"></text>
+        </view>
+      </cell>
+    </view>
+
+    <view class='m-t-tt text-center'>
+      <button type='primary' class='w-bg' disabled='{{btnStatus}}' bindtap='onSubmitPay'>{{payMode}}</button>
+    </view>
+  </view>
+</content>
+
+<wxs src="../../../../utils/wxs/filter.wxs" module="filter"></wxs>
+
+<popup popup="{{showpPopup}}" bind:onPopup="onPopup">
+  <view>
+    <view class='dig-title text-center padd-t-b-t bd-muted-vice-bottom'>优惠券支付</view>
+    <view>
+      <view class='group ft-foten coupon-wrap'>
+        <cell wx:for="{{couponList}}" wx:key="{{item.id}}" data-item="{{item}}" bindtap="onSelectCoupon">
+          <view slot="title">
+            <text>{{item.name}}（{{filter.amtFormat(item.amount || 0)}}元）</text>
+          </view>
+          <view slot="value">
+            <text class='u_icon {{couactive==item.id ? "u_icon-checked" : "u_icon-check"}}'></text>
+          </view>
+          <view slot="desc-ine">
+            <text>{{item.couponRuleName == '通用' ? item.couponRuleName : '仅限'+item.couponRuleName+'使用'}}</text>
+            <text wx:if="{{!item.useBalance}}">不能与余额同时使用</text>
+          </view>
+        </cell>
+        <cell bindtap="onSelectCoupon" data-item="none">
+          <view slot="title">不使用优惠券</view>
+          <view slot="value"><text class='u_icon {{couactive!=0 ? "u_icon-check" : "u_icon-checked"}}'></text></view>
+        </cell>
+      </view>
+    </view>
+  </view>
+</popup>

@@ -1,0 +1,4 @@
+<view class='ft-tve padd-t bg-yellow border-box'>
+  {{content}}
+  <navigator class='text-service' url='/pages/mainPackage/user/userProtocol/userProtocol' >《用户协议》</navigator>
+</view>

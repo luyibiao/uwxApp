@@ -1,0 +1,18 @@
+<!--pages/mainPackage/user/userCard/bindCard/bindCard.wxml-->
+<content>
+  <view>
+    <view class="m-t-tt">
+      <view class="wrap-rve wrap-text-input bd-muted-vice bg-white">
+        <text>卡号</text>
+        <input type="number" placeholder="{{'请输入卡号'}}" placeholder-class="text-left" class="ft-siten" value='{{params.rfidNo}}' bindblur="rfidNoInputFn"></input>
+      </view>
+      <view class="wrap-rve wrap-text-input bd-muted-vice del-bor-top bg-white">
+        <text>验证码</text>
+        <input type="number" placeholder="{{'请输入验证码'}}" placeholder-class="text-left" class="ft-siten"  value='{{params.checkCode}}' bindblur="checkCodeInputFn"></input>
+      </view>
+    </view>
+    <view class="m-t-tt m-l-tf m-r-tf" >
+      <button type="primary" loading="{{loading}}" plain="{{false}}" class="w-ag" disabled="{{loading}}" bindtap="addCardFn">确定</button>
+    </view>
+  </view>
+</content>

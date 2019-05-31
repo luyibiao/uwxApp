@@ -1,0 +1,107 @@
+.flex-array-flow{
+  min-width: 20px;
+  flex: 1;
+  background-color: #fff;
+}
+.flow-detail image{
+  width:80rpx;
+}
+.circulars{
+  left: -10px;
+  width: 20px;
+
+}
+.circulars .circle{
+  background-color: #ddd;
+  border: transparent;
+}
+.circle-lg{
+  width: 10px;
+  height: 10px;
+ 
+}
+.circle-md{
+  width: 5px;
+  height: 5px;
+}
+.circle-checked{
+  background-color: rgba(57, 213, 57, 0.5) !important;
+}
+
+.otder-detail>view{
+  margin-top: 7px;
+}
+.order-total{
+  margin-bottom: 50px;
+}
+.wait-worter{
+  position: absolute;
+  bottom: -30px;
+  left: 0;
+  right: 0;
+}
+
+.bd-status{
+  border: 1px solid;
+  padding: 1px 3px;
+  border-radius: 4px;
+}
+.pay-box {
+  margin: 10px 15px;
+  padding: 10px 40px;
+  border: 1px dashed #167efb;
+  background-color: #f2f9ff;
+}
+
+.ts-worker>view+view{
+  margin-top: 5px;
+}
+
+.wrok-image image{
+  width: 80px;
+}
+
+.custom-fix-share{
+  right: 10px;
+  bottom: 180px;
+  width: 68px;
+  height: 83px;
+  background: transparent;
+  /* background-color: red; */
+  background-image: url(https://cdn.ukaocloud.cn/wxapp/icon/share_log.png);
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: 100% 100%;
+  transition: all .5s
+}
+
+.custom-fix-share-hide{
+  right: 0;
+  transform: translateX(100%);
+}
+
+.share image{
+ z-index: 1001;
+ position: fixed;
+ width: 74px;
+ height: 105px;
+ top: 4%;
+ right: 20%;
+}
+
+.modal-share-text>view+view{
+  margin-top: 25px;
+}
+.qcode{
+  width: 244px;
+  height: 70px;
+}
+.canvas{
+  width: 100%;
+  height: 100%;
+}
+
+.is-disabled{
+  background: url(https://cdn.ukaocloud.cn/wxapp/icon/order_cancel.png) no-repeat 98% 90%;
+  background-size: 60px 60px;
+}

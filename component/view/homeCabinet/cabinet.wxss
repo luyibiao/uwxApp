@@ -1,0 +1,15 @@
+.cabinet-item-cabinet{
+  flex: 60%;
+}
+.cabinet-item-order{
+  flex: 40%;
+}
+
+.hours{
+  font-size: 32px;
+}
+
+.cabinet-btn{
+  line-height: 25px;
+  border-radius: 15px;
+}

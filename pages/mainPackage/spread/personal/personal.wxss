@@ -1,0 +1,26 @@
+/* pages/mainPackage/spread/personal/personal.wxss */
+
+.spread-head-color{
+  background: linear-gradient(to bottom, #394354, #555c6a);
+  line-height: 120px;
+}
+
+.commission{
+  color: #ba965e;
+}
+
+.commission>view{
+
+}
+
+.flexratio>view{
+  margin-bottom: 3px
+}
+
+.l-h-2x {
+    line-height: 2em;
+}
+
+.summary {
+    padding: 10px 20px 20px;
+}

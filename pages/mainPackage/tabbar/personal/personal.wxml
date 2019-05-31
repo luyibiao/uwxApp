@@ -1,0 +1,51 @@
+<content>
+<view>
+  <view class="group" bindtap="toNavgoFn"  data-url="/pages/mainPackage/user/userCharge/userCharge">
+    <cell islink cellstyle="margin-top:0px" >
+      <view slot="title">
+        <image src="{{userInfo.headimgPath || userHeadImg}}" mode="aspectFit" class="headImg pull-left" ></image>
+        <view class="m-l-ft text-black">{{userInfo.phone}}</view>
+        <view class="m-l-ft text-black" wx:if="{{userInfo.point}}">积分：{{userInfo.point}}
+        <text wx:if="{{userInfo.cardRights && userInfo.cardRightsArr[1] == 1}}">
+          <text wx:if="{{userInfo.discountType == 1}}">折扣:{{userInfo.cardDiscount/10}}</text>
+          <text wx:if="{{userInfo.discountType == 2}}">多折扣</text>
+        </text>
+        </view>
+      </view>
+      <view slot="value" class="text-info fz-fift ft--weight-md" >充值</view>
+    </cell>
+  </view>
+  <view wx:for="{{array}}" wx:for-item="head" wx:key="{{headIndex}}" wx:for-index="{{headIndex}}">
+    <view class="group m-t">
+      <view wx:for="{{head}}" wx:for-item="tail" wx:key="{{tailIndex}}" wx:for-index="{{tailIndex}}">
+        <cell islink wx:if="{{tail.ishow == 1}}" bindtap="toNavgoFn" data-url="{{tail.uri}}">
+           <view slot="title" class="wrap-rve" >
+            <image src='{{tail.img}}' mode='{{tail.mode}}' class="smallImg item-abs-colum-center"></image>
+            <view class="m-l-tf ft-foten" >{{tail.name}}</view>
+          </view>
+          <view wx:if="{{tail.value}}" slot="value" style='{{tail.styleCss}}'>{{tail.value}}</view>
+        </cell>
+      </view>
+    </view>
+  </view>
+
+  <!-- <view class='group m-t'>
+    <cell islink >
+      <view slot="title" class="wrap-rve service" >
+        <image src='{{serviceIcon}}' mode='aspectFit' class="smallImg item-abs-colum-center"></image>
+        <view class="m-l-tf ft-foten" ><button open-type="contact">联系客服</button></view>
+      </view>
+      
+    </cell>
+  </view> -->
+
+  <!-- <view class="group m-t" wx:if="{{userInfo.mercTel}}">
+    <cell>
+      <view slot="title">
+        <view class="text-cell-muted p-l text-center">客服 <text bindtap='onCallPhone' class=" text-info">{{userInfo.mercTel}}</text></view>
+      </view>
+    </cell>
+  </view> -->
+</view>
+</content>
+<wxs src="../../../../utils/wxs/filter.wxs" module="filter"></wxs>

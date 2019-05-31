@@ -1,0 +1,53 @@
+<content>
+  <view>
+    <view><userProto content="{{userContent}}"></userProto></view>
+
+    <view class='group m-t'>
+      <takeAddres startLoad="{{start.startTsWay}}"></takeAddres>
+    </view>
+
+    <view class='m-t-tt '>
+      <view class='text-muted m-b padd-l-r-t border-box'>填写订单</view>
+      <view class='group ft-foten'>
+         <takeTime bindcallback="onTakeTimeFn"></takeTime>
+         <takeWay bindcallback="onTakeWayFn" startLoad="{{start.startTsWay}}" ></takeWay>
+         <clothNum bindcallback="onSelectClothNum"></clothNum>
+      </view>
+    </view>
+
+    <view class='group m-t-tt'>
+      <!-- <cell >
+        <view slot="title">有无大件</view>
+        <view slot="value" class='flex-wrap'>
+          <view class='flex-wrap flex-wrap-between {{index>0 ? "m-l-tt" : ""}}' wx:for="{{hasBigList}}" wx:key="{{index}}" bindtap="onSelectBig" data-index="{{index}}">
+            <i class='circle circle-custom {{index==hasbigCurrent ? "check-hasbig" : "" }}'></i>
+            <text class='m-l-f'>{{item.name}}</text>
+          </view>
+        </view>
+      </cell> -->
+      <uRemark bindcallback="onTextArea"></uRemark>
+    </view>
+
+    <view class='wrap-fix item-fix-bottom bg-white padd-t border-box flex-wrap flex-item-auto'>
+      <button type='primary' class='w-ag' bindtap='verify'>立即预约</button>
+    </view>
+  </view>
+</content>
+
+<popup popup="{{verifyPop}}" popstyle="bottom:0px;" popstyle="z-index:1002">
+  <view class='all-tt ft-foten'>
+    <view class="text-center marg-t-b-tt padd-t-b-t">选择顺丰取件，下单后订单将无法取消</view>
+    <view class="flex-wrap flex-wrap-between">
+      <button type='primary' bindtap='onSubmit' loading="{{subFormLoading}}" disabled="{{subFormLoading}}" class='w-ag fz-fift' style='width:47%;'>确定</button>
+      <button type='default' bindtap='closeVerifyPop'  class='w-ag fz-fift' style='width:47%;'>取消</button>
+    </view>
+    
+  </view>
+</popup>
+
+<popup popup="{{closeBitPoP}}" popstyle="bottom:0px;" popstyle="z-index:1002">
+  <view class='all-tt ft-foten'>
+    <view class="text-center marg-t-b-tt padd-t-b-t">{{closedTip}}</view>
+    <button type='primary' bindtap='closePop' class='w-ag fz-fift'>确定</button>
+  </view>
+</popup>

@@ -1,0 +1,64 @@
+<!--pages/mainPackage/user/userCharge/userCharge.wxml-->
+<content>
+<view style='overflow:hidden'>
+  <view>
+    <nav navList="{{navList}}" bind:navBtn="myNavBtn" navstyle="font-size: 14px;"></nav>
+  </view>
+
+  <view wx:if="{{active == 3}}" class="parent-content">
+    <view class="text-center bg-white padd-lg">
+      <view class="text-black">充值金额：<text class="text-primary dis-line-block">￥</text><view class="ft-lg dis-line-block text-primary">{{filter.amtFormat(recharge.amount)}}</view></view>
+      <view class="text-cell-muted m-t ft-tve">{{recharge.ruleHTML}}</view>
+    </view>
+   
+  </view>
+  <view wx:else class="parent-content">
+    <view class="text-center bg-white padd-lg">
+        <view class="text-danger ft-lg ">￥{{filter.amtFormat(balance)}}</view>
+        <view class="text-cell-muted ft-tve">余额（元）</view>
+    </view>
+  </view>
+  <view  wx:if="{{active == 0}}">
+     <view class="group " >
+        <cell islink wx:for="{{rechargeList}}" wx:key="{{index}}" bindtap="getRecharge" data-obj="{{item}}">
+          <view slot='title'>
+            <view class="text-primary">{{item.name}}</view>
+            <view class="text-cell-muted ft-tve">{{item.ruleHTML}}</view>
+          </view>
+          <view slot='value' class="text-primary">￥{{filter.amtFormat(item.amount)}}</view>
+        </cell>
+      </view>
+      <view wx:if="{{rechargeList.length===0}}" class='text-center none-order'>
+        <image src='{{icon.noOrderIcon}}' mode="aspectFit"></image>
+        <view class='text-muted'>对不起，暂无充值规则，您可以选择其他方式。</view>
+      </view>
+    <view class='text-center m-t-tt text-muted ft-foten' wx:if="{{rechargeList.length>0}}">{{loadingText}}</view>
+  </view>
+
+  <view class="m-t" wx:if="{{active == 1 || active == 2}}">
+  <form bindsubmit="rechargeFn">
+    <input type="number" placeholder="{{placeholderText}}" class="bg-white" style='border:0px' name="moneyOrCode" value="{{moneyOrCode}}"></input>
+    <view class="m-t-tt m-l-tf m-r-tf">
+    <button type="primary" loading="{{loading}}" plain="{{plain}}" disabled="{{loading}}"  class="w-ag" form-type="submit">{{buttonName}}</button>
+    </view>
+  </form>
+  </view>
+</view>
+
+<view wx:if="{{active==3}}">
+  <view class="padd-t bg-white">
+      <view class="ft-siten padd-l-r-t">微信支付 <icon class="pull-right" type="success_no_circle" size="20"></icon></view> 
+  </view>
+   <view class="m-t-tt m-l-tf m-r-tf">
+    <button type="primary" loading="{{loading}}" plain="{{plain}}" disabled="{{loading}}"  class="w-ag" bindtap="rechargeFn" data-moneyorcode="{{filter.amtFormat(recharge.amount)}}">
+    需支付{{filter.amtFormat(recharge.amount)}}元</button>
+  </view>
+  <view class="m-t-tt m-l-tf m-r-tf">
+    <button type="default"  class="w-ag bd-muted-vice back-btn" bindtap="escList">返回</button>
+  </view>
+</view>
+  
+
+</content>
+
+<wxs src="../../../../utils/wxs/filter.wxs" module="filter"></wxs>

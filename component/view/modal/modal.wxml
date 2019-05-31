@@ -1,0 +1,23 @@
+<view wx:if="{{ismodal}}" style='height:{{height}}px;position:fixed;width:{{width}}px;top:0;left:0;z-index:1000;'>
+  <view class='modal-wrap' style=''>
+    <view class='modal-content ' >
+      <view class='modal-content-main bg-white' style='{{modalStyle}}'>
+        <view>{{content}}</view>
+        <slot></slot>
+      </view>
+      <view class='modal-btn bg-white' wx:if="{{iscancel || isconfirm}}">
+        <view class='modal-btn-cancel' bindtap='cancelmodal' wx:if="{{iscancel}}" >{{cancelText}}</view>
+        <view class='modal-btn-confirm confirm-class' bindtap='confirmmodal' wx:if="{{isconfirm}}">{{confirmText}}</view>
+      </view>
+    </view>
+    <!-- <view class='modal-content' style='{{modalStyle}}'>
+      <view>{{content}}</view>
+      <slot></slot>
+    </view>
+    <view class='modal-btn'>
+        <view class='modal-btn-cancel' bindtap='cancelmodal' wx:if="{{iscancel}}" >{{cancelText}}</view>
+        <view class='modal-btn-confirm confirm-class' bindtap='confirmmodal' wx:if="{{isconfirm}}">{{confirmText}}</view>
+    </view> -->
+  </view>
+  <view class='{{ismodal ? "mask" : ""}}' bindtap='onCloseMask' style='{{maskStyle}}' catchtouchmove="ture"></view>
+</view>

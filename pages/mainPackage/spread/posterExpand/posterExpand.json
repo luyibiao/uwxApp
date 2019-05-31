@@ -1,0 +1,7 @@
+{
+  "navigationBarTitleText": "海报推广",
+  "usingComponents": {
+    "popup": "/component/view/popup/popup",
+    "modal": "/component/view/modal/modal"
+  }
+}

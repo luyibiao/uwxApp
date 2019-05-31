@@ -1,0 +1,6 @@
+{
+  "component": true,
+  "usingComponents": {
+    "backIcon":"/component/view/backIndexIcon/backIndexIcon"
+  }
+}

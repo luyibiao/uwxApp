@@ -1,0 +1,3 @@
+
+  <view class='back-index' wx:if="{{!showBackFlag}}" style='right:{{backIndexStyle.right}}px;bottom:{{backIndexStyle.bottom}}px;background-image: url({{backIndexUrl}});transform: translateX({{backIndexStyle.marX}}px)' bindtouchmove="movebtn" bindtap='onBtnBackIndex'>
+  </view>

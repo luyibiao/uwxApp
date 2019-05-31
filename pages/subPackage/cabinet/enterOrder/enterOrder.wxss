@@ -1,0 +1,20 @@
+page{
+  overflow: hidden;
+}
+.c-content-first{
+  margin: 70px 0px 25px;
+  font-size: 30px;
+}
+.f-content{
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: var(--twty);
+  padding: 5px 0px;
+}
+.f-content>view:first-child{
+  margin-bottom: 75px;
+}
+.text-service:active{
+  color: #e5e5e5;
+}

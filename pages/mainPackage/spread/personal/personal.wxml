@@ -1,0 +1,52 @@
+<!--pages/mainPackage/spread/personal/personal.wxml-->
+<content>
+  <view wx:if="{{headLoding}}">
+    <view class="text-center ft-siten text-white spread-head-color">
+      友商中心
+    </view>
+
+    <view class="flex-wrap text-center padd-t-b-t text-head commission bg-white">
+      <view class="flexratio">
+        <view class="">{{filter.amtFormat(commission.newFansAmt || 0)}}元/粉丝</view>
+        <view class="">加粉提成</view>
+      </view>
+      <view class="flexratio">
+        <view class="" wx:if="commission.consumeType === 1">
+          {{(commission.consume ||0) / 100 }}%
+        </view>
+        <view wx:else>
+          {{commission.consume ||0 | amtFormat}}元
+        </view>
+        <view class="">
+            消费提成
+        </view>
+      </view>
+      <view class="flexratio">
+        <view class="" wx:if="commission.rechargeType === 1">{{(commission.recharge ||0) / 100 }}%</view>
+        <view wx:else>{{filter.amtFormat(commission.recharge || 0)}}元</view>
+        <view class="">充值提成</view>
+      </view>
+    </view>
+    <view class="text-center summary m-t-tt bg-white l-h-2x text-black">
+      <view class="ft-foten">权益介绍</view>
+      <view class="text-left m-b"> 
+        单粉佣金{{filter.amtFormat(commission.newFansAmt ||0)}}元/粉丝，
+        考验期限为{{commission.testDay}}天（{{commission.testDay}}天内粉丝取消关注公众号则没有提成）；
+        消费提成
+        <block wx:if="commission.consumeType === 1">
+          {{(commission.consume ||0) / 100 }}%
+        </block>
+        <block wx:else>
+          {{filter.amtFormat(commission.consume ||0)}}元
+        </block>
+        充值提成
+        <block wx:if="commission.rechargeType === 1">{{(commission.recharge ||0) / 100 }}%</block>
+        <block wx:else>{{filter.amtFormat(commission.recharge ||0)}}元</block>
+        （分润期数{{commission.profitDay}}天）
+      </view>
+    </view>
+
+  </view>
+</content>
+
+<wxs src="../../../../utils/wxs/filter.wxs" module="filter"></wxs>

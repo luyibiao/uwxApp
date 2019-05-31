@@ -1,0 +1,97 @@
+{
+	"description": "项目配置文件",
+	"packOptions": {
+		"ignore": []
+	},
+	"setting": {
+		"urlCheck": false,
+		"es6": true,
+		"postcss": true,
+		"minified": true,
+		"newFeature": true
+	},
+	"compileType": "miniprogram",
+	"libVersion": "2.4.0",
+	"appid": "wxdaa0aef963cd1b77",
+	"projectname": "wxapp",
+	"debugOptions": {
+		"hidedInDevtools": []
+	},
+	"isGameTourist": false,
+	"simulatorType": "wechat",
+	"simulatorPluginLibVersion": {},
+	"condition": {
+		"search": {
+			"current": -1,
+			"list": []
+		},
+		"conversation": {
+			"current": -1,
+			"list": []
+		},
+		"plugin": {
+			"current": -1,
+			"list": []
+		},
+		"game": {
+			"currentL": -1,
+			"list": []
+		},
+		"miniprogram": {
+			"current": 6,
+			"list": [
+				{
+					"id": 0,
+					"name": "扫描智柜测试",
+					"pathName": "pages/subPackage/cabinet/index/index",
+					"query": "q=https%3a%2f%2fw.twash.cn%2fwxapp%2f21670364%3fcode%3d21670364",
+					"scene": "1011"
+				},
+				{
+					"id": 1,
+					"name": "扫描智柜正式",
+					"pathName": "pages/subPackage/cabinet/index/index",
+					"query": "q=https%3a%2f%2fw.twash.cn%2fwxapp%2f21670364%3fcode%3d20256121",
+					"scene": "1011"
+				},
+				{
+					"id": 2,
+					"name": "发现栏主入口",
+					"pathName": "pages/mainPackage/tabbar/index/index",
+					"query": "",
+					"scene": "1006"
+				},
+				{
+					"id": 3,
+					"name": "领取优惠券",
+					"pathName": "pages/mainPackage/user/userCoupon/addCoupon/addCoupon",
+					"query": "q=https%3A%2F%2Fw.ukaocloud.cn%2Fobtain_list%3Fu_code%3D100001%26ids%3D384",
+					"scene": "1011"
+				},
+				{
+					"id": 4,
+					"name": "门店列表",
+					"pathName": "pages/mainPackage/creationOrder/storeList/storeList",
+					"query": "",
+					"scene": "1035",
+					"referrerInfo": {
+						"appId": "wx2e05b805b35438ad"
+					}
+				},
+				{
+					"id": 5,
+					"name": "模拟更新",
+					"pathName": "pages/mainPackage/tabbar/index/index",
+					"query": ""
+				},
+				{
+					"id": 6,
+					"name": "链接领取优惠券",
+					"pathName": "pages/mainPackage/user/userCoupon/addCoupon/addCoupon",
+					"query": "ids=384",
+					"scene": 1082
+				}
+			]
+		}
+	}
+}

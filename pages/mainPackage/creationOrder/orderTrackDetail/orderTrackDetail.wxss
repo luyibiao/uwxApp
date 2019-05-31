@@ -1,0 +1,36 @@
+.track-item{
+  padding: 16px 0;
+}
+.track-item-circle{
+  position: absolute;
+  z-index: 10;
+}
+.bd-primary{
+  border:1px solid #1aad19;
+}
+.circle-custom{
+  width: 12px;
+  height: 12px;
+}
+.circle-custom-children{
+  width: 80%;
+  height: 80%;
+  background-color: #1aad19;
+  border: transparent;
+}
+.circle-custom-muted{
+  background-color: #98a6ad;
+}
+
+.track-item-muted{
+  color: #888;
+}
+
+.storke{
+  position: absolute;
+  top: 27px;
+  left: 6px;
+  width: 2px;
+  height: 90%;
+  background-color: #e5e5e5;
+}

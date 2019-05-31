@@ -1,0 +1,36 @@
+<view>
+  <view class='protocol-wrap w-ag wrap-rve' style='background-image:url({{userprotocol.imgPath}})'>
+    <view class='protocol-content item-abs-row-center w-ag text-center'>
+      <view><button type='primary' class='ft-foten' bindtap='onwash'>一键下单</button></view>
+      <view class='m-t-f'>
+        <view class='' style='display:inline-block'>
+          <checkbox-group bindchange="checkboxChange"><checkbox checked="{{checkBox}}"/></checkbox-group>
+        </view>
+        <text>我已阅读并同意</text>
+        <navigator class='text-info' url='/pages/mainPackage/user/userProtocol/userProtocol'>《服务协议》</navigator>
+      </view>
+    </view>
+  </view>
+
+  <popup popup="{{showPopup}}">
+    <view>
+     <view class='text-center bd-muted-vice-bottom wrap-rve padd-t-b-t'>
+      <view class='item-abs-colum-center'>
+        <!-- <icon type='clear' size='20'></icon> -->
+      </view>
+      <view class='ft-foten'>请选择服务方式</view>
+    </view>
+
+    <view class='way-content'>
+      <view class='flex-wrap flex-wrap-between way-content-li text-center ft-foten'>
+        <view wx:for="{{tswayList}}" wx:key="{{index}}" bindtap='routePush' data-item="{{item}}" wx:if="{{item.isShow==1}}" class='flexratio'>
+          <image src='{{item.imgPath}}' mode='aspectFit'></image>
+          <view>{{item.name}}</view>
+        </view>
+      </view>
+    </view>
+    </view>
+  </popup>
+</view>
+
+

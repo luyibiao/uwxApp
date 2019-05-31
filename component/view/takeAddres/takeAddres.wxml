@@ -1,0 +1,13 @@
+<view class='group bg-group-border-image' bindtap='routeAddress'>
+  <cell islink>
+    <view slot="title">
+      <view  wx:if="{{addresInfo.id}}">
+        <view>{{addresInfo.phone}} {{addresInfo.name}}</view>
+        <view>{{addresInfo.regionalDesc}} {{addresInfo.detail}}</view>
+      </view>
+      <view wx:else class="text-muted">
+        <view>请添加取送地址</view>
+      </view>
+    </view>
+  </cell>
+</view>

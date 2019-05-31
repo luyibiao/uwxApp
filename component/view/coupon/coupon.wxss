@@ -1,0 +1,77 @@
+.aa{
+  background-image: url("https://cdn.ukaocloud.cn/wxapp/delimg/newStamps.png");
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  
+}
+
+.txt-yellow{
+  color:#fcee34
+}
+.timeIcon-size{
+  height:20px;
+  width:20px;
+}
+
+.time-css{
+  margin: 0px auto 10px;
+  background-color:#f9f9f9;
+}
+
+.money-color{
+  color:#f0403c
+}
+
+.text-size{
+  font-size:28rpx;
+}
+
+.h-size-two{
+  height: 2px;
+}
+
+.striping{
+  height:8px;
+  width:8px;
+  border:none
+}
+
+.select-height{
+  height:350rpx;
+  overflow: auto;
+}
+
+.button-css{
+  width:70%;
+  border-radius:100px;
+  padding:5px 0;
+  font-weight: 600; 
+  color:#d25f20;
+  font-size:16px;
+  background: -webkit-linear-gradient(top, #fce948 0%, #febd17 100%);
+}
+
+.m-t-tt-rpx{
+  margin-top: 40rpx;
+}
+
+.p-t-tt-rpx{
+  padding-top: 40rpx;
+}
+.m-t-tten-rpx{
+  margin-top: 35rpx;
+}
+.m-t-eten-rpx{
+  margin-top: 60rpx;
+}
+.aax{
+ 
+  /* position: absolute;
+   width:10px;
+
+   height:20px;
+  border-radius:0 10px 10px 0;
+
+   background:red; */
+   /* background-image: radial-gradient(10px at 0px 0px, red 50px, #fff 50px); */
+ }

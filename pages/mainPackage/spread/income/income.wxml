@@ -1,0 +1,38 @@
+<!--pages/mainPackage/spread/income/income.wxml-->
+<content>
+  <view>
+    <view class=" text-center bg-white bd-muted-vice-top">
+      <view class="flex-wrap p-t-tt flex-wrap-between">
+        <!-- <view class="flexratio text-info " bindtap="changeDate" data-number="-1"><i class="i-triangle up-triangle"></i>{{type == 'day' ? '前一天' : '前一月'}}</view> -->
+        <view class="section m-l-tt ">
+          <picker
+            mode="date"changeDate
+            value="{{formatDate}}"
+            start="2000-01-01"
+            end="2030-12-31"
+            fields="{{type == 'day' ? 'day' : 'month'}}"
+            bindchange="bindDateChange"
+          >
+            <view class="pickerflexratio text-black">{{ formatDate}}<image class="image-size" src="/static/img/arrow_down.svg"></image> 
+          </view>
+          </picker>
+        </view>
+        <!-- <view class="flexratio text-info "  bindtap="changeDate" data-number="1">{{type == 'day'? '后一天' : '后一月'}}<i class="i-triangle down-triangle text-info"></i></view> -->
+        <view class=" p-r-tt"  bindtap="changeSelectType" data-number="1">
+          <!-- {{type == 'day'? '后一天' : '后一月'}}<i class="i-triangle down-triangle text-info"></i> -->
+          <view class="bd-muted bd-radius-xl text-center p-l-t ft-weight-xs padd-t-f">{{selectType}}<image src="{{cutImg}}" class="m-l cutImg"></image></view>
+        </view>
+      </view>
+      <view class="m-t-tt ft-eiten text-primary">{{ filter.amtFormat(total) || 0.00}}</view>
+      <view class="m-t p-b-tt text-cell-muted">{{type === 'day' ? '日' : '月'}}总收成（元）</view>
+    </view>
+    <view class="group m-t-tt">
+      <cell islink wx:for="{{incomeList}}" wx:key="index" linkurl="{{'/pages/mainPackage/spread/profit/profit?tradeType='+item.type + '&date='+formatDate + '&type='+type}}">
+        <view slot="title">{{item.name}}</view>
+        <view slot="value">{{filter.amtFormat(item.total || 0)}}元</view>
+      </cell>
+    </view>
+  </view>
+</content>
+
+<wxs src="../../../../utils/wxs/filter.wxs" module="filter"></wxs>

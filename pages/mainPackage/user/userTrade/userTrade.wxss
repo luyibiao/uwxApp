@@ -1,0 +1,12 @@
+/* pages/mainPackage/user/userTrade/userTrade.wxss */
+.charge-text{
+  color: #535353;
+}
+
+.m-father-top>view+view{
+  margin-top: 5px;
+}
+
+.bg-white{
+  background-color: #fff !important;
+}

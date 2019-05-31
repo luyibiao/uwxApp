@@ -1,0 +1,33 @@
+<!--pages/mainPackage/spread/plan/plan.wxml-->
+<content>
+  <view>
+    <view wx:if="{{baseLoading}}">
+      <view class="ft-foten text-black padd-t">
+        <rich-text nodes="{{content}}" type="text"></rich-text>
+      </view>
+      <view class="m-t-tt  wrap-fix item-fix-bottom bg-white padd-t border-box">
+        <button type="primary" loading="{{loading}}" disabled="{{loading}}"  plain="{{false}}" class="w-ag"  bindtap="openDialogFn">{{loading ? "注册中" : "成为友商"}}</button>
+      </view>
+    </view>
+    
+    
+    <modal ismodal="{{dialog.show}}" modalStyle="padding:10px" bindonMaskFn="openBaseLoading">
+      <view class="padd-t text-primary bd-muted-vice-bottom">
+        <view class="ft-eiten">请填写你的手机号</view>
+      </view>
+      <view class="m-t-tt">
+      <view class="w-ag padd-t border-box text-left">
+          <input placeholder="昵称" maxlength='6' value= '{{dialog.name}}' class="bd-radius-xs" bindblur="checkNameInputFn"></input>
+        </view>
+        <view class="w-ag padd-t border-box text-left">
+          <input type="number" placeholder="手机号" maxlength='11' value= '{{dialog.phone}}' class="bd-radius-xs" bindblur="checkPhoneInputFn"></input>
+        </view>
+        <view class="m-t-tt    bg-white padd-t">
+          <button type="primary" loading='{{modalLoading}}' disabled="{{modalLoading}}" plain="{{false}}" class="w-ag" bindtap="submit">确认手机号</button>
+        </view>
+      </view>
+    </modal>
+
+
+  </view>
+</content>

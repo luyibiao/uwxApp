@@ -1,0 +1,64 @@
+<!--pages/mainPackage/spread/index/index.wxml-->
+<content>
+  <view wx:if="{{loding}}" style='overflow:hidden'>
+    <view class="group spread-head-color" >
+      <cell islink cellstyle=" background: transparent;" bindtap="" linkurl='/pages/mainPackage/spread/personal/personal'>
+        <view slot="title" class="text-white">
+          <image src="{{spread.headImgPath || headImg}}" mode="aspectFit" class="pull-left head-imag" ></image>
+          <view class="head-text ft-foten">
+            <view>{{spread.phone || '-'}}</view>
+            <view>{{spread.name || '-'}}</view>
+          </view>
+        </view>
+      </cell>
+    </view>
+
+     <view class="bg-white p-t-tt">
+        <view class="text-center">
+          <view class="text-cell-muted ft-foten">累计金额（元）</view>
+          <view class="ft-twty m-t-f m-b">{{filter.amtFormat(spread.cumulativeIncome || 0)}}</view>
+        </view>
+        <cell islink  linkurl="/pages/mainPackage/spread/settle/settle">
+          <view slot="title">可提现佣金 {{filter.amtFormat(spread.balance || 0)}}元</view>
+          <view slot="value" class="text-black">立即提现</view>
+        </cell>
+      </view>
+
+      <view class="group m-t-tt" >
+        <cell islink  bindtap="" linkurl="/pages/mainPackage/spread/income/income?type=day">
+          <view slot= "title">今日收成</view>
+          <view slot= "value" class="text-black">{{filter.amtFormat(spread.toDayIncome || 0)}}元</view>
+        </cell>
+        <cell islink  bindtap="" linkurl="/pages/mainPackage/spread/income/income?type=month">
+          <view slot= "title">本月收成</view>
+          <view slot= "value" class="text-black">{{filter.amtFormat(spread.monthIncome || 0)}}元</view>
+        </cell>
+      </view>
+
+      <view class="group m-t-tt">
+        <cell islink  bindtap="" linkurl="/pages/mainPackage/spread/client/client">
+          <view slot="title">我发展的客户</view>
+          <view slot="value" wx:if="{{spread.fansCnt}}" class="text-black">{{spread.fansCnt}}</view>
+        </cell>
+      </view>
+
+      <view class="bg-white m-t-tt hy" >
+        <view class="dis-line-block bg-poster text-white text-center hy-p wrap-rve bd-radius-md"  bindtap="openPoster">
+          <view class="item-abs w-ag">
+            <view class="">海报推广</view>
+            <view class="">拉顾客<i class="i-triangle custom-triangle "></i></view>
+          </view>
+        </view>
+        <view class="dis-line-block bg-friend text-white text-center hy-p wrap-rve bd-radius-md"  bindtap="openInvite">
+          <view class="item-abs w-ag">
+            <view>邀请好友</view>
+            <view>齐推广<i class="i-triangle custom-triangle"></i></view>
+          </view>
+        </view>
+      </view>
+
+
+  </view>
+</content>
+
+<wxs src="../../../../utils/wxs/filter.wxs" module="filter"></wxs>

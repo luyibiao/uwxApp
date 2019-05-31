@@ -1,0 +1,27 @@
+<!--pages/mainPackage/spread/settle/settle.wxml-->
+<content>
+  <view wx:if="{{headLoding}}">
+
+    <view class="text-center bg-white  padd-t-b-tt bd-muted-vice-top">
+      <view class="ft-lg text-black l-h-2x">￥{{filter.amtFormat(balance || 0)}}</view>
+      <view class="ft-foten text-cell-muted l-h-2x">可提现金额</view>
+    </view>
+
+    <view class="m-t-tt m-l-tf m-r-tf" >
+      <button type="primary" loading="{{loading}}" plain="{{false}}" class="w-ag" disabled="{{loading}}" bindtap="toWithdraw">提现</button>
+    </view>
+
+    <view class="group m-t-tt">
+      <cell islink linkurl="/pages/mainPackage/spread/tradeAudit/tradeAudit">
+        <view slot="title">收支明细</view>
+      </cell>
+      <cell islink linkurl="/pages/mainPackage/spread/records/records">
+        <view slot="title">提现记录</view>
+      </cell>
+      
+    </view>
+
+  </view>
+
+</content>
+<wxs src="../../../../utils/wxs/filter.wxs" module="filter"></wxs>

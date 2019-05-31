@@ -1,0 +1,21 @@
+.delete image{
+  width: 23px;
+  height: 23px;
+  vertical-align: middle;
+  margin-top: -5px;
+}
+.del-text{
+  margin-left: 28px;
+}
+.del-icon image{
+  width: 20px;
+  height: 20px;
+}
+.add-btn{
+  line-height: 40px;
+}
+
+.bg-primary-opac{
+  padding: 1px;
+  background-color:#caf2c8;
+}

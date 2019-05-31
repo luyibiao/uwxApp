@@ -1,0 +1,38 @@
+.up-triangle{
+  transform: rotate(-135deg);
+  border-color:#459BFE;
+   border-width: 1px 1px 0 0;
+  height: 7px;
+  width: 7px;
+}
+.down-triangle{
+  transform: rotate(45deg);
+  border-color:#459BFE;
+  border-width: 1px 1px 0 0;
+   height: 7px;
+  width: 7px;
+}
+
+.u_arrow-down {
+    display: inline-block;
+    width: 14px;
+    height: 14px;
+    background: url(/pages/static/img/arrow_down.svg) center center;
+    background-size: 14px 14px;
+    vertical-align: middle;
+}
+
+.image-size{
+  width:20px;
+  height:15px;
+
+}
+
+.cutImg{
+  width:24px;
+  height:13px;
+}
+
+.padd-t-f{
+  padding: 5px 10px;
+}

@@ -1,0 +1,19 @@
+/* pages/mainPackage/user/userCoupon/shareCoupon/shareCoupon.wxss */
+
+
+.background-card{
+  background: linear-gradient(to bottom, #FF6600, #FE8D42);
+  
+}
+
+.background-card::before{
+  content: " ";
+  position: absolute;
+  bottom: 0;
+  left: -15px;
+  right: 0;
+  height: 15px;
+  background: radial-gradient(#fff 7px, #fff 10px, #FE8D42 11px);
+  background-size: 35px 35px;
+  background-repeat: repeat;
+}

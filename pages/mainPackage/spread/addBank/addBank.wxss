@@ -1,0 +1,34 @@
+.wrap-text-input{
+  width: 100%;
+  /* border-radius: 40px; */
+  padding: 0px 60px;
+  box-sizing: border-box;
+}
+.wrap-text-input text{
+  position: absolute;
+  top: 50%;
+  left: 10px;
+  transform: translateY(-50%);
+  font-size: 14px;
+}
+
+.wrap-text-input view{
+  position: absolute;
+  top: 50%;
+  right: 10px;
+  transform: translateY(-50%);
+  font-size: 14px;
+}
+
+.wrap-text-input input{
+  width:90%; 
+  border: none;
+}
+
+.code-button{
+  width:110px;
+  height:35px;
+
+  right: 0;
+
+}

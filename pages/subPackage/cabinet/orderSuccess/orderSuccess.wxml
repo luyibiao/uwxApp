@@ -1,0 +1,14 @@
+<content>
+  <view class='text-center p-content'>
+    <view><icon type="success" size="80"/></view>
+    <view class='c-text-content'>{{content}}成功</view>
+    <!-- <view class='text-muted ft-foten' style='margin-bottom:58px;'>
+      <view wx:if="{{params.optway==coubord.CLOTHING}}">谢谢光临,欢迎下次惠顾</view>
+      <view wx:elif="{{params.optway==coubord.ORDER || params.optway==coubord.CLOAK}}">请扫智柜上的公众号二维码查看订单</view>
+    </view> -->
+    <view>
+      <button class='text-primary bd-primary m-r-tt btn-custom btn-reset' hover-class='btn-hover' bindtap='onBackIndex'>返回首页</button>
+      <button class='text-primary bd-primary btn-custom btn-reset' hover-class='btn-hover' bindtap='onFindOrder'>查看订单</button>
+    </view>
+  </view>
+</content>

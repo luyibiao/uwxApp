@@ -1,0 +1,9 @@
+/* pages/mainPackage/user/userCharge/userCharge.wxss */
+
+.parent-content{
+  margin: 30px 0px 10px;
+}
+
+.back-btn{
+  background-color: #fff !important;
+}

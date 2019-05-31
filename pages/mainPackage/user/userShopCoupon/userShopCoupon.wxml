@@ -1,0 +1,49 @@
+<!--pages/mainPackage/user/userShopCoupon/userShopCoupon.wxml-->
+<content>
+  <view>
+    <view class=" m-b-tf m-t-tf ">
+      <view class="cell-par p-tf-t bg-white border-one-fb bd-radius-xs">
+        <view class="cell-styl m-r bd-radius-xs text-black " bindtap="showPopupFn" data-params="coupon">+ 兑换礼券</view>
+      </view>
+    </view>
+    
+
+    <view class="m-b-tf" wx:for="{{couponList}}" wx:key="index">
+      <view class= "group b-danger w-bg m-auto m-b-tf bd-radius-xs border-one-fb" >
+        <cell cellstyle="margin-top:0px">
+          <view slot="title" class="bd-radius-xs">
+           <image src="{{imgurl}}" mode="aspectFit" class="headImg pull-left smallImg" ></image>
+           <view class="m-l-tt p-l">
+            <view class="text-black">{{item.couponName}}</view>
+            <view class="ft-tve text-cell-muted ">有效期：{{filter.getDate(item.timeStart)}} 至 {{filter.getDate(item.timeEnd)}}</view>
+           </view>
+            
+          </view>
+          
+        </cell>
+      </view>
+    </view>
+  </view>
+</content>
+
+<popup popup="{{popFlag}}" bind:onPopup="onPopup">
+  <view class='bg-color pop-head'>
+    <view class="padd-t">
+      <view class="ft-eiten text-black">兑换礼券</view>
+    </view>
+    
+    <view class="wrap-rve wrap-text-input padd-t">
+     <input type="number" placeholder="{{'输入券号'}}" placeholder-class="text-left" bindblur="checkCodeInputFn" class="text-left'" value=""></input>
+    </view>
+
+    <view class="wrap-rve wrap-text-input padd-t">
+     <input type="number" placeholder="{{'输入秘钥'}}" placeholder-class="text-left" bindblur="checkSecretInputFn" class='text-left' value="{{params.secret}}"></input>
+    </view>
+
+    <view class="m-t-tt m-b m-l-tf m-r-tf">
+      <button type="primary" loading="{{loading}}" plain="{{false}}" class="w-ag"  bindtap="exchangeFn">兑换</button>
+    </view>
+  </view>
+</popup>
+
+<wxs src="../../../../utils/wxs/filter.wxs" module="filter"></wxs>

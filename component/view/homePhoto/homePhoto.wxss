@@ -1,0 +1,7 @@
+.home-Photo + .home-Photo {
+  margin-top: 5px;
+}
+
+.home-Photo video {
+  width: 100%;
+}

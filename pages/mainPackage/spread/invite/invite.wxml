@@ -1,0 +1,65 @@
+<content my-content-class="bg text-center">
+  <view style=' padding: 5% 20px 5%;' class="text-center">
+    <view class="content">
+      <view>
+        <view class="flex-wrap ft-twty m-b">
+          <view class="flexratio flex-item-auto" >
+            <view class='w-md flex-wrap  ' style='margin-left:40%'>
+              <view  class="flex-item-auto flexratio  h-size-two " style='background-color: #ffd0b2;'></view>
+              <view class="circle flex-item-auto striping " style='background-color: #ffd0b2;'></view>
+            </view>
+          </view>
+
+          <view class="flexratio ft-seten text-center" style='color: #f76f52;'>邀请卡</view>
+
+          <view class="flexratio flex-item-auto ">
+            <view class="flex-wrap w-md " style='margin-left:10%;'>
+              <view class="circle  flex-item-auto striping" style='background-color: #ffd0b2;'></view>
+              <view class="flex-item-auto flexratio  h-size-two " style='background-color: #ffd0b2;'></view>
+            </view> 
+          </view>
+        </view>
+        <view>
+          <image src='{{poster.headImgPath}}' class="headImg"></image>
+        </view>
+        <view class="name-color m-b">{{poster.name}}</view>
+        <view class="ft-siten ">邀请你一起加入，推广赢奖励</view>
+      </view>
+      <view class="m-t-tt">
+        <view class="dis-line-block" wx:if="{{!storageImage.codeImage}}"><canvas   canvas-id="qrcode" /></view>
+        <view wx:else>
+          <image src='{{storageImage.codeImage}}' style='width:110px;height:110px;'></image>
+        </view>
+        <view class="name-color">长按识别二维码</view>
+      </view>
+    </view>
+  </view>
+  <view>
+    <image src='{{shareImg}}' class="head-imag" bindtap='openPopup'></image>
+  </view>
+ 
+</content>
+
+<popup popup="{{popFlag}}" bind:onPopup="onPopup"  popstyle="z-index:1000">
+  <view class="text-center bg-color son-css ft-siten">
+    <view><button  open-type="share">发送给朋友</button></view>
+    <view class="m-t-t"><button  bindtap="onCreatePoster" >生成海报</button></view>
+    <view class="m-t padd-t-b-tt" bindtap="closePopup">取消</view>
+  </view>
+  
+</popup>
+
+<modal ismodal="{{modal}}" isonMask modalStyle="padding:0;background: transparent;" catchtouchmove="ture">
+  <view style='height:{{screenHeight-50}}px;' class='wrap-rve'>
+    
+    <view class='canvas '>
+      <cover-image class='clear-icon' src='{{closeImg}}'  bindtap='onClosePoster' wx:if="{{corImage}}"></cover-image>
+        <canvas canvas-id='share' style='width:100%;height:100%'></canvas>   
+    </view>
+
+    <view class='m-t'>
+      <button type='primary'  class='w-ag save-btn' bindtap='saveImageToPhotosAlbum'>保存图片</button>
+    </view>
+  </view>
+  
+</modal>

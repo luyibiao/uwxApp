@@ -1,0 +1,23 @@
+<content>
+<view>
+  <view class='group m-t'>
+    <cell islink >
+      <view slot="title" class="wrap-rve service" >
+        <view class="m-l-tf ft-foten"><button open-type="contact">在线客服</button></view>
+      </view>
+      <view slot="value" class="text-info service">
+        <view class="m-l-tf ft-foten"><button open-type="contact" style="color:#23b7e5">立刻咨询</button></view>
+      </view>
+    </cell>
+    <cell islink wx:if="{{tel}}" bindtap='onCallPhone'>
+      <view slot="title" class="wrap-rve service" >
+        <view class="m-l-tf ft-foten">联系电话</view>
+      </view>
+      <view slot="value" class="text-info fz-fift" >
+        <image src='{{telImg}}' class="smallImg item-abs-colum-center"></image>
+        <view class="m-l-tt">{{tel}}</view>
+      </view>
+    </cell>
+  </view>
+</view>
+</content>

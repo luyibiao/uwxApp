@@ -1,0 +1,9 @@
+ <view class='scroll-box'>
+  <view class='nav-wrap ' >
+    <view wx:for="{{navList}}" wx:key="{{index}}" bindtap='navBtn' 
+    data-item="{{item}}" data-select="{{index}}"  class='nav {{index==selected ? "nav-active" : ""}}' style='{{navstyle}}'>{{item.name}}
+    </view>
+      <view class='stoke bg-success' animation="{{animationData}}" style='width:{{classObj.width}}px;left:{{classObj.left}}px'></view>
+
+  </view>
+ </view>

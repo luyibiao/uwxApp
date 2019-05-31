@@ -1,0 +1,7 @@
+{
+  "navigationBarTitleText": "我发展的客户",
+  "enablePullDownRefresh": true,
+  "onReachBottomDistance": 40,
+  "backgroundTextStyle": "dark"
+
+}

@@ -1,0 +1,19 @@
+<content>
+  <view>
+    <view class='t-head'>
+      <view>{{cabinet.name || ""}}</view>
+      <view class='text-muted ft-foten'>{{cabinet.province+cabinet.city+cabinet.district+cabinet.details || ""}}</view>
+      <view class='text-primary fz-fift'>目前 {{emptyCnt || 0}} 个空箱</view>
+    </view>
+    <view class='i-menu'>
+      <view class='text-white i-menu_wrap' wx:for="{{imgInfo}}" wx:key="{{index}}">
+        <view class='{{item.bgColor}} wrap-rve' bindtap="onBtnOption" data-url="{{item.url}}" data-type="{{item.goType}}"> 
+          <view>
+            <image src='{{item.imgUrl}}'  mode="aspectFit"></image>
+          </view>
+          <text>{{item.name}}</text>
+        </view>
+      </view>
+    </view>
+  </view>
+</content>

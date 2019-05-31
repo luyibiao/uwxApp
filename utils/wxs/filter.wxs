@@ -1,0 +1,111 @@
+
+/*
+ *wxs文件过滤器
+ */
+var time=require("./time.wxs")
+var keyval = require("./dickeyval.wxs")
+
+var DATE_FORMATTER = 'YYYY-MM-dd';
+var DATE_FORMATTER_CONCISE = 'MM/DD/YYYY'
+var TIME_FORMATTER = 'hh:mm:ss'
+var TIME_MINUTE = 'hh:mm'
+var TIME_FORMAMM = 'YYYY-MM'
+
+
+function amtFormat(val){
+    var value = '';
+    if (val || val === 0) {
+      value = val / 100;
+      return Number(value).toFixed(2);
+    }
+}
+ function kgFormat(val){
+   var value = "";
+    if (val || val === 0) {
+      value = val / 1000;
+      return Number(value).toFixed(3)
+    }
+  }
+
+  /**
+   * 年-月-日
+   * @param {string} time 时间
+   * @return {string}
+   */
+  function getDate(val){
+    return time.dateFormat(val, DATE_FORMATTER)
+  }
+
+  /**
+   * 时:分:秒
+   * @param {string} time 时间
+   * @return {string}
+   */
+  function getTime(val){
+    return time.dateFormat(val,TIME_FORMATTER)
+  }
+
+  /**
+   * 时：分
+   * @param {string} time 时间
+   * @return {string}
+   */
+  function getMinute(val){
+    return time.dateFormat(val, TIME_MINUTE)
+  }
+
+  /**
+   * 年-月-日 时:分:秒
+   * @param {string} time 时间
+   * @return {string}
+   */
+  function getDateTime(val){
+    return time.dateFormat(val)
+  }
+
+  /**
+   * 过滤文件
+   */
+function getValText(val, key){
+  var list = keyval[key];
+  for (var i = 0; i < list.length; i++) {
+    var item = list[i];
+    if (item.val == val) {
+      return item.text;
+    }
+  }
+  return val;
+}
+
+function discountFormat(val){
+  var value = '';
+  if(!val || val==100){
+    return "无折扣"
+  }
+  if(val){
+    value=val/10;
+    if(val%10==0){
+      return value+"折"
+    }
+    return Number(value).toFixed(1)+"折";
+  }
+}
+
+function strParseInt(val){
+  if (val){
+   return parseInt(val);
+  }
+  return ""
+}
+
+module.exports={
+  amtFormat: amtFormat,
+  kgFormat: kgFormat,
+  getDate: getDate,
+  getTime: getTime,
+  getMinute: getMinute,
+  getDateTime: getDateTime,
+  getValText: getValText,
+  discountFormat: discountFormat,
+  strParseInt: strParseInt
+}

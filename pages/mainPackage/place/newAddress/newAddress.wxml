@@ -1,0 +1,61 @@
+<content>
+  <view>
+    <view class='group' >
+      <cell cellstyle="margin-top:0px">
+        <view slot="title">
+          <view class="wrap-rve wrap-text-input m-b">
+            <text>联系人</text>
+            <!-- <input type="number" placeholder="{{rfidNoPlaceholder}}" placeholder-class="text-left bg-white"  value='{{params.rfidNo}}' bindblur="rfidNoInputFn"></input> -->
+             <input placeholder='姓名' value="{{form.name}}" class='custom-input' bindblur='inputEvent' data-type="name"></input>
+          </view>
+         
+        </view>
+        <view slot="desc-ine" style="margin-left:60px;padding-top:10px;border-top:1px solid #efeff4;">
+          <view bindtap="changeSex" data-type="1" class="{{form.sex == 1 ? 'dis-line-block padd-f-t bd-primary text-primary ' : 'dis-line-block padd-f-t bd-muted-vice ' }}" style='border-radius:2px'>先生</view> 
+          <view bindtap="changeSex" data-type="2" class="{{form.sex == 2 ? 'dis-line-block m-l padd-f-t bd-primary text-primary' : 'dis-line-block m-l padd-f-t bd-muted-vice'}}"  style='border-radius:2px'>女士</view>
+        </view>
+      </cell>
+      <cell>
+        <view slot="title" class="wrap-rve wrap-text-input">
+            <text>电话</text>
+             <input placeholder='请输入手机号码' type="number" class='custom-input' bindblur='inputEvent' data-type="phone" value='{{form.phone}}'></input>
+          </view>
+      </cell>
+
+      <cell islink bindtap="openMap">
+        <view slot="title" class="wrap-rve wrap-text-input">
+            <text>地址</text>
+            <view>
+              <view class="{{form.village ? '' : 'text-cell-muted'}}">{{form.village || '请选择地址'}}</view>
+              <view class="ft-tve text-cell-muted m-t-f">{{form.site || ''}}</view>
+            </view>
+          </view>
+      </cell>
+      <cell>
+        <view slot="title" class="wrap-rve wrap-text-input">
+            <text>门牌号</text>
+             <input placeholder='例如1栋306' class='custom-input' bindblur='inputEvent' data-type="area" value='{{form.area}}'></input>
+          </view>
+      </cell>
+    </view>
+
+    <view class="group" class="m-t">
+      <cell>
+        <view slot="title">设置默认地址</view>
+        <view slot="value">
+          <view class="body-view">
+            <switch checked="{{form.def == 1}}" bindchange="switch1Change" />
+          </view>
+        </view>
+      </cell>
+    </view>
+
+    <view class='m-t-tt text-center'>
+      <button type='primary' class='w-bg' bindtap='onSave'>保存</button>
+    </view>
+
+    <view class='m-t-tt text-center'>
+      <button wx:if="{{form.id}}" type='default' class='w-bg' style='background-color:#fff;' bindtap='onDelete'>删除</button>
+    </view>
+  </view>
+</content>

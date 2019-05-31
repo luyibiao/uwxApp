@@ -1,0 +1,116 @@
+<content>
+  <view class='padder-t'>
+    <view class='list-nav'>
+      <serviceNav isStartFlag="{{serviceNav.isStartFlag}}" dataquery="{{serviceNav.dataquery}}" bindonchangeService="getGoodsList"></serviceNav>
+    </view>
+    <view>
+      <view class='flex-array flex-wrap '>
+        <view class='flex-array-item  bg-primary' wx:for="{{shopList}}" wx:key="{{item.id}}">
+          <view class='goods-item-detail bg-white' bindtap='onselectShop' data-item="{{item}}">
+            <view class='{{item.imgPath ? "goods-image" : "goods-image-clothes"}}' >
+              <image src='{{item.imgPath || clothesImg}}' mode="widthFix"></image>
+            </view>
+            <view class='goods-text ft-tve'>
+              <view class=' text-center'>{{item.name}}</view>
+              <view class=''>￥{{filter.amtFormat(item.price)}}</view>
+              <view class='text-danger m-t-f flex-wrap flex-wrap-center h-ten' wx:if="{{vipPriceShow}}" > 
+                <view  class="{{item.vipPrice? 'bd-danger bd-radius-lg vip-padd' :''}} "> {{item.vipPrice ? '会员价' : ''}}</view>
+                <view>{{item.vipPrice ? '￥'+filter.amtFormat(item.vipPrice) : ''}}</view>
+              </view>
+            </view>
+          </view>
+           <i class="circle-custom circle-btn-shop bg-danger text-white ft-tve text-center {{item.cnt && item.cnt>0 ?'circle-btn-shop-num' : ''}}" >{{item.cnt}}</i>
+        </view>
+      </view>
+      <view class='text-center m-t-tt ft-foten' wx:if="{{shopList.length===0}}">暂无内容</view>
+    </view>
+    <view wx:if="{{vipPriceShow && userCard.isVip != 1 && shopInfo.vipExpectNum < shopInfo.expectNum}}" class='vip_btn-fotter text-danger padd-t-b-f flex-wrap-center' >充值享受会员价：￥{{filter.amtFormat(shopInfo.vipExpectNum)}}</view>
+    <view class='btn-fotter bd-muted-vice-top'>
+      <view class='left-view' bindtap='onshowPopup'>
+        <view class='icon item-abs-colum-center {{purchaseFullImgUrlFlag ? "scale-active" : ""}}' bindtransitionend="endPurchaseFull" >
+          <i class="circle-custom circle-btn-fotter bg-danger text-white ft-tve text-center" >{{shopInfo.shopCount}}</i>
+          <image src='{{purchaseFullImgUrl}}' mode="aspectFit"></image>
+        </view>
+        <view>
+          <view class='text-danger ft-tve'>预估金额￥<text class='ft-twty'>{{  filter.amtFormat(userCard.isVip == 1 ? shopInfo.vipExpectNum : shopInfo.expectNum)}}</text></view>
+          <view class='text-muted ft-tve' wx:if="{{ts.tsNum===1}}">取送费￥{{filter.amtFormat(ts.tsPrcie)}}</view>
+          <view class='text-muted ft-tve' wx:else>{{ts.tsMsg}}</view>
+        </view>
+      </view>
+      <view class='right-view'>
+        <button class='btn-reset btn-primary text-white' bindtap='PlaceAnOrder'>{{orderMode.CURRENT_MODE==orderMode.PAY_MODE ? "立即下单" : "预约"}}</button>
+      </view>
+    </view>
+  </view>
+</content>
+
+<!--自定义数量弹框-->
+<popup popup="{{cntPopup.show}}"  popstyle="z-index:1002">
+  <view>
+    <view class='text-center padd-t-b-t bd-muted-vice-bottom'>请输入数量</view>
+    <view class='cnt-input-wrap'>
+      <view class='cnt-input-text'>{{cntPopup.info.name}}:{{filter.amtFormat(cntPopup.info.price)}}{{cntPopup.info.unitText}}</view>
+      <view class='wrap-rve bd-muted-vice cnt-input'>
+        <input placeholder='请输入数量' type="number" value="{{cntPopup.cnt}}" bindblur='onCntBlur'></input>
+        <icon type="clear" size="15"  class='item-abs-colum-center' bindtap='onclearCnt'/>
+      </view>
+      <view>
+        <button type='primary' class='w-ag' bindtap='onConfirmCnt'>确定</button>
+      </view>
+    </view>
+  </view>
+</popup>
+<popup popup="{{popup.popupFlag}}" bind:onPopup="onPopup"  popstyle="{{popup.popstyle}}">
+  <view wx:if="{{popup.type==0}}">
+    <view class='pop-header text-primary padd-l-r-t border-box ft-foten'>
+      <view bindtap='clearShop'>清空</view>
+      <view bindtap='closePop'>关闭</view>
+    </view>
+    <view class='popup-shop-detail' >
+      <view class='popup-shop-item padd-l-r-t border-box bd-muted-vice-top ' wx:for="{{selectShopList}}" wx:key="{{item.id}}">
+        <view class='flexratio'>
+          <icon type="success" sizt="10px"></icon>
+        </view>
+        <view class='ft-tve flexratio'>
+          <view>{{item.name}}</view>
+          <view class='text-danger'>￥{{filter.amtFormat(vipPriceShow && userCard.isVip && item.vipPrice ? item.vipPrice : item.price)}}</view>
+        </view>
+        <view class='flexteotatio text-right'>
+          <view class='w-lg dis-line-block'>
+            <view class='bd-muted-vice num'>
+              <view class='bd-muted-vice-right flexratio' bindtap='reduceShop' data-item="{{item}}">
+                <image src='/static/img/shop/icon/reduce.png' mode="aspectFit"></image>
+              </view>
+              <view class='num-detail flexteotatio'>{{item.cnt}}</view>
+              <view class='bd-muted-vice-left ft-twty flexratio' bindtap='addShop' data-item="{{item}}">
+                <image src='/static/img/shop/icon/add.png' mode="aspectFit"></image>
+              </view>
+            </view>
+          </view> 
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <view wx:if="{{popup.type==1}}">
+    <view class='text-center bd-muted-vice-bottom wrap-rve padd-t-b-t'>
+      <view class='item-abs-colum-center'>
+        <!-- <icon type='clear' size='20'></icon> -->
+      </view>
+      <view class='ft-foten'>请选择服务方式</view>
+    </view>
+
+    <view class='way-content'>
+      <view class='way-content-li text-center ft-foten'>
+        <view wx:for="{{tswayList}}" wx:key="{{index}}" bindtap='routePush' data-item="{{item}}" wx:if="{{item.isShow==1}}">
+          <image src='{{item.imgPath}}' mode='aspectFit'></image>
+          <view>{{item.name}}</view>
+        </view>
+      </view>
+    </view>
+  </view>
+</popup>
+
+<!-- <popup popup="{{popup.showPopupWay}}" bind:onPopup="onPopupWay"></popup> -->
+
+<wxs src="../../../../utils/wxs/filter.wxs" module="filter"></wxs>

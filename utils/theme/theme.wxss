@@ -1,0 +1,31 @@
+/*
+  样式统一定义
+*/
+page{
+  --success:#13CE66;
+  --primary:#20a0ff;
+  --danger:#FF4949;
+  --muted:#9c9c9c;/*文字颜色*/
+  --service:#576b95;/*服务文字颜色*/
+  --del-text:#808080;/*文本框默认文字颜色*/
+  --code-text:#838c99;/*验证码颜色*/
+  --white:#fff;
+  --black:#000;
+  --bg-s:#91c64F;
+  --bg-p:#77b1ff;
+  --bg-m:#efeff4;
+  --btn-primary:#1aad19;
+
+  --two:2px;
+  --five:5px;
+  --ten:10px;
+  --tve:12px;
+  --then:13px;
+  --foten:14px;
+  --fiten:15px;
+  --sxten:16px;
+  --svten:17px;
+  --eiten:18px;
+  --niten:19px;
+  --twty:20px;
+}

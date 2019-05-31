@@ -1,0 +1,9 @@
+{
+  "navigationBarTitleText": "自送门店",
+  "usingComponents": {
+    "selfStore":"/component/view/store/store",
+    "uRemark": "/component/view/uRemark/uRemark",
+    "clothNum": "/component/view/clothNum/clothNum",
+    "popup": "/component/view/popup/popup"
+  }
+}

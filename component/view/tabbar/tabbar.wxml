@@ -1,0 +1,7 @@
+
+<view class='footer'>
+  <view class='footer_list' data-id='{{index}}' wx:for="{{tabbarList}}"  data-item="{{item}}" data-pageurl="{{item.pagePath}}" wx:key="this" bindtap="navigation">
+    <image class="footer-image"  src="{{item.iconPath}}"></image>
+    <view class="footer-text">{{item.text}}</view>
+  </view>
+</view>

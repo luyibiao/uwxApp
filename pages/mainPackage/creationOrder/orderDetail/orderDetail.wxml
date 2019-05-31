@@ -1,0 +1,344 @@
+<content vx-if="{{loginFlag}}">
+  <view>
+    <!--为支付订单倒计时-->
+    <view class='' wx:if="{{orderInfo.expTime && orderInfo.isEnablePay}}">
+      <view class='bg-lyellow text-center padd-t-b-t ft-foten'>
+        <view wx:if="{{orderInfo.takeMode ==3}}">开箱码有效剩余时间：</view>
+        <view wx:else>本单需立即付款 剩余时间：<text class='text-danger'>{{wxTimer}}</text></view>
+      </view>
+    </view>
+
+    <!--当前流程-->
+    <view class='flow-wrap' wx-if="{{orderInfo.statusVal != 60}}">
+      <view class='flex-array'>
+        <view class='flex-array-item flex-array-flow padd-t-b-t text-center' wx:for="{{progressNode.list}}" wx:key="{{item.id}}">
+          <view class='flow-detail wrap-rve'>
+            <view class='circulars item-abs-colum-center flex-wrap flex-wrap-around' wx:if="{{index>0}}">
+              <text class="circle-lg circle {{progressNode.stateIndex>=index ? 'circle-checked' : ''}}"></text>
+              <text class="circle circle-md {{progressNode.stateIndex>=index ? 'circle-checked' : ''}}"></text>
+            </view>
+            <view class='dis-line-block'>
+              <image mode='widthFix' src='{{progressNode.imgurl+(index+1)}}-3.png' wx:if="{{progressNode.stateIndex==index}}"></image>
+              <image mode='widthFix' src='{{progressNode.imgurl+(index+1)}}-2.png' wx:elif="{{progressNode.stateIndex>index}}"></image>
+              <image mode='widthFix' src='{{progressNode.imgurl+(index+1)}}-1.png' wx:else="{{progressNode.stateIndex<index}}"></image>
+            </view>
+          </view>
+           <view class='ft-foten'>{{item.attr2}}</view>
+        </view>
+      </view>
+    </view>
+
+    <!--订单信息-->
+    <view class='group m-t'>
+      <cell>
+        <view slot="title">订单信息</view>
+        <view slot="value" class='text-black ft-siten '>【{{orderInfo.takeModeText}}】</view>
+      </cell>
+      <cell>
+        <view slot="title">
+          <view class='qcode m-auto text-center text-danger'>
+            <canvas   canvas-id="barcode" />
+          </view>
+          <view class='{{ orderInfo.statusVal != 60 ? "otder-detail ft-foten m-t-tt" : "otder-detail ft-foten m-t-tt is-disabled"}}'>
+            <view>
+              <text>服务项目：{{orderInfo.businessStr}}</text>
+              <text class="pull-right text-muted" wx:if="{{orderInfo.statusVal==60}}">{{orderInfo.statusText}}</text>
+              <text class='pull-right {{orderInfo.payStatus == 1 ? "text-primary" : "text-danger"}}' wx:else>{{orderInfo.payStatusText}}</text>
+            </view>
+            <view>订单号：{{orderInfo.orderNo}}</view>
+            <view wx:if="{{orderInfo.takeDate}}">取件时间：{{orderInfo.takeDate}} {{orderInfo.takeTimeStart}}-{{orderInfo.takeTimeEnd}}</view>
+            <view>备注信息：
+            <text wx:if="{{!updateRemarkFlag}}">{{orderInfo.userRemark || '无'}}</text>
+            <text bindtap='updateRemarkFlag'class="pull-right text-info" wx:if="{{orderInfo.statusVal ==1}}" >修改</text>
+            <textarea wx:if="{{updateRemarkFlag}}" style='height:60px;margin-left:70px;width:70%' value="{{orderInfo.userRemark}}" type="text"auto-focus="{{updateRemarkFlag}}" focus="{{updateRemarkFlag}}" confirm-type="done" bindblur="updateRemark" bindconfirm="updateRemark"></textarea>
+            </view>
+          </view>
+          <!-- <canvas canvas-id='first'></canvas> -->
+        </view>
+      </cell>
+    </view>
+
+    <!--订单跟踪-->
+    <view class='order-track m-t'>
+      <view class='group'>
+        <view class='padd-t bg-white border-box' style='margin-bottom:-2px;'>订单跟踪</view>
+        <cell islink="{{index==0}}" wx:for="{{orderStatusList}}" wx:key="{{item.id}}" bindtap="onTrack"  data-index="{{index}}" cellstyle="margin-top:0;padding:5px 10px;">
+          <view slot="title" class='{{index==0 ? "text-primary" : ""}} ft-foten'>{{item.statusDesc}}</view>
+          <view slot="desc-ine" class='{{index==0 ? "text-primary" : ""}}'>{{filter.getDateTime(item.createTime)}}</view>
+        </cell>
+      </view>
+    </view>
+
+    <!--没有衣物信息-->
+    <view class='group m-t' wx:if="{{!clothInfo.proPriceList.length && !clothInfo.productList.length}}">
+      <cell>
+        <view slot="title" >衣物信息</view>
+      </cell>
+      <cell>
+        <view slot="desc-ine" class='text-center'>暂无衣物详情，待入库后查看。</view>
+      </cell>
+    </view>
+
+    <!--入库后衣物信息-->
+    <view class='m-t' wx:elif="{{clothInfo.productList.length}}">
+      <view class='group'>
+        <cell>
+          <view slot="title">衣物信息</view>
+          <view slot="value" wx:if="{{orderInfo.showWxProImg}}" class='text-info' ><navigator url='/pages/mainPackage/creationOrder/orderClothing/orderClothing?orderId={{orderInfo.id}}'>衣物照片({{clothInfo.picCnt}})</navigator></view>
+        </cell>
+      </view>
+      <view class='flex-wrap padd-t border-box'>
+        <view class='flexratio'>名称</view>
+        <view class='flexteotatio m-l-f'>附加</view>
+        <view class='flexratio text-center' wx:if="{{orderInfo.showWxProPrice}}">小计</view>
+      </view>
+      <view class='group'>
+        <cell wx:for="{{clothInfo.productList}}" wx:key="{{index}}">
+          <view slot="title" class='flex-wrap ft-tve'>
+            <view class='flexratio'>
+              <view>{{item.productName}}</view>
+              <view>{{item.serviceName}}
+                <text wx:if="{{orderInfo.showWxProPrice}}">￥{{filter.amtFormat((vipPriceShow && item.vipServiceAmt ? item.vipServiceAmt : item.serviceAmt) *item.count/100)}}</text> 
+                <text wx:if="{{vipPriceShow}}" class="{{ item.vipServiceAmt ? 'text-danger' :''}}" style='font-size:10px;'>{{ item.vipServiceAmt ? '会员价' : '非会员'}}</text>
+              </view>
+              <view wx:if="{{orderInfo.showWxProPrice && item.discount && item.discount < 100}}">￥{{filter.amtFormat(vipPriceShow && isVip && item.vipServiceAmt ? item.vipServiceAmt : item.serviceAmt)+'*'+(item.discount/100)}}</view>
+              <view wx:if="{{item.storeShelfNo}}">挂点:<text class='text-primary'>{{item.storeShelfNo}}</text></view>
+            </view>
+            <view class='flexteotatio m-l-f'>
+              <view wx:if="{{item.proDetail}}">{{item.proDetail}}</view>
+              <view wx:if="item.addServiceDesc.length">
+                <block wx:for="{{item.addServiceDesc}}" wx:for-index="j" wx:for-item="val" wx:key="j">
+                  <block wx:if="{{j!=0}}">/</block>
+                  {{val.name}}
+                  <block wx:if="{{orderInfo.showWxProPrice}}">:￥{{filter.amtFormat(val.amt)}}</block>
+                </block>
+              </view>
+            </view>
+            <view class='flexratio ft-foten text-center' wx:if="{{orderInfo.showWxProPrice}}">
+              <view class='w-sg dis-line-block'>
+                ￥{{filter.amtFormat((item.chgSubtotal || item.subtotal))}}
+                <view class='text-center text-primary bd-status m-t-f ft-tve'>{{item.statusText}}</view>
+              </view>
+            </view>
+          </view>
+        </cell>
+      </view>
+    </view>
+
+
+    <!--入库前衣物信息-->
+    <view class='group m-t' wx:else>
+      <cell>
+        <view slot="title" >衣物信息</view>
+      </cell>
+      <cell wx:for="{{clothInfo.proPriceList}}" wx:key="{{item.id}}">
+        <view slot="title" class='flex-wrap flex-wrap-between'>
+          <view class='flexratio'>{{item.name}}</view>
+          <view class='text-muted ft-foten flexratio text-center'>×{{item.cnt}}</view>
+          <view class='text-muted ft-foten flexratio text-center'>
+            <text wx:if="{{item.discount || item.discount!=100}}">{{filter.discountFormat(item.discount)}}</text>
+            <text wx:else>无折扣</text>
+          </view>
+          <view class='ft-foten flexratio text-right' wx:if="{{orderInfo.payStatus}}">￥{{filter.amtFormat((item.discount || 100)*(orderInfo.isVipPrice && item.vipPrice ? item.vipPrice : item.price)*item.cnt/100)}}</view>
+          <view class='ft-foten flexratio text-right' wx:else="">￥{{filter.amtFormat((item.discount || 100)*(vipPriceShow && isVip && item.vipPrice ? item.vipPrice : item.price)*item.cnt/100)}}</view>
+        </view>
+
+        <view slot="desc-ine" class='ft-foten' wx:if="{{orderInfo.payStatus}}">￥{{filter.amtFormat(orderInfo.isVipPrice && item.vipPrice ? item.vipPrice : item.price)}}
+            <text wx:if="{{vipPriceShow}}" class="{{orderInfo.isVipPrice && item.vipPrice ? 'text-danger' :''}}" style='font-size:10px;'>{{orderInfo.isVipPrice && item.vipPrice ? '会员价' : '非会员'}}</text>
+        </view>
+        <view slot="desc-ine" class='ft-foten' wx:else="">￥{{filter.amtFormat(vipPriceShow && isVip && item.vipPrice ? item.vipPrice : item.price)}}
+            <text wx:if="{{vipPriceShow}}" class="{{isVip && item.vipPrice ? 'text-danger' :''}}" style='font-size:10px;'>{{isVip && item.vipPrice ? '会员价' : '非会员'}}</text>
+        <!-- <view class='text-danger p-l ' style= "display:inline-block;" wx:if="{{vipPriceShow}}" > 
+              {{item.vipPrice ? '￥'+filter.amtFormat(item.vipPrice) : ''}}
+            <view  class="{{item.vipPrice? 'bd-danger bd-radius-lg padd-l-r-f' :''}} "style= "display:inline-block; font-size:10px;" > {{item.vipPrice ? '会员价' : ''}}</view>
+        </view> -->
+        </view>
+      </cell>
+    </view>
+
+    
+    <!--衣物总额-->
+    <view class='m-t  wrap-rve' style='margin-bottom:{{orderInfo.takeMode !== 1&&orderInfo.takeMode !== 3 ? "40px" : "0"}}'>
+      <view class='group'>
+        <cell>
+          <view slot="title" class='flex-wrap flex-wrap-between'>
+            <view>衣物总额</view>
+            <view>￥{{filter.amtFormat(order.allPrice)}}</view>
+          </view>
+          <view slot="title" class='flex-wrap flex-wrap-between m-t' wx:if="{{orderInfo.isModifyPrice}}">
+            <view>修改金额</view>
+            <view>￥{{filter.amtFormat(orderInfo.modifyPrice)}}</view>
+          </view>
+          <view slot="title" class='flex-wrap flex-wrap-between m-t' wx:if="{{orderInfo.takeMode !== 1 && orderInfo.takeMode !== 3}}">
+            <view>取送费({{filter.getValText((orderInfo.takeExpressType ||'SELF'),"EXPRESS_TYPE")}}取送)</view>
+            <view>￥{{filter.amtFormat((orderInfo.sendCarriage || 0)+(orderInfo.takeCarriage || 0))}}</view>
+          </view>
+          <view slot="title" wx:if="{{orderInfo.couponAmt}}" class='flex-wrap flex-wrap-between m-t'>
+            <view>优惠券</view>
+            <view>￥{{filter.amtFormat(orderInfo.couponAmt)}}</view>
+          </view>
+          <view slot="title" class='m-t wait-worter' wx:if="{{orderInfo.mode != 2 && !orderInfo.paymentPrice}}">
+             <view class='text-center bg-lyellow padd-t-b-f ft-foten' wx:if="{{orderInfo.takeMode !== 1&&orderInfo.takeMode !== 3}}">请等待取送员上门确认价格并付款</view>
+          </view>
+          <view slot="title" class='m-t flex-wrap flex-wrap-between ' wx:else> 
+            <view>应付总额</view>
+            <view wx:if="{{orderInfo.statusVal == 60}}" class='text-muted bd-status ft-tve'>{{orderInfo.statusText}}</view>
+            <view wx:else class='bd-status ft-tve {{orderInfo.payStatus == 1 ? "text-primary bd-primary" : "text-danger bd-danger"}}'>
+              {{orderInfo.payStatusText}}
+            </view>
+            <view class='{{orderInfo.payStatus == 1 ? "text-primary" : "text-danger"}}'>￥{{filter.amtFormat((orderInfo.paymentPrice || 0))}}</view>
+          </view>
+          <view slot="title" wx:if="{{orderInfo.payStatus == 1 && orderPayTradeList.length}}" class='m-t'>
+            <view wx:for="{{orderPayTradeList}}" wx:key="{{index}}" class='flex-wrap flex-wrap-between pay-box ft-foten'>
+              <view>{{item.payMethodText+'支付'}}</view>
+              <view>{{filter.amtFormat(item.amount)}}</view>
+            </view>
+          </view>
+        </cell>
+      </view>
+    </view>
+
+    <!--智柜信息-->
+    <view class='group' wx:if="{{orderInfo.takeMode == 3}}">
+      <cell>
+        <view slot="title">智柜信息</view>
+      </cell>
+      <cell>
+        <view slot="title" class='ft-foten'>
+          <view class='flex-wrap'>
+            <view class='flexratio'>智柜名称</view>
+            <view class='flexteotatio'>{{orderInfo.takeCupName || '暂无'}}</view>
+          </view>
+          <view class='flex-wrap m-t'>
+            <view class='flexratio'>智柜地址</view>
+            <view class='flexteotatio'>{{orderInfo.takeAddress}} {{orderInfo.sendCupName || orderInfo.takeCupName}}</view>
+          </view>
+          <view class='flex-wrap m-t'>
+            <view class='flexratio'>开柜码</view>
+            <view class='flexteotatio text-primary'>{{orderInfo.bookCode || '暂无'}}</view>
+          </view>
+        </view>
+      </cell>
+    </view>
+
+    <!--门店信息-->
+    <view class='group m-t' wx:if="{{orderInfo.takeMode == 1}}">
+      <cell>
+        <view slot="title">门店信息</view>
+      </cell>
+      <cell>
+        <view slot="title" class='ft-foten'>
+          <view>{{orderInfo.store.name || '暂无'}}</view>
+          <view class='flex-wrap m-t'>
+            <view>地址：</view>
+            <view>{{orderInfo.store.regionalDesc || '暂无'}} {{orderInfo.store.addrDesc}}</view>
+          </view>
+          <view class='flex-wrap m-t'>
+            <view>电话：</view>
+            <view>{{orderInfo.store.tel || '暂无'}}</view>
+          </view>
+        </view>
+      </cell>
+    </view>
+    
+    <!--取件地址-->
+    <view class='group m-t'wx:if="{{orderInfo.takeMode == 2 && orderInfo.takePhone}}">
+      <cell>
+        <view slot="title" >取件地址</view>
+      </cell>
+      <cell>
+        <view slot="desc-ine" class='text-black'>
+          <view>
+            <text>{{orderInfo.takePhone}}</text>
+            <text> {{orderInfo.takeName}}</text>
+          </view>
+          <view class='m-t-f'>{{orderInfo.takeAddress}}</view>
+        </view>
+      </cell>
+    </view>
+
+    <!--送件地址-->
+    <view class='group m-t' wx:if="{{orderInfo.sendMode == 2 && orderInfo.sendPhone}}">
+      <cell>
+        <view slot="title">送件地址</view>
+      </cell>
+      <cell>
+        <view slot="desc-ine" class='text-black'>
+          <view>
+            <text>{{orderInfo.sendPhone}}</text>
+            <text> {{orderInfo.sendName}}</text>
+          </view>
+          <view class='m-t-f'>{{orderInfo.sendAddress}}</view>
+        </view>
+      </cell>
+    </view>
+
+    <!--取件员信息-->
+    <view class='group m-t' wx:if="{{orderInfo.takeScore || orderInfo.takeExpressNo}}">
+      <cell>
+        <view slot="title">取件员</view>
+      </cell>
+      <cell>
+        <view slot="title" class='flex-wrap flex-wrap-between ft-foten'>
+          <view class='ts-worker' wx:if="{{orderInfo.takeScore}}">
+            <view>{{orderInfo.takeScore.name}}</view>
+            <view>电话：{{orderInfo.takeScore.phone}}</view>
+            <view>工号：{{orderInfo.takeScore.code}}</view>
+            <!-- <view>评分：<text class='text-danger'>暂不支持查看评分</text></view> -->
+          </view>
+          <view wx:if="{{orderInfo.takeExpressNo}}" class='ts-worker'>
+            <view>{{orderInfo.takeExpressTypeText}}为您服务</view>
+            <view>送件单号：{{orderInfo.takeExpressNo || ''}}</view>
+            <view wx:if="{{sendExpressInfo.sendWorkPhone}}">联系电话：<text>{{takeExpressInfo.takeWorkPhone}}</text>{{takeExpressInfo.takeWorkName||''}}</view>
+          </view>
+          <view class='wrok-image'>
+            <image src='{{orderInfo.takeExpressNo ? iconUrl.tsExpressIcon : orderInfo.takeScore ? orderInfo.takeScore.imgPath ? orderInfo.takeScore.imgPath : iconUrl.tsWorkerIcon : iconUrl.tsWorkerIcon}}' mode='widthFix'></image>
+          </view>
+        </view>
+      </cell>
+    </view>
+
+    <!--送件员信息-->
+    <view class='group m-t' wx:if="{{orderInfo.sendScore || orderInfo.sendExpressNo}}">
+      <cell>
+        <view slot="title">送件员</view>
+      </cell>
+      <cell>
+        <view slot="title" class='flex-wrap flex-wrap-between ft-foten'>
+          <view class='ts-worker' wx:if="{{orderInfo.sendScore}}">
+            <view>{{orderInfo.sendScore.name}}</view>
+            <view>电话：{{orderInfo.sendScore.phone}}</view>
+            <view>工号：{{orderInfo.sendScore.code}}</view>
+            <!-- <view>评分：<text class='text-danger'>暂不支持查看评分</text></view> -->
+          </view>
+          <view wx:if="{{orderInfo.sendExpressNo}}" class='ts-worker'>
+            <view>{{orderInfo.sendExpressTypeText}}为您服务</view>
+            <view>送件单号：{{orderInfo.sendExpressNo  || ''}}</view>
+            <view wx:if="{{sendExpressInfo.sendWorkPhone}}">联系电话：<text>{{sendExpressInfo.sendWorkPhone}}</text>{{sendExpressInfo.sendWorkName||''}}</view>
+          </view>
+          <view class='wrok-image'>
+            <image src='{{orderInfo.sendExpressNo ? iconUrl.tsExpressIcon : orderInfo.sendScore ? orderInfo.sendScore.imgPath ? orderInfo.sendScore.imgPath : iconUrl.tsWorkerIcon : iconUrl.tsWorkerIcon}}' mode='widthFix'></image>
+          </view>
+        </view>
+      </cell>
+    </view>
+
+    <!--显示付款取消按钮-->
+    <view class='group wrap-fix item-fix-bottom' wx:if="{{orderInfo.isEnablePay || orderInfo.isEnableCancel || orderInfo.isEnableCupboardSignOpen}}">
+      <cell>
+          <view slot="value">
+            <button  class='bd-primary text-primary btn-plain' size='mini' wx:if="{{orderInfo.isEnablePay}}" bindtap='onPayOrder'>立即付款</button>
+            <button class='bd-black  btn-plain m-l' size='mini' wx:if="{{orderInfo.isEnableCancel && (!orderInfo.takeExpressType || orderInfo.takeExpressType != 'SF')}}" bindtap='onCancelOrder'>取消订单</button>
+            <button wx:if="{{orderInfo.isEnableCupboardSignOpen}}" size='mini' type='primary' bindtap='onBtnOptionTake'>开箱取衣</button>
+          </view>
+      </cell>
+    </view>
+
+    <!--分享图标-->
+    <view class='share'>
+       <button open-type="share" class='wrap-fix custom-fix-share {{order.shareEnableScroll ? "custom-fix-share-hide" : ""}}' wx:if="{{order.shareEnable}}" ></button>
+    </view>
+  </view>
+</content>
+
+<wxs src="../../../../utils/wxs/filter.wxs" module="filter"></wxs>

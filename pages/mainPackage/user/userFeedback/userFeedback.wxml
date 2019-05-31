@@ -1,0 +1,16 @@
+<!--pages/mainPackage/user/userFeedback/userFeedback.wxml-->
+<centont>
+  <view >
+    <view class="text-cell-muted m-l-tt ft-foten m-t m-b">
+      反馈内容
+    </view>
+    <view class="bg-white border-one-fb">
+      <textarea class="w-ag text-height text-black" placeholder="请输入你的意见或建议" value="{{content}} " maxlength="200" bindinput="updateSizeFn" ></textarea>
+      <view class="text-right p-r-tt text-cell-muted">{{textSize}}/200</view>
+    </view>
+
+     <view class="m-t-tt m-b m-l-tf m-r-tf">
+      <button type="primary" loading="{{loading}}" plain="{{false}}" class="w-ag" disabled="{{loading}}"  bindtap="onFeedback">提交</button>
+    </view>
+  </view>
+</centont>

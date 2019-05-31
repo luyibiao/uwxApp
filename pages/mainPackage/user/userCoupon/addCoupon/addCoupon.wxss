@@ -1,0 +1,66 @@
+/* pages/mainPackage/user/userCoupon/addCoupon/addCoupon.wxss */
+
+.headImg{
+  height: 50px;
+  width: 50px;
+  border-radius: 50%;
+  margin: 2.5% 0px 1%;
+  border: 1px solid #D8D9DB;
+}
+
+.small-img{
+   height: 40px;
+  width: 40px;
+  border-radius: 50%;
+  border: 1px solid #D8D9DB;
+}
+
+.select-height{
+  height:700rpx;
+  overflow: auto;
+  background-color:#fff;
+   width:85%
+}
+
+.coupon-mode{
+  height:720rpx;
+  background-image: url('https://cdn.ukaocloud.cn/wxapp/delimg/add_coupon.jpg');
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  background-position: center center; background-color:transparent;
+}
+.coupon-mode{
+  width:85%;
+  height:120px;
+}
+
+.coupon-content{
+  position: absolute;
+  left:7.5%;
+  right:7.5%;
+  top:0;
+  bottom:0;
+  padding: 10px;
+  box-sizing: border-box;
+}
+.coupon-content-main{
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.coupon-content-main>view{
+  display: flex;
+  align-items: center;
+  
+  flex: 1;
+}
+
+.coupon-mode-width{
+  width:85%;
+
+}
+.coupon-mode.height{
+  height:120px;
+}

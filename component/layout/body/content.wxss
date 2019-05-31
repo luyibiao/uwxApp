@@ -1,0 +1,19 @@
+.component-layout-main{
+  min-height: 600px;
+}
+.component-layout-fotter{
+  margin-top: 20px;
+}
+
+.u-fotter-icon {
+  text-align: center;
+  color: rgb(180, 180, 180);
+  font-size: 14px !important;
+}
+.u-fotter-icon image{
+  width: 60px;
+  height: 24px;
+  
+}
+
+

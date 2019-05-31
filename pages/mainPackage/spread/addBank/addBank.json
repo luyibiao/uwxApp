@@ -1,0 +1,6 @@
+{
+    "navigationBarTitleText": "添加银行卡",
+  "usingComponents": {
+    "modal": "/component/view/modal/modal"
+  }
+}

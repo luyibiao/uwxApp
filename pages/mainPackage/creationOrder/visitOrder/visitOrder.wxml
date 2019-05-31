@@ -1,0 +1,109 @@
+<content>
+  <view class='m-b-tt'>
+    <userProto content="{{userContent}}"></userProto>
+    <takeAddres startLoad="{{start.startTsWay}}"></takeAddres>
+
+    <view class='m-t-tt'>
+      <view class='group'>
+        <takeTime bindcallback="onTakeTimeFn"></takeTime>
+        <takeWay bindcallback="onTakeWayFn" startLoad="{{start.startTsWay}}"></takeWay>
+      </view>
+    </view>
+
+    <view class='group m-t-tt'>
+      <uRemark bindcallback="onTextArea"></uRemark>
+    </view>
+    
+    <view class='group m-t-tt'>
+      <cell wx:for="{{shopList}}" wx:key="{{item.id}}">
+        <view slot="title" class='flex-wrap flex-wrap-between'>
+          <view class='flexratio'>{{item.name}}</view>
+          <view class='text-muted ft-foten flexratio text-center'>×{{item.cnt}}</view>
+          <view class='text-muted ft-foten flexratio text-center'>
+            {{filter.discountFormat(item.discount)}}
+          </view>
+          <view class='ft-foten flexratio text-right'>￥{{filter.amtFormat((vipPriceShow && isVip && item.vipPrice ? item.vipPrice : item.price) *(item.discount || 100)/100*item.cnt)}}</view>
+        </view>
+        <view slot="desc-ine" class='ft-foten'>￥{{filter.amtFormat(item.price)}} 
+          <view class='text-danger p-l ' style= "display:inline-block;" wx:if="{{vipPriceShow}}" > 
+              {{item.vipPrice ? '￥'+filter.amtFormat(item.vipPrice) : ''}}
+              <view  class="{{item.vipPrice? 'bd-danger bd-radius-lg padd-l-r-f' :''}} "style= "display:inline-block; font-size:10px;" > {{item.vipPrice ? '会员价' : ''}}</view>
+          </view>
+        </view>
+      </cell>
+    </view>
+
+    <view class='group m-t-tt'>
+      <cell>
+        <view slot="title">衣物总额</view>
+        <view class='text-danger fz-fift' slot="value">￥{{filter.amtFormat(allMoney)}}</view>
+      </cell>
+      <cell wx:if="{{wayMoney || wayMoney===0}}">
+        <view slot="title">取送费</view>
+        <view slot="value" class='text-danger fz-fift'>￥{{filter.amtFormat(wayMoney)}}</view>
+      </cell>
+    </view>
+
+    <view class="m-t-tt" wx:if="{{vipPriceShow && vipAllMoney < allMoney}}">
+      <view class="m-l text-muted ft-tve">充值享受会员价</view>
+      <view class="flex-wrap flex-wrap-between bg-white m-t-f" style='padding: 5px 10px'>
+        <view class="ft-tve">
+          本订单按会员价可优惠 <text class="text-danger m-l ">￥{{filter.amtFormat(allMoney - vipAllMoney)}}</text>
+        </view>
+        <view><button type='primary' bindtap="toNavgoFn" data-url="/pages/mainPackage/user/userCharge/userCharge" class="ft-foten" > 会员充值</button></view>
+      </view>
+    </view>
+
+    <view wx:if="{{vipPriceShow && vipAllMoney < allMoney}}" class="vip-btn-fotter ft-tve  border-box text-danger flex-wrap-center " >充值享受会员价：{{filter.amtFormat(vipAllMoney+wayMoney)}}</view>
+    <view class='btn-fotter padd-t border-box bg-white bd-muted-vice-top'>
+      <view class='btn-fotter_left'>
+        <view>
+          <view class='text-danger ft-foten'>￥<text class='ft-twty'>{{filter.amtFormat(allMoney+wayMoney)}}</text></view>
+          <view class='text-muted ft-foten'>订单总额</view>
+        </view>
+      </view>
+      <view class='btn-fotter_right'>
+        <view class='wrap-rve' bindtap='shopPopDeail'>
+        <text class='text-muted ft-tve detail-text'>明细</text>
+        <i class="i-triangle m-l-f m-t-f icon {{popup.showDetailPop ? 'icon-roate' : ''}}"></i>
+        
+        </view>
+        <button type='primary' bindtap='verify'  class='w-sg fz-fift' wx:if="{{orderMode.CURRENT_MODE==orderMode.BESPOKE_MODE}}" data-disabledCreate="{{disabledCreate}}">{{'立即预约'}}</button>
+        <button  type='primary' bindtap='verify' data-disabledCreate="{{disabledCreate}}" class='w-sg fz-fift' wx:else>{{ '立即付款'}}</button>
+      </view>
+    </view>
+  </view>
+</content>
+
+<popup popup="{{closeBitPoP}}" popstyle="bottom:0px;" popstyle="z-index:1002">
+  <view class='all-tt ft-foten'>
+    <view class="text-center marg-t-b-tt padd-t-b-t">{{closedTip}}</view>
+    <button type='primary' bindtap='closePop' class='w-ag fz-fift'>确定</button>
+  </view>
+</popup>
+
+<popup popup="{{popup.verifyPop}}" popstyle="bottom:0px;" popstyle="z-index:1002">
+  <view class='all-tt ft-foten'>
+    <view class="text-center marg-t-b-tt padd-t-b-t">选择顺丰取件，下单后订单将无法取消</view>
+    <view class="flex-wrap flex-wrap-between">
+      <button type='primary' bindtap='verifySubForm' loading="{{subFormLoading}}" disabled="{{subFormLoading}}"  data-disabledCreate="{{disabledCreate}}" class='w-ag fz-fift' style='width:47%;'>确定</button>
+      <button type='default' bindtap='closeVerifyPop'  class='w-ag fz-fift' style='width:47%;'>取消</button>
+    </view>
+    
+  </view>
+</popup>
+
+<popup popup="{{popup.showDetailPop}}" popstyle="bottom:57px;" bind:onPopup="onPopup">
+  <view class='all-tt ft-foten'>
+    <view class='flex-wrap flex-wrap-between'>
+      <view>衣物总额</view>
+      <view class='text-danger'>￥{{filter.amtFormat(allMoney)}}</view>
+    </view>                                                                                                                                      
+    <view class='flex-wrap flex-wrap-between m-t' wx:if="{{wayMoney || wayMoney===0}}">
+      <view>取送费</view>
+      <view>{{filter.getValText(wayType,"EXPRESS_TYPE")}}取送</view>
+      <view class='text-danger'>￥{{filter.amtFormat(wayMoney)}}</view>
+    </view>
+  </view>
+</popup>
+<wxs src="../../../../utils/wxs/filter.wxs" module="filter"></wxs>

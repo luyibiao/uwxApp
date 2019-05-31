@@ -1,0 +1,24 @@
+.protocol-wrap{
+  height: 220px;
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: 100% 100%;
+}
+
+.protocol-content{
+  bottom: 30px;
+}
+
+.protocol-content button{
+  width: 40%;
+}
+.way-content{
+  padding: 25px 0px;
+  box-sizing: border-box;
+}
+.way-content-li image{
+  width: 60px;
+  height: 60px;
+}
+
+

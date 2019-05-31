@@ -1,0 +1,53 @@
+
+<!--pages/mainPackage/user/userUCard/userUCard.wxml-->
+<content>
+  <view wx:if="{{bindOrUcard == 'bind'}}">
+    <view class="m-t-tf ft-foten text-cell-muted m-l">请绑定优付卡</view>
+    <view class="m-t-f bg-white" >
+      <view class="wrap-rve wrap-text-input ">
+        <text>卡号</text>
+        <input type="number" placeholder="{{rfidNoPlaceholder}}" placeholder-class="text-left bg-white"  value='{{params.rfidNo}}' bindblur="rfidNoInputFn"></input>
+      </view>
+      <view class="wrap-rve wrap-text-input bd-muted-vice-top">
+        <text>验证码</text>
+        <input type="number" placeholder="{{checkCodePlaceholder}}" placeholder-class="text-left" class="ft-siten"  value='{{params.checkCode}}' bindblur="checkCodeInputFn"></input>
+      </view>
+    </view>
+    <view class="m-t-tt m-l-tf m-r-tf">
+      <button type="primary" loading="{{loading}}" plain="{{plain}}" class="w-ag" bindtap="addUcardFn">确定</button>
+    </view>
+  </view>
+
+  <view wx:if="{{bindOrUcard == 'ucard'}}">
+    <view class="card m-b flex-wrap flex-wrap-between m-auto">
+      <view class="flexratio wrap-rve flex-item-strech">
+        <view >
+          <view class="ft-siten">{{detail.name}}</view>
+          <view class="ft-tve m-t">所属单位：{{detail.cardName}}</view>
+          <view class="ft-tve m-t">支付比例：{{detail.payRatio}}%</view>
+        </view>
+        <view class="ft-tve pos-bottom-zero m-b-tf ">{{detail.cardNo}}</view>
+      </view>
+      
+      <view class="text-right flexteotatio wrap-rve flex-item-strech">
+        <view class="ft-tve">余额：{{filter.amtFormat(detail.balance)}}元</view>
+        <view class="ft-tve pos-bottom-zero m-b-tf pos-tight">
+          有效期至
+            <block wx:if="{{detail.timeEnable != 0}}">
+              {{filter.getDate(detail.itemEnd)}}
+            </block>
+            <block wx:else>永久有效</block>
+        </view>
+      </view>
+    </view>
+    
+    <view class="text-center m-auto barcode p-t-tt"><canvas   canvas-id="barcode" /></view>
+    <view class="text-center ft-tve">{{detail.cardNo}}</view>
+
+    <view class="text-center m-auto qecode-width"><canvas   canvas-id="qrcode" /></view>
+    <view class="text-center ft-tve text-cell-muted">*使用优付卡付款时，只能支付每笔订单总额的{{detail.payRatio}}%</view>
+  </view>
+</content>
+
+<wxs src="../../../../utils/wxs/filter.wxs" module="filter"></wxs>
+<wxs src="../../../../utils/wxs/time.wxs" module="time"></wxs>

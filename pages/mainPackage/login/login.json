@@ -1,0 +1,7 @@
+{
+  "navigationBarTitleText": "绑定手机号",
+  "usingComponents": {
+    "modal": "/component/view/modal/modal",
+    "popup": "/component/view/popup/popup"
+  }
+}

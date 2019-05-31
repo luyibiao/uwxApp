@@ -1,0 +1,107 @@
+.text-white{
+  color: #fff;
+}
+.text-black{
+  color: #353535;
+}
+.text-danger{
+  color:#f05050;
+}
+.text-muted{
+  color:#98a6ad;
+}
+.text-cell-muted{
+  color: #999;
+}
+.text-muted-vice{
+  color: #b2b2b2
+}
+.text-primary{
+  color:#1aad19;
+}
+.text-service{
+  color:#576b95;/*服务文字颜色*/
+}
+.text-del{
+  color:#808080;/*文本框默认文字颜色*/
+}
+.text-code{
+  color:#838c99;/*验证码颜色*/
+}
+.text-info {
+    color: #23b7e5;
+}
+.bd-primary{
+  border: 1px solid #1aad19
+}
+.bd-black{
+  border: 1px solid #353535;
+}
+.bd-muted{
+  border:1px solid #888888;
+}
+.bd-muted-vice{
+  border: 1px solid #efeff4;
+}
+.bd-muted-bottom{
+  border-bottom: 1px solid #888888;
+}
+.bd-muted-vice-bottom{
+   border-bottom: 1px solid #efeff4;
+}
+.bd-muted-top{
+  border-top: 1px solid #888;
+}
+.bd-muted-vice-top{
+  border-top: 1px solid #efeff4;
+}
+.bd-muted-left{
+  border-left: 1px solid #888;
+}
+.bd-muted-vice-left{
+  border-left: 1px solid #efeff4;
+}
+.bd-muted-right{
+  border-right: 1px solid #888;
+}
+.bd-muted-vice-right{
+  border-right: 1px solid #efeff4;
+}
+.bd-danger{
+  border:1px solid #FF4949;
+}
+.bg-color{
+  background-color: #F8F8F8;/*默认背景颜色*/
+}
+
+.bg-primary{
+   background-color: #1aad19;
+}
+.bg-muted{
+  background-color: #DCDCDC;
+}
+.bg-danger{
+  background-color: #FF4949;
+}
+.bg-white{
+   background-color:  #fff;
+}
+.bg-yellow{
+  background-color:#fef2c2;
+}
+.bg-lyellow{
+  background-color: #fbf1c2;
+  border-bottom: 1px solid #efe099;
+}
+.btn-primary{
+  background-color: #1aad19;
+}
+.text-hover-opacity:active{
+  opacity: .8
+}
+.b-shadow{
+  box-shadow: 1px 1px 2px #9d9d9d;
+}
+.t-shadow{
+  text-shadow: 1px 1px 2px #9d9d9d;
+}

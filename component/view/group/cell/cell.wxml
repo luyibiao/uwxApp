@@ -1,0 +1,14 @@
+<view class='cell-wrap {{islink ? "cell-wrap-active" : ""}} text-cell-muted' style='{{cellstyle}}'>
+  <view class='cell-wrap-item'>
+    <view class='cell-wrap-item-title text-black'>
+      <slot name="title" ></slot>
+    </view>
+    <view class='{{islink ? "islink islink-padder" : ""}} ft-foten'>
+        <slot name="value" ></slot>
+    </view>
+  </view>
+  <view class='{{islink ? "islink-padder" : ""}} ft-foten'>
+    <slot name="desc-ine"></slot>
+  </view>
+  <navigator url="{{linkurl}}" class='nav-url' wx:if="{{linkurl}}" open-type="{{linktype ? linktype : 'navigate'}}"></navigator>
+</view>

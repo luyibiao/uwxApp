@@ -1,0 +1,37 @@
+<content>
+  <view>
+    <view class='group' >
+      <cell bindtap="onSelect" data-item="{{item}}" wx:for="{{addresList}}" wx:key="{{item.id}}" cellstyle="{{index == 0 ? 'margin-top: 0px' : '' }}">
+        <view slot="title">{{item.phone}} {{item.name}}
+        <view class="ft-tve m-t-f wrap-rve">
+          <view class="m-r-f text-primary bg-primary-opac dis-line-block item-abs-top" wx:if="{{item.def == 1}}">默认</view>
+          <view class=" text-cell-muted dis-line-block w-bg" style='margin-left:{{item.def==1 ? "30px" : "0"}}'>{{item.regionalDesc}} {{item.detail}}</view>
+        </view>
+          
+        </view>
+        <view slot="value" bindtap='onNewAddress' data-item='{{item}}'>
+          <view class='text-muted ft-foten delete'>
+            <image src="{{img.iconEdit}}" mode='aspectFit'></image>
+          </view>
+        </view>
+      </cell>
+      <!-- <cell>
+        <view slot="title" class='desc flex-wrap flex-wrap-between'>
+          <view class='wrap-rve ft-foten' wx:if="{{item.def==1}}">
+            <icon type='success' size='20' class='item-abs-colum-center'></icon>
+            <text class='del-text'>默认地址</text>
+          </view>
+          <view wx:else class='wrap-rve ft-foten del-icon' bindtap='onDef' data-item="{{item}}" data-index="{{index}}">
+            <i class="u_icon {{index==active ? 'u_icon-checked' : 'u_icon-check'}} item-abs-colum-center"></i>
+            <text class='del-text'>设为默认地址</text>
+          </view>
+          <view class='text-muted ft-foten delete' bindtap='onDelete' data-item="{{item}}"><image src='{{img.deleteUrl}}' mode='aspectFit' class='m-r-t'></image>删除</view>
+        </view>
+      </cell> -->
+    </view>
+
+    <view class='wrap-fix item-fix-bottom bg-white padd-t-b-t '>
+      <view class='w-ag flex-wrap flex-wrap-center'><button type='primary' class='w-bg add-btn' bindtap='onNewAddress'>+新建地址</button></view>
+    </view>
+  </view>
+</content>

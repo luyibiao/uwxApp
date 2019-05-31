@@ -1,0 +1,37 @@
+<content>
+  <view class='wrap'> 
+    <view class='m-t'>
+      <view class='border-box p-l m-b ft-foten'>
+        <text>当前定位城市</text>
+        <text>
+          <!-- <image src=''></image> -->
+        </text>
+      </view>
+        <cell>
+          <view slot="title">
+            <text class='{{locateFlag==-2 ? "text-danger" : ""}}'>{{cityMsg}}</text>
+          </view>
+          <view slot="value" >
+            <view wx:if="{{locateFlag==-2}}" bindtap='onAgainLocation' class='text-hover-opacity'>
+              <i class="u_icon" style="background: url({{icon}}) no-repeat center center;background-size:100% 100%;"></i>
+              <text class='text-info m-l-f'>重新定位</text>
+            </view>
+            <text class='text-danger ft-foten' wx:if="{{locateFlag==-1}}">尚未开通，请选择下方城市</text>
+            <button class='btn-plain btn ft-foten text-primary bd-primary' wx:elif="{{locateFlag>=0 && locateFlag!==''}}" bindtap='onChoiceLocate'>进入</button>
+          </view>
+        </cell>
+    </view>
+
+    <view class='m-t-tt'>
+      <view class='border-box p-l m-b text-muted ft-foten'>请选择以下城市</view>
+      <view class='group'>
+        <cell wx:for="{{cityList}}" wx:key="{{item.id}}">
+          <view slot="title">{{item.name}}</view>
+          <view slot="value">
+            <button class='btn-plain btn ft-foten text-primary bd-primary' bindtap='onChoice' data-item="{{item}}">进入</button>
+          </view>
+        </cell>
+      </view>
+    </view>
+  </view>
+</content>

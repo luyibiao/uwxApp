@@ -1,0 +1,12 @@
+/* pages/mainPackage/creationOrder/cupboardOrder/cupboardOrder.wxss */
+ .vip-btn-fotter{
+    z-index:1001;
+    position:fixed;
+    left:0;
+    right:0;
+    display:flex;
+    bottom:60px;
+    height:20px;
+    background-color:#fdecec;
+
+ }

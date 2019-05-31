@@ -1,0 +1,11 @@
+{
+  "navigationBarTitleText": "下单",
+  "usingComponents": {
+    "takeAddres": "/component/view/takeAddres/takeAddres",
+    "takeTime":"/component/view/takeTime/takeTime",
+    "takeWay": "/component/view/takeWay/takeWay",
+    "popup": "/component/view/popup/popup",
+    "userProto":"/component/view/userProtocol/userProtocol",
+    "uRemark": "/component/view/uRemark/uRemark"
+  }
+}

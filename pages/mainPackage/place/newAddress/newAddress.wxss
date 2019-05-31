@@ -1,0 +1,37 @@
+.custom-input{
+  border: none;
+  padding: 0;
+  height: 0;
+}
+
+radio .wx-radio-input{ 
+    height: 18px; 
+    width: 18px;
+    margin-top: -2px;
+    border-radius: 50%;
+    border: 2rpx solid #999;
+    background: #fff;
+ }
+
+.padd-f-t{
+  padding:5px 10px;
+}
+
+.wrap-text-input{
+  width: 100%;
+  /* border-radius: 40px; */
+  padding: 0px 60px;
+  box-sizing: border-box;
+}
+.wrap-text-input text{
+  position: absolute;
+  top: 50%;
+  left: 3px;
+  transform: translateY(-50%);
+  font-size: 14px;
+}
+
+.wrap-text-input input{
+  width:90%; 
+  border: none;
+}

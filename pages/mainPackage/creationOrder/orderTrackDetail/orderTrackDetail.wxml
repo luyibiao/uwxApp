@@ -1,0 +1,33 @@
+<content>
+  <view wx:if="{{orderInfo!=null &&trackList !==null}}">
+    <view class='group m-t-tt'>
+      <cell>
+        <view slot="title" class='ft-foten'>
+          <view class=''>订单单号：{{orderInfo.orderNo}}</view>
+          <view class='m-t'>订单状态：<text class='text-primary'>{{trackList[0].statusDesc}}</text></view>
+        </view>
+      </cell>
+    </view>
+    <view class='padd-t border-box'>订单跟踪</view>
+    <view class='group'>
+      <cell>
+        <view slot="title">
+          <view class='wrap-rve track-item' wx:for="{{trackList}}" wx:key="{{index}}">
+            <view class='track-item-circle'>
+              <view class='wrap-rve circle-custom {{index==0 ? "circle bd-primary bd-primary" : ""}}'>
+                <view class='circle circle-custom-children item-abs {{index>0 ? "circle-custom-muted" : ""}}'></view>
+              </view>
+            </view>
+            <view class='m-l-tt ft-foten {{index==0 ? "text-primary" : "track-item-muted"}}'>
+              <view>{{item.statusDesc}}</view>
+              <view>{{filter.getDateTime(item.createTime)}}</view>
+            </view>
+            <view class='storke' wx:if="{{index+1<trackList.length}}"></view>
+          </view>
+        </view>
+      </cell>
+    </view>
+  </view>
+</content>
+
+<wxs src="../../../../utils/wxs/filter.wxs" module="filter"></wxs>

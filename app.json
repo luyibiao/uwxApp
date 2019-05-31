@@ -1,0 +1,108 @@
+{
+  "pages": [
+    "pages/mainPackage/tabbar/index/index",
+    "pages/mainPackage/tabbar/order/order",
+    "pages/mainPackage/tabbar/personal/personal",
+    "pages/mainPackage/user/userCoupon/addCoupon/addCoupon",
+    "pages/mainPackage/creationOrder/storeList/storeList",
+    "pages/mainPackage/spread/index/index",
+    "pages/mainPackage/spread/invite/invite",
+    "pages/mainPackage/spread/addBank/addBank",
+    "pages/mainPackage/spread/posterExpand/posterExpand",
+    "pages/mainPackage/user/userCharge/userCharge",
+    "pages/mainPackage/spread/client/client",
+    "pages/mainPackage/spread/income/income",
+    "pages/mainPackage/spread/withdraw/withdraw",
+    "pages/mainPackage/spread/profit/profit",
+    "pages/mainPackage/spread/tradeAudit/tradeAudit",
+    "pages/mainPackage/user/userUCard/userUCard",
+    "pages/mainPackage/creationOrder/goodsList/goodsList",
+    "pages/mainPackage/creationOrder/orderDetail/orderDetail",
+    "pages/mainPackage/login/login",
+    "pages/mainPackage/error/error",
+    "pages/mainPackage/place/locate/locate",
+    "pages/mainPackage/place/map/map",
+    "pages/mainPackage/noPage/noPage",
+    "pages/mainPackage/creationOrder/orderTrade/orderTrade",
+    "pages/mainPackage/creationOrder/visitOrder/visitOrder",
+    "pages/mainPackage/creationOrder/conciseOrder/conciseOrder",
+    "pages/mainPackage/creationOrder/orderClothing/orderClothing",
+    "pages/mainPackage/creationOrder/orderTrackDetail/orderTrackDetail",
+    "pages/mainPackage/creationOrder/cupboardOrder/cupboardOrder",
+    "pages/mainPackage/creationOrder/storeOrder/storeOrder",
+    "pages/mainPackage/creationOrder/cupboardList/cupboardList",
+    "pages/mainPackage/user/userMoney/userMoney",
+    "pages/mainPackage/user/userCoupon/userCoupon",
+    "pages/mainPackage/user/userCoupon/addShareCoupon/addShareCoupon",
+    "pages/mainPackage/user/userCoupon/shareCoupon/shareCoupon",
+    "pages/mainPackage/user/userShopCoupon/userShopCoupon",
+    "pages/mainPackage/user/userFeedback/userFeedback",
+    "pages/mainPackage/user/userCard/userCard",
+    "pages/mainPackage/user/userCard/bindCard/bindCard",
+    "pages/mainPackage/user/userCardProof/userCardProof",
+    "pages/mainPackage/user/userTrade/userTrade",
+    "pages/mainPackage/user/userProtocol/userProtocol",
+    "pages/mainPackage/sys/nearbyCabinet/nearbyCabinet",
+    "pages/mainPackage/spread/plan/plan",
+    "pages/mainPackage/spread/personal/personal",
+    "pages/mainPackage/spread/settle/settle",
+    "pages/mainPackage/spread/records/records",
+    "pages/mainPackage/place/newAddress/newAddress",
+    "pages/mainPackage/place/addressManage/addressManage",
+    "pages/mainPackage/place/map/select/select",
+    "pages/mainPackage/user/contact/contact",
+    "pages/mainPackage/webview/webview"
+  ],
+  "permission": {
+    "scope.userLocation": {
+      "desc": "获取您的位置用于定位"
+    }
+  },
+  "subpackages": [
+    {
+      "root": "pages/subPackage",
+      "pages": [
+        "cabinet/index/index",
+        "cabinet/laundry/laundry",
+        "cabinet/enterOrder/enterOrder",
+        "cabinet/orderSuccess/orderSuccess"
+      ]
+    }
+  ],
+  "tabBar": {
+    "list": [
+      {
+        "pagePath": "pages/mainPackage/tabbar/index/index",
+        "text": "首页",
+        "iconPath": "/static/img/tabbar/home.png",
+        "selectedIconPath": "/static/img/tabbar/homeed.png"
+      },
+      {
+        "pagePath": "pages/mainPackage/tabbar/order/order",
+        "text": "订单",
+        "iconPath": "/static/img/tabbar/order.png",
+        "selectedIconPath": "/static/img/tabbar/ordered.png"
+      },
+      {
+        "pagePath": "pages/mainPackage/tabbar/personal/personal",
+        "text": "我的",
+        "iconPath": "/static/img/tabbar/me.png",
+        "selectedIconPath": "/static/img/tabbar/meed.png"
+      }
+    ],
+    "backgroundColor": "#fff",
+    "color": "#000",
+    "selectedColor": "#1aad19"
+  },
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTitleText": "WeChat",
+    "navigationBarTextStyle": "black"
+  },
+  "usingComponents": {
+    "content": "/component/layout/body/content",
+    "cell": "/component/view/group/cell/cell"
+  },
+  "sitemapLocation": "sitemap.json"
+}

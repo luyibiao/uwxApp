@@ -1,0 +1,8 @@
+<view class="flex-wrap flex-wrap-around bg-white padd-t-b-t home-chain-menu">
+  <view wx:for="{{menuList}}" class='text-center' wx:key="{{item.id}}" bindtap="onSelectMenu" data-applink="{{item.appLink}}">
+    <view class="m-b-f">
+      <image src="{{item.imgPath}}" mode='aspectFit'></image>
+    </view>
+    <text class='text-code'>{{item.name}}</text>
+  </view>
+</view>

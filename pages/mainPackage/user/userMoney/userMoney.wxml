@@ -1,0 +1,22 @@
+<!--pages/mainPackage/user/userMoney/userMoney.wxml-->
+<content>
+<view style='overflow:hidden'>
+   <view class="">
+    <view class="text-center bg-white padd-lg">
+        <view class="text-danger ft-lg ">￥{{filter.amtFormat(balance)}}</view>
+        <view class="text-cell-muted ft-tve">余额（元）</view>
+    </view>
+  </view>
+
+   <view class="m-t-tt m-l-tf m-r-tf">
+    <button type="primary" loading="{{loading}}" plain="{{plain}}" class="w-ag" form-type="submit" bindtap="toNavgoFn" data-url="/pages/mainPackage/user/userCharge/userCharge">去充值</button>
+   </view>
+
+   <view class="m-t m-l-tf m-r-tf">
+    <button type="default" loading="{{loading}}" plain="{{plain}}" class="w-ag" style='background-color:#fff' form-type="submit" bindtap="toNavgoFn" data-url="/pages/mainPackage/user/userTrade/userTrade">查看余额明细</button>
+   </view>
+</view>
+ 
+</content>
+
+<wxs src="../../../../utils/wxs/filter.wxs" module="filter"></wxs>

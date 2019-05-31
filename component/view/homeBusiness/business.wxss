@@ -1,0 +1,28 @@
+.bussiness-item{
+  border-right: 1px solid #F8F8F8;
+  border-bottom: 1px solid #F8F8F8;
+  box-sizing: border-box;
+}
+/* .bussiness-item+.bussiness-item{
+  border-left: 1px solid #F8F8F8;
+  
+} */
+/* .bussiness-item:last-child{
+  border-right: 1px solid #F8F8F8;
+} */
+
+.bussiness-item-detail{
+  height: 100%;
+ 
+}
+
+.bussiness-image image{
+  width: 100%;
+  height: 100rpx;
+}
+
+.bussiness-image-clothes image{
+  width:100rpx;
+  height:100rpx;
+}
+

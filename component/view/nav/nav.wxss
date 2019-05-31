@@ -1,0 +1,37 @@
+.scroll-box{
+  width: 100%;
+  overflow: hidden;
+  white-space: nowrap;
+}
+.nav-wrap{
+  width: 100%;
+  z-index: 998;
+  position: fixed;
+  display: flex;
+  top: 0;
+  left: 0;
+  right: 0;
+  /* justify-content: space-around; */
+  height: 30px;
+  text-align: center;
+  background-color: #fff;
+  overflow: scroll;
+}
+.nav{
+  flex: 1;
+  min-width: 60px;
+  z-index: 2;
+  display: inline-block;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+.nav-active{
+  color: #1aad19;
+}
+.stoke{
+  position: absolute;
+  bottom: 0px;
+  height: 3px;
+  background-color: #1aad19;
+}

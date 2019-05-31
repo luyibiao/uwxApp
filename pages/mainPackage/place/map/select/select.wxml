@@ -1,0 +1,38 @@
+<!--pages/mainPackage/place/map/select/select.wxml-->
+<!-- <view class='wrap-fix item-fix-top bg-white' style='z-index:1000'>
+      <view class='input-wrap flex-wrap flex-wrap-between'>
+        <input placeholder='请输入地址' value="{{selectName}}"  bindinput='onInput'></input>
+        <view class='search-text' bindtap='onSearch'>搜索</view>
+      </view>
+    </view>
+    <cover-view class='search-btn-cover' style='max-height:{{searchBtnList.length ? height-150 : "0"}}px'>
+        <cover-view wx:for="{{searchBtnList}}" data-item="{{item}}" bindtap='onSelectAddress' wx:key="{{index}}">
+          <cover-view class='search-cover-title'>{{item.title}}</cover-view>
+          <cover-view class='address_css'>{{item.address}}</cover-view>
+          <cover-view class='bd-cordver-view'></cover-view>
+        </cover-view>
+        <cover-view wx:if="{{searchBtnList.length}}" class='flex-wrap flex-wrap-between clear-close'> -->
+          <!-- <cover-view class='text-left flexratio text-muted' bindtap='clearList'>清空</cover-view> -->
+          <!-- <cover-view class='text-right flexratio text-muted ' bindtap='clearList'>关闭</cover-view>
+        </cover-view>
+    </cover-view> -->
+    <content>
+      <view class="">
+          <view slot="title" class="wrap-rve wrap-text-input select-bg select-padding" style='background-color: #F8F8F8;'>
+          <view style='' class="bd-muted-vice wrap-rve bg-white select-br">
+            <view><image src='{{selectImg}}' class="smallImg p-l wrap-text-input-img"></image></view>
+            <input placeholder='请输入地址' class='custom-input ft-siten' maxlength="30" bindinput='onInput' value="{{keyWords}}"></input>
+          </view>
+            
+             
+             <!-- <view class="wrap-text-input-two text-primary select-bg"  bindtap='onSearch'>搜索</view> -->
+          </view>
+
+        <view class="group m-t" >
+          <cell wx:for="{{searchBtnList}}" data-item="{{item}}" bindtap='onSelectAddress' wx:key="{{index}}" islink>
+            <view slot="title">{{item.title}}</view>
+            <view slot="desc-ine" class="m-t">{{item.address}}</view>
+          </cell>
+        </view>
+      </view>
+    </content>

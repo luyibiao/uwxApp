@@ -1,0 +1,26 @@
+<!--pages/mainPackage/spread/profit/profit.wxml-->
+<content>
+  <view wx:if="{{headLoding}}">
+    <view class="group" wx:if="{{list.length>0}}">
+      <cell wx:for="{{list}}" wx:key="index">
+        <view slot="title" >
+          <view class="ft-tve text-cell-muted">{{time.dateFormat(item.createTime)}}</view>
+          <view class="m-t-f text-black">
+            <view wx:if="{{type.tradeType == '0502'}}">订单号：{{item.orderNo}}</view>
+            <view wx:elif="{{type.tradeType == '0503'}}">流水号：{{item.seq}}</view>
+            <view wx:else>{{item.userName}} {{item.userPhone}}</view>
+          </view>
+          
+        </view>
+        <view slot="value" class="text-primary">+{{filter.amtFormat(item.income || 0)}}</view>
+      </cell>
+    </view>
+     <view wx:if="{{list.length===0}}" class='text-center none-order'>
+      <!-- <image src='{{icon.noOrderIcon}}' mode="aspectFit"></image> -->
+      <view class='text-muted m-t-tt'>暂无记录</view>
+    </view>
+    <view class='text-center m-t-tt text-muted ft-foten' wx:if="{{list.length>0}}">{{loadingText}}</view>
+  </view>
+</content>
+<wxs src="../../../../utils/wxs/filter.wxs" module="filter"></wxs>
+<wxs src="../../../../utils/wxs/time.wxs" module="time"></wxs>

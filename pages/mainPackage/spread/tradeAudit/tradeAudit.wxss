@@ -1,0 +1,9 @@
+/* pages/mainPackage/spread/tradeAudit/tradeAudit.wxss */
+.bg-white{
+  border: 1px solid #e5e5e5;
+  background-color: #fff !important;
+}
+
+.l-h-2x {
+    line-height: 2em;
+}

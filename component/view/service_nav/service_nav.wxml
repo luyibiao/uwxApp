@@ -1,0 +1,13 @@
+<view>
+  <view>
+    <nav navList="{{navList}}" selected="{{placeIndex}}" bindnavBtn="onmercBusiness"></nav>
+  </view>
+  <view class='scroll-box'>
+    <scroll-view class='list-header' scroll-x >
+      <view class='list-header-item {{item.id==selectItem ? "list-header-item-check" : ""}}' wx:for="{{businessList}}" 
+      wx:key="{{item.id}}" bindtap='onSelectBusiness' data-id="{{item.id}}">
+        {{item.name}}
+      </view>
+    </scroll-view>
+  </view>
+</view>

@@ -1,0 +1,14 @@
+<view class="my-content-class " style='padding-bottom: 70px !important;' >
+  <view></view>
+  <view class='component-layout-main'> 
+    <slot></slot>
+  </view>
+  <view class='component-layout-fotter' bindtap="toHomePage" wx:if="{{isContetnFotter}}">
+    <slot name="fotter"></slot>
+    <view class='u-fotter-icon'>
+      <image src='{{imgurl}}' mode='aspectFit'></image>
+      <view>通洗提供技术支持</view>
+    </view>
+  </view>
+  <backIcon></backIcon>
+</view>

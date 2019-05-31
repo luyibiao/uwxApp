@@ -1,0 +1,15 @@
+/**app.wxss**/
+@import "utils/theme/theme";
+@import "utils/theme/color";
+@import "utils/theme/value";
+@import "utils/theme/eleReset";
+@import "utils/theme/place";
+
+page{
+  margin: 0;
+  box-sizing: border-box;
+  font-size: 14px;
+  background-color: #F8F8F8;
+  color: #353535;
+}
+

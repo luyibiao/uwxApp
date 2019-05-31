@@ -1,0 +1,6 @@
+ <cell>
+    <view slot="title" class='textarea'>
+      <view class='bg-white {{textArea.userRemark ? "text-black" : "text-cell-muted"}}' bindtap='onShowTextArea' wx:if="{{!textArea.showTextArea}}">{{textArea.userRemark ? textArea.userRemark : '备注留言（选填）'}}</view>
+      <textarea placeholder="备注留言（选填）" value="{{textArea.userRemark}}"  wx:if="{{textArea.showTextArea}}" auto-focus="{{true}}" focus="true" bindblur="onBindBlur" adjust-position></textarea>
+    </view>
+ </cell>

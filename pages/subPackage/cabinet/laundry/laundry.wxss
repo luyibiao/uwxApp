@@ -1,0 +1,34 @@
+.c-content{
+  margin: 166rpx auto;
+}
+.child-n-content{
+  margin-top: 50px;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+.child-n-content>view{
+  width: 100%;
+}
+
+.child-n-content image{
+  width: 45px;
+  height: 45px;
+}
+.text-count{
+  margin-top: -10px;
+  font-size: 45px;
+}
+
+.order-btn{
+  margin-top: 53px;
+}
+.tip-content>view{
+  letter-spacing: 1px;
+}
+.tip-content>view+view{
+  margin-top: 7px;
+}
+.text-service:active{
+  color: var(--muted)
+}

@@ -1,0 +1,26 @@
+<!--pages/mainPackage/user/userCoupon/shareCoupon/shareCoupon.wxml-->
+<content>
+  <view class="bg-white">
+    <view class='text-center background-card text-white wrap-rve' style='border-radius:2px;'>
+      <view class="flex-wrap flex-wrap-between padd-tt border-box" >
+        <view class="text-left">{{coupon.name}}</view>
+        <!-- <view class="text-right  bd-radius-xs " style='border: 1px solid #fff; padding:5px 15px; '>分享</view> -->
+        <button plain="{{true}}"  open-type="share" class="text-white ft-foten " style='color:#fff;border: 1px solid #fff; padding:5px 10px;line-height:25px;' wx:if="{{!coupon.toUserId}}">赠券</button>
+      </view>
+      <view class="p-b-f ft-lg">{{filter.amtFormat(coupon.amount)}}<text class="m-l ft-foten">元</text></view>
+      <view class="p-b">满{{filter.amtFormat(coupon.fullAmount)}}元可用</view>
+      <view class="p-b">{{coupon.couponRuleName == '通用' ? coupon.couponRuleName : '仅限'+coupon.couponRuleName+'使用'}}</view>
+      <view class="p-b-tt">{{filter.getDate(coupon.timeStart)}}至{{filter.getDate(coupon.timeEnd)}}有效</view>
+    </view >
+    <view class='text-center m-t-tt'>
+      <button type="primary" class="w-bg" bindtap="toIndex">立即使用</button>
+      <view class="text-info marg-t-b-tt" bindtap='toUserCoupon'>查看我的优惠券</view>
+    </view>
+    
+    <view class="bg-color padd-t text-cell-muted">使用说明</view>
+    <view class="padd-t" wx:if="{{!coupon.detail}}">暂无使用说明</view>
+    <view class="padd-t" wx:else><text style='line-height:25px;'>{{coupon.detail}}</text></view>
+  </view>
+</content>
+
+<wxs src="../../../../../utils/wxs/filter.wxs" module="filter"></wxs>

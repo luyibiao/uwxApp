@@ -1,0 +1,32 @@
+<view wx:if="{{!createStoreOrder}}" class='ft-tve padd-t bg-yellow border-box text-center'>
+  请您将衣物送到以下最近的门店
+</view>
+
+<view wx:if="{{storeList.length}}">
+  <view class='group'>
+    <cell wx:for="{{storeList}}" wx:key="item.id"  >
+      <view slot="title" class='coubord-list flex-wrap ' bindtap="onCoubord" data-item="{{item}}">
+        <view class='bd-radius-xg '><image mode='widthFix' src='{{imgurl}}'></image></view>
+        <view class='m-l flex-wrap text-left' style='width:65%'>
+          <view class=''>
+            <view>{{item.name}}</view>
+            <view class='text-muted ft-tve'>{{item.regionalDesc || ''}}{{item.addrDesc || ''}}</view>
+            <view catchtap='onCallPhone' data-tel="{{item.tel}}" class='text-muted ft-tve text-info' wx:if="{{item.tel}}">服务电话：<text  class="">{{item.tel}}</text></view>
+          </view>
+        </view>
+      
+        <!-- <view class="wrap-rve text-center" style='flex:0 0 25%' bindtap='openApp' data-item='{{item}}'>
+         
+        </view> -->
+
+      </view>
+      <view slot="value" class="text-right"  bindtap='openApp' data-item='{{item}}'>
+           <view class="ft-foten text-cell-muted m-r-tt">{{item.distance >= 1 ? item.distance : item.distance*1000}}{{item.distance >= 1 ? 'km': 'm'}}</view> 
+          <image src='{{locationImg}}' class="smallImg"  ></image>
+      </view>
+    </cell>
+  </view>
+</view>
+
+<view wx:else class='text-center m-t-tt'>{{loading ? '暂无门店哦~~~' : '加载中~~~'}}</view>
+<tabbar wx:if="{{showTabbarFlag}}"></tabbar>

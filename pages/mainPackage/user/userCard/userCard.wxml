@@ -1,0 +1,124 @@
+<!--pages/mainPackage/user/userCard/userCard.wxml-->
+<content>
+  <view>
+    <view class="bg-white p-t-tt" wx:if="{{cardMsg && cardMsg.userCard}}">
+      <view class="card wrap-rve padd-tt bd-radius-md t-shadow" style="{{cardStyle}}">
+        <view class='flex-wra'>
+          <view class="pull-left m-r-f "> <image src="{{mercInfo.logoPath}}" mode="aspectFit" class="merc-log-img b-shadow"></image></view>
+          <view class="m-b-f m-l-f">
+            <view>{{mercInfo.name}}</view>
+            <view>{{cardMsg.cardName}}</view>
+            <view class="pos-code-img bg-white text-cente wrap-rve bd-radius-xs b-shadow qr-view-size" bindtap="toUserCardProof">
+              <image src="{{qRcode}}" mode="aspectFit" class="smallImg item-abs "></image>
+            </view>
+          </view> 
+        </view>
+        <view class="pos-bottom-zero w-bg">
+          <view>
+            <view class="pull-left">{{cardMsg.cardNo}}</view>
+            <view wx:if="{{cardMsg.isBinding == 1}}" class="pull-right m-r-f">已绑定实体卡</view>
+          </view>
+          
+        </view>
+      </view>
+      <view class="flex-wrap text-center p-t text-head">
+        <view class="flexratio">
+          <view class="m-b">等级</view>
+          <view class="m-b">{{cardMsg.cardName}}</view>
+        </view>
+        <view class="flexratio">
+          <view class="m-b">
+            余额
+          </view>
+          <view class="m-b">
+           {{filter.amtFormat(cardMsg.balance)}}
+          </view>
+        </view>
+        <view class="flexratio">
+          <view class="m-b">积分</view>
+          <view class="m-b">{{cardMsg.point || 0}}</view>
+        </view>
+      </view>
+    </view>
+
+    <view class=" bg-white m-t" wx:if="{{rightsList.toString() != '0,0,0'}}" bindtap="showPrivilegeFn">
+      <view class="m-t text-cell-muted bd-muted-vice-bottom p-t-ft">
+        会员权益
+      </view>
+      <view class="m-r-thirty over-f-h ft-foten text-center wrap-rve">
+        <view class="pull-left">
+          <view class="merc-log-img-lg bg-color wrap-rve" >
+            <image src="{{cardDiscount}}" mode="aspectFit" class="smallImg item-abs" >{{'${imgurl}icon/QRcode.png'}}</image>
+          </view>
+          <view class="m-t">多折扣</view>
+        </view>
+
+        <view class="pull-left">
+          <view class="merc-log-img-lg bg-color wrap-rve">
+            <image src="{{cardCoupon}}" mode="aspectFit" class="smallImg item-abs"></image>
+          </view>
+          <view class="m-t">优惠券</view>
+        </view>
+
+        <view class="pull-left">
+          <view class="merc-log-img-lg bg-color wrap-rve">
+            <image src="{{cardIntegral}}" mode="aspectFit" class="smallImg item-abs"></image>
+          </view>
+          <view class="m-t">积分</view>
+        </view>
+
+        <i class="item-abs-colum-center i-triangle card-i {{showPrivilege ? 'custom-i-show' : ''}}"></i>
+      </view>
+      
+      <view  class="tip {{showPrivilege ? 'tip-show' : ''}} bg-white">
+        <view class="slide-box ft-foten text-cell-muted m-l" :class="{animate:showPrivilege}">
+          <view wx:if="rightsList[0]==1" class="p-b-f">
+            <view wx:if="{{cardMsg.discountType == 1}}">会员卡{{filter.discountFormat(cardMsg.userCard.discount)}}</view>
+            <view wx:if="{{cardMsg.discountType == 2}}">{{cardMsg.discountDesc[0].bizName}}
+              <block wx:for="{{cardMsg.discountDesc}}" wx:for-item="discountDesc" wx:key="index">
+                {{discountDesc.bizName}}{{filter.discountFormat(discountDesc.discount)}}{{cardMsg.discountDesc.length > index+1 ? ',':""}}
+              </block>
+            </view>
+          </view>
+          <view wx:if="{{rightsList[1]==1 && cardMsg.couponList.length}} ">
+              <view class="p-b-f">随卡获赠优惠券:</view>
+              <view wx:for="{{cardMsg.couponList}}" wx:key="index" class="p-b-f">{{item.couponName}}({{item.info.cnt}}张)</view>
+          </view>
+          <view wx:if="{{rightsList[2]==1}}" data-num="2" class=" p-b-f">
+            <view>随卡获赠积分:{{cardMsg.userCard.giftPoint}}分</view>
+          </view>
+        </view>
+      </view>
+    </view>
+
+    <view class="m-t" wx:if="{{cardMsg && cardMsg.userCard}}">
+      <view class="group">
+        <cell bindtap="showNotesFn" >
+          <view slot="title" class='flex-wrap flex-wrap-between'>
+            <view>使用须知</view>
+            <i class="i-triangle custom-i {{showNotes ? 'custom-i-show' : ''}}"></i>
+          </view>
+        </cell>
+         <view  class="slide-box tip {{showNotes ? 'tip-show' : ''}} bg-white">
+            <view class="ft-foten p-l text-cell-muted bg-white">{{cardMsg.userCard.remark}}</view>
+          </view>
+        <!-- <cell islink>
+          <view slot="title" bindtap="toUserCardProof" >初示会员凭证</view>
+        </cell> -->
+      </view>
+    </view>
+
+    <view class="group m-t" wx:if="{{cardMsg && cardMsg.isBinding == 1}}">
+      <cell>
+        <view slot="title">实体会员卡</view>
+        <view slot="value">{{cardMsg.rfidNo || ''}}</view>
+      </cell>
+    </view>
+    <view wx:else>
+      <view class="m-t-tt m-l-tf m-r-tf">
+        <button type="primary" plain="{{false}}" class="w-ag" bindtap="toBindCard">绑卡</button>
+      </view>
+    </view>
+  </view>
+</content>
+<wxs src="../../../../utils/wxs/filter.wxs" module="filter"></wxs>

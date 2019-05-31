@@ -1,0 +1,32 @@
+<content>
+  <view>
+    <view class='c-content w-bg text-center'>
+      <view class='ft-weight-xs'>请确认要洗的衣物件数</view>
+      <view class='child-n-content' >
+        <view>
+          <image src='{{reduceImgUrl}}' mode="aspectFit" bindtouchstart="chStartRuduce" bindtouchend='chEndReduce'></image>
+          <view class='text-muted ft-foten m-t'>减少</view>
+        </view>
+        <view class='text-count text-primary'>
+          <text>{{count}}</text>
+        </view>
+        <view>
+          <image src='{{addImgUrl}}' mode="aspectFit" bindtouchstart="chStartAdd" bindtouchend='chEndAdd'></image>
+          <view class='text-muted ft-foten m-t'>增加</view>
+        </view>
+      </view>
+      <view>
+        <button type='primary' class='order-btn btn-reset w-ag' bindtap='onOdrerBtn'>确认下单</button>
+      </view>
+      <view class='text-muted text-left m-t-tt ft-foten'>
+        <view class='m-b-tt'>点击确认下单表示已阅读并同意<text class='text-service' bindtap='userProtocolFn'>服务协议</text></view>
+        <view class='tip-content'>
+          <view>1、衣物洗涤价格请以门店入库为准；</view>
+          <view>2、衣物洗好72小时送回智能柜；</view>
+          <view>3、请取走衣物口袋里的东西再放入智能柜，贵重物品丢失概不负责；</view>
+          <view>4、客服热线<text class='text-service' bindtap='makePhoneCall'>{{tel}}</text></view>
+        </view>
+      </view>
+    </view>
+  </view>
+</content>

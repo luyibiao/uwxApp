@@ -1,0 +1,4 @@
+
+.coubord-list>view:first-child image{
+  width: 64px;
+}

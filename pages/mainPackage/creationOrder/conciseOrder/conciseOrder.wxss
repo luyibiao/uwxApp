@@ -1,0 +1,10 @@
+.circle-custom{
+  width: 20px;
+  height: 20px;
+}
+
+.check-hasbig{
+  border:5px solid #04be02;
+  width: 13px;
+  height: 13px;
+}

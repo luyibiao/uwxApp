@@ -1,0 +1,17 @@
+<cell islink bindtap="onSeletNum">
+  <view slot="title">衣物件数</view>
+  <view slot="value">{{createCnt}}件</view>
+</cell>
+
+<popup popup="{{popup}}">
+  <view class='flex-wrap flex-wrap-between padd-t border-box'>
+    <view class='text-muted ft-siten' bindtap='onCancel'>取消</view>
+    <view class='text-primary ft-siten' bindtap='onConfirm'>确定</view>
+  </view>
+  <picker-view indicator-style="height: 50px;" style="width: 100%; height: 300px;" bindchange="clothNumChange">
+    <picker-view-column>
+      <view wx:for="{{array}}" style="line-height: 50px" class='text-center' wx:key="{{index}}">{{item}}</view>
+    </picker-view-column>
+  </picker-view>
+</popup>
+

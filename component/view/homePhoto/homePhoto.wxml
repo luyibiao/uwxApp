@@ -1,0 +1,8 @@
+<view wx:for="{{mediaList}}" class='home-Photo' wx:key="{{index}}">
+  <view wx:if="{{item.fileType == 'video'}}">
+    <video id="myVideo" src='{{item.imgPath}}' controls poster="{{item.posterPath}}"></video>
+  </view>
+  <view wx:if="{{item.fileType == 'image'}}" class='text-cneter' bindtap='onSelectImage' data-applink="{{item.appLink}}">
+    <image src='{{item.imgPath}}' data-index="{{ index }}"  bindload="imageLoad" style="width:{{ images[index].width }}rpx; height:{{ images[index].height }}rpx;" lazy-load="{{true}}"></image>
+  </view>
+</view>

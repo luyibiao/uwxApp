@@ -1,0 +1,17 @@
+<view wx:if="{{coubordList.length}}">
+  <view class='group'>
+    <cell wx:for="{{coubordList}}" wx:key="item.id" data-item="{{item}}" bindtap="onCoubord">
+      <view slot="title" class='coubord-list flex-wrap '>
+        <view class='bd-muted-vice bd-radius-xg padd-l-r-f'><image mode='widthFix' src='{{imgurl}}'></image></view>
+        <view class='m-l flex-wrap'>
+          <view class='flex-item-auto'>
+            <view>{{item.name}}</view>
+            <view class='text-muted ft-foten'>{{item.district}}{{item.details}}</view>
+          </view>
+        </view>
+      </view>
+    </cell>
+  </view>
+</view>
+
+<view wx:else class='text-center m-t-tt'>暂无智能柜哦~~~</view>

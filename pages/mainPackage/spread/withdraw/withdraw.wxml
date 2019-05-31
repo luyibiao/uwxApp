@@ -1,0 +1,52 @@
+<!--pages/mainPackage/spread/withdraw/withdraw.wxml-->
+<content>
+  <view wx:if="{{!showBanks}}">
+    <view class="group mt-tt m-t">
+      <cell islink bindtap="selectBank">
+        <view slot="title" wx:if="{{form.walletId === ''}}">
+          {{banks.length ? '银行账户' :'添加银行卡'}}
+        </view>
+        <view slot="title" wx:else>{{form.bank.accountName}}（{{accountNo}}）</view>
+      </cell>
+    </view>
+
+    <view class="wrap-rve wrap-text-input bd-muted-vice-top text-cell-muted bg-white">
+      <text class="">￥</text>
+      <input type="number" placeholder="{{'可提现'+filter.amtFormat(balance)+'元'}}" placeholder-class="text-left" class="text-black" style='padding: 0px 0px'  value='{{form.amount}}' bindblur="">
+        
+      </input>
+      <view class="text-info" bindtap="withdrawAll" >全部提现 </view>
+    </view>
+
+     <view class="m-t-f text-center text-cell-muted">
+        单笔申请提现金额不得低于{{filter.amtFormat(minExtractMoney)}}元
+     </view>
+
+    <view class="m-t-tt m-l-tf m-r-tf" >
+      <button type="primary" loading="{{loading}}" plain="{{false}}" class="w-ag" disabled="{{loading}}" bindtap="tradeAudit">提现</button>
+    </view>
+   
+  </view > 
+  
+  <view wx:else>
+    <view class="group" >
+      <view wx:for="{{banks}}" wx:key="index">
+        <cell  bindtap="saveBank" data-item='{{item}}'>
+          <view slot="title">
+            <view class="text-black">{{item.accountName}}</view>
+            <view class="ft-tve text-cell-muted">{{item.accountNo}}</view>
+            
+          </view>
+          <view slot="value" wx:if="{{form.walletId == item.id}}"> <icon type="success_no_circle" size="20" color =""></icon></view>
+        </cell> 
+      </view>
+    </view>
+
+    <view class="m-t-tt  wrap-fix item-fix-bottom bg-white padd-t border-box">
+        <button type="primary" loading="{{addLoading}}" disabled="{{addLoading}}"  plain="{{false}}" class="w-ag"  bindtap="toAddBank">添加</button>
+      </view>
+
+  </view>
+</content>
+
+<wxs src="../../../../utils/wxs/filter.wxs" module="filter"></wxs>

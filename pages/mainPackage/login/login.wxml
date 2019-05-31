@@ -1,0 +1,55 @@
+<content>
+  <view>
+    <view class='input-content w-bg' >
+      <view class='ft-tve'>
+        <!-- <text class='user-text'> 使用第三方登录</text> -->
+        <view class='wx-icon-wrap'>
+          <!-- <image src='/static/img/icon/wx_icon.png' mode="aspectFit" class='wx-icon'></image> -->
+          <button open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber" class='wx-btn' >
+            <image src='{{iconUrl[2].wxIcon}}' mode="aspectFit" class='wx-icon'></image>
+          </button>
+        </view>
+      </view>
+      <!-- <view class='ft-foten wx_login-text'>微信登录</view> -->
+      <button type='primary' class='w-ag btn fz-fift btn-reset' open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber">微信登录</button>
+    </view>
+    <view class='fotter' >
+      <view class='ft-tve'>
+        <view class='ft-foten wx_login-text' bindtap='showPopupFn'>手机号登录</view>
+      </view>
+    </view>
+  </view>
+</content>
+
+<popup popup="{{popFlag}}" bind:onPopup="onPopup">
+  <view class='input-content w-bg' style="margin-top:20px;margin-bottom:15px">
+
+    <view class="ft-eiten text-black" style="text-align: center">手机号登录</view>
+
+    <view class='wrap-rve wrap-img-input bd-muted-vice'>
+          <image src='{{iconUrl[0].phone}}' mode='aspectFit'></image>
+          <input placeholder='请输入手机号' type='number' placeholder-class='text-del fz-fift' bindblur="telBlurFn" bindinput='telInputFn'/>
+    </view>
+    <view class='code wrap-rve bd-muted-vice wrap-img-input'>
+      <image src='{{iconUrl[1].code}}' mode='aspectFit'></image>
+      <input placeholder='验证码' type='number'  placeholder-class='text-del fz-fift' bindinput='codeInputFn'/>
+        <view class='c-code ft-foten {{telFlag ? "text-primary" : "text-code"}}'>
+          <text wx:if="{{!codeFlag}}" disabled='{{codeDisable}}' bindtap='getCodeFn'>{{content}}</text>
+          <text wx:else class="text-code" >{{times}}</text>
+        </view>
+    </view>
+    <view>
+      <button type='primary' class='w-ag fz-fift btn-reset' style="border-radius: 20px" disabled='{{btnDisable}}' bindtap='onLoginFn'>登录</button>
+    </view>
+  </view>
+</popup>
+
+<modal ismodal="{{modal.modalShow}}" modalStyle="padding:0 10px;" isonMask>  
+  <view class='m-t-tt'>
+    <view class='text-danger'>暂未授权，请进行用户授权</view>
+    <view class='m-t modal-btn-auth m-b'>
+      <button type='primary' class='w-ag ft-foten ' open-type="getUserInfo" bindgetuserinfo='onAuthUserInfo'>确认授权</button>
+    </view>
+  </view>
+
+</modal>

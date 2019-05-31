@@ -1,0 +1,11 @@
+.cloth-detail{
+  margin: 2px;
+  height: 300rpx;
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
+}
+
+.none-m{
+  margin-top: 40px;
+}

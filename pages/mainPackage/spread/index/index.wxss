@@ -1,0 +1,51 @@
+/* pages/mainPackage/spread/index/index.wxss */
+.spread-head-color{
+      background: linear-gradient(to bottom, #394354, #555c6a);
+ 
+}
+
+.head-imag{
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+}
+
+.head-text{
+  padding-left:75px;
+}
+
+.head-text>view{
+  padding-top: 5px 
+}
+
+.custom-triangle{
+  transform: rotate(45deg);
+  border-color: #fff;
+}
+
+.bg-poster {
+    background-color: #f2d79b;
+    cursor: pointer;
+}
+.bg-friend {
+    background-color: #84b2fc;
+    cursor: pointer;
+}
+
+.hy{
+  padding: 10px 15px
+}
+
+.hy>view{
+  margin-right: 20px
+}
+
+.hy-p{
+  height:70px;
+  width: 100px;
+}
+
+.hy-p>view>view{
+  padding: 5px 0;
+
+}

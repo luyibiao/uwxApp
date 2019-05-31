@@ -1,0 +1,60 @@
+<!--component/view/coupon/coupon.wxml-->
+<modal ismodal="{{show}}" modalStyle="height:{{720}}rpx;background-image: url('https://cdn.ukaocloud.cn/wxapp/delimg/newStamps.jpg');background-repeat: no-repeat;  background-size: 100% 100%;background-position: center center; background-color:transparent;padding: 20px 0px 0px; border-radius:4px">
+  <view  class="text-size" style="">
+    <view class="flex-wrap ft-twty m-b">
+
+      <view class="flexratio flex-item-auto" >
+        <view class='w-md flex-wrap  ' style='margin-left:40%'>
+          <view  class="flex-item-auto flexratio bg-white h-size-two "></view>
+          <view class="circle bg-white flex-item-auto striping "></view>
+        </view>
+      </view>
+
+      <view class="flexratio text-white ft-eiten">新人优惠券</view>
+
+       <view class="flexratio flex-item-auto ">
+        <view class="flex-wrap w-md " style='margin-left:10%;'>
+          <view class="circle bg-white flex-item-auto striping"></view>
+          <view class="flex-item-auto flexratio bg-white h-size-two "></view>
+        </view> 
+      </view>
+
+    </view>
+    <view class="p-b-tt ft-evten text-white">已放入你的账户，<view class="dis-line-block txt-yellow">{{userInfo.phone}}</view></view>
+    <view class="select-height" >
+      <view  wx:for="{{detail}}" wx:key="index">
+        <view class="bg-white  flex-wrap flex-wrap-between w-bg m-auto w-lg m-auto" >
+          <view class='padd-t-b-f m-l-tt ft-siten text-left'>
+            <view class="p-b-f ft-weight-xs ft-foten">{{item.name}} </view>
+            <!-- <view class="text-muted-vice ft-foten">{{item.detail}}</view> -->
+            <view class="text-muted-vice ft-foten" >{{item.couponRuleName == '通用' ? item.couponRuleName : '仅限'+item.couponRuleName+'使用'}}</view>
+          </view>
+          <view class="p-r-tt ft-siten money-color">￥<text>{{filter.amtFormat(item.amount)}}</text></view>
+        </view>
+        <view class="bg-white w-lg aax padd-t-b-f time-css" >
+          <view class="flex-wrap m-l-tt">
+            <image src="{{timeIcon}}" class="flex-item-center m-r-f timeIcon-size "></image>
+            <view class="flex-item-center text-muted-vice" >{{filter.getDate(item.timeStart)}}-{{filter.getDate(item.timeEnd)}}</view>
+          </view>
+        </view>
+      
+      </view>
+      
+      
+    </view>
+    <view style='border: 2.5px solid #F1DEBF;'></view>
+    
+    <view class=" m-t-tt-rpx " bindtap="openUserCoupon">
+      <button size="mini" class="button-css padd-t-b-t-r" style='font-size:16px'>去查看</button>
+    </view>
+    
+
+    <!-- <view class="m-t m-l-tf m-r-tf">
+    <button type="default" loading="{{loading}}" plain="{{plain}}" class="w-ag" style='background-color:#fff' form-type="submit" bindtap="toNavgoFn" data-url="/pages/mainPackage/user/userTrade/userTrade">查看余额明细</button>
+   </view> -->
+  </view>
+  <view class="{{screenWidth < 375 ? 'm-t-tten-rpx p-t-tt-rpx' : 'm-t-eten-rpx p-t-tt-rpx'}}" bindtap="closeModal">
+      <icon type="cancel" size="50" color="#9b9b9b" />
+    </view>
+</modal>
+<wxs src="../../../utils/wxs/filter.wxs" module="filter"></wxs>

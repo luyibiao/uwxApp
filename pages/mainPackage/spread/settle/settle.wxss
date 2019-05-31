@@ -1,0 +1,5 @@
+/* pages/mainPackage/spread/settle/settle.wxss */
+
+.l-h-2x {
+    line-height: 2em;
+}

@@ -1,0 +1,29 @@
+/* pages/mainPackage/user/userCardProof/userCardProof.wxss */
+.merc-log-img{
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    overflow: hidden;
+    margin: 2.5% 0px 1%;
+    border: 1px solid #D8D9DB;
+}
+
+.ft-twty-tw{
+  font-size: 24px;
+}
+
+.p-t-b-size{
+  padding-top: 60px;
+  padding-bottom: 30px;
+}
+
+.QRCode-size{
+  width: 100px;
+    height: 100px;
+}
+
+canvas{
+  width: 180px;
+  height: 180px;
+  z-index:100
+}

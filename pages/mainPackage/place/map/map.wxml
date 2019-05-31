@@ -1,0 +1,39 @@
+ <view class='{{ !mapFlag ?"wrap" :""}}'>
+
+      <view style='height:{{height}}px;'>
+        <map 
+          id="myMap"
+          class='w-ag map' 
+          latitude="{{center.latitude}}"
+          longitude="{{center.longitude}}"
+          bindregionchange="regionchange"
+          show-location
+        ></map>
+      </view>
+      <cover-image src='https://webapi.amap.com/theme/v1.3/markers/b/mark_bs.png' class='tip-img' style='display:{{searchBtnList.length ? "none" : "block"}}'></cover-image>
+
+      <cover-image src="https://cdn.ukaocloud.cn/wxapp/icon/move_to_location.png" class="dis-line-block wrap-fix item-fix-bottom m-b-t loc-left-img p-b-f" style='z-index:10;' bindtap='moveToLocation'></cover-image>
+      <cover-view class=' wrap-fix item-fix-bottom bg-white loc-certen loc-active' style='z-index:10;' bindtap='openSelect'>
+        <cover-view class=' p-l border-box text-ellipsis m-b'>
+          <cover-view class='flex-item-center text-ellipsis padd-t-b-t '>
+
+            <cover-view class="flex-wrap flex-wrap-between m-t-f">
+              <cover-view class='text-ellipsis w-ag'>
+                <cover-image class="dis-line-block " src="{{locImg}}" style='width:20px;height:20px'></cover-image>
+                <cover-view class="dis-line-block">{{resultMap.name}}</cover-view>
+              </cover-view>
+              <!-- <cover-view class="i-triangle custom-triangle m-r-tt"></cover-view> -->
+              <cover-image src="{{torightImg}}"  class="m-r-tt to_right_size"></cover-image>
+            </cover-view>
+
+            <cover-view class='m-t text-muted text-ellipsis' style='margin-left:23px;'>{{resultMap.address}}</cover-view>
+          </cover-view>
+        </cover-view>
+      </cover-view>
+      <cover-view class='wrap-fix item-fix-bottom m-b-t loc-certen-button p-b-f' >
+        <button class='w-ag flex-item-auto' type='primary' bindtap='onConfirm'>确定</button>
+      </cover-view>
+   
+      
+   
+  </view>

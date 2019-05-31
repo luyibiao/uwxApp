@@ -1,0 +1,56 @@
+<!--pages/mainPackage/spread/posterExpand/posterExpand.wxml-->
+
+<content>
+  <view>
+    <view class="wrap-rve "style='padding-bottom:100%'>
+      <view style='{{"background-image:url("+poster.imgPath+")"}}' class="posterImg"></view>
+    </view>
+
+    <view class="flex-wrap flex-wrap-around m-t" style='padding: 0px 10px 0px 20px;align-items: flex-start'>
+      <view class="flexratio" >
+        <view><image src='{{poster.headImgPath || headImg}}' mode="aspectFit" class="head-img"></image></view>
+        <view class="m-t">{{poster.title}}</view>
+      </view>
+      <view class="flexratio text-right "  bindtap="previewImage" >
+        <view style='float:right'>
+          <view class="" style='z-index:10' wx:if="{{!storageImage.codeImage}}"><canvas   canvas-id="qrcode" /></view>
+          <view wx:else>
+            <image src='{{storageImage.codeImage}}' style='width:110px;height:110px;'></image>
+          </view>
+          <view class="p-r">长按识别二维码</view>
+        </view>
+        
+      </view>
+    </view>
+
+    <view class="share-img" bindtap="openPopup">
+      <view>
+        <image src='{{shareImg}}' class="head-imag"></image>
+      </view>
+    </view>
+  </view>
+</content>
+
+<popup popup="{{popFlag}}" bind:onPopup="onPopup" popstyle="z-index:1000">
+  
+  <view class="text-center bg-color son-css ft-siten">
+    <view><button  open-type="share">发送给朋友</button></view>
+    <view class="m-t-t"><button  bindtap="onCreatePoster" >生成海报</button></view>
+    <view class="m-t padd-t-b-tt" bindtap="closePopup">取消</view>
+  </view>
+  
+</popup>
+
+<modal ismodal="{{modal}}" isonMask  modalStyle="background: transparent;" catchtouchmove="ture">
+    <view style='height:{{screenHeight-50}}px;' class='wrap-rve m-auto'>
+      <view class='clear-icon' style='background-image: url({{closeImg}})' bindtap='onClosePoster'></view>
+      <view class='bg-white poster-content'  style='flex:1'>
+        <canvas canvas-id='share' style='width:100%;height:100%' ></canvas>
+      </view>
+      <view class=' m-t'>
+        <view >
+          <button type='primary' class='w-ag save-btn'  bindtap='saveImageToPhotosAlbum'>保存图片</button>
+        </view>
+      </view>
+    </view>
+</modal>

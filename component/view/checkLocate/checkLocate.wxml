@@ -1,0 +1,6 @@
+<modal ismodal="{{modal}}" bindonCancelFn="oncancel" bindonConfirmFn="onconfirm"  isonMask iscancel="{{iscancel}}"  isconfirm
+confirmText="{{confirmText}}" >
+  <view>
+    <rich-text nodes="{{html}}"></rich-text>
+  </view>
+</modal>

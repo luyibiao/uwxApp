@@ -1,0 +1,60 @@
+<!--pages/mainPackage/user/userTrade/userTrade.wxml-->
+<content>
+<view wx:if="{{!detailsFlag}}">
+  <view class="group" >
+    <view wx:for="{{tradeList}}" wx:key="{{index}}">
+        <cell bindtap="toDetailFn" data-index="{{index}}">
+          <view slot="title" class=" p-l" >
+            <view class="fz-fift charge-text">{{item.typeText}}</view>
+            <view class="ft-tve text-cell-muted m-t-t">{{time.dateFormat(item.createTime)}}</view>
+          </view>
+          <view slot="value" class="{{item.amount >= 0 ? 'text-primary fz-fift':'text-black fz-fift'}}">
+            {{item.amount > 0 ? "+":""}} {{filter.amtFormat(item.amount)}}
+          </view>
+        </cell>
+    </view>
+  </view>
+  <view wx:if="{{tradeList.length===0}}" class='text-center none-order'>
+      <!-- <image src='{{icon.noOrderIcon}}' mode="aspectFit"></image> -->
+      <view class='text-muted'>还没有消费哦</view>
+    </view>
+  <view class='text-center m-t-tt text-muted ft-foten' wx:if="{{tradeList.length>0}}">{{loadingText}}</view>
+</view>
+
+<view wx:if="{{detailsFlag}}">
+  <view class="group">
+    <cell>
+      <view slot="title">
+        <view>金额</view>
+      </view>
+      <view slot="value">{{filter.amtFormat(detail.amount) || 0.00}}</view>
+    </cell>
+    <cell>
+      <view slot="title" class="ft-tve text-cell-muted m-l-f m-father-top">
+        <view>类型</view>
+        <view>时间</view>
+        <view>交易单号</view>
+        <view>余额</view>
+        <view>备注</view>
+      </view>
+        
+      <view slot="value" class="ft-tve text-right m-r-f m-father-top">
+        <view>{{detail.typeText}}</view>
+        <view >{{time.dateFormat(detail.createTime)}}</view>
+        <view>{{detail.seq || '无'}}</view>
+        <view>{{filter.amtFormat(detail.balance) || '0.00'}}</view>
+        <view>{{detail.remark || '无'}}</view>
+      </view>
+      
+      
+    </cell>
+  </view>
+  <view class="m-t-tt m-l-tf m-r-tf">
+    <button type="default"  plain="{{false}}" class="w-ag bg-white" form-type="submit" bindtap="toListFn"> 返回</button>
+  </view>
+</view>
+
+</content>
+
+<wxs src="../../../../utils/wxs/time.wxs" module="time"></wxs>
+<wxs src="../../../../utils/wxs/filter.wxs" module="filter"></wxs>

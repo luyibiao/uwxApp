@@ -1,0 +1,29 @@
+
+.padder{
+ padding: 15px;
+  box-sizing: border-box;
+}
+
+.bd-b{
+  border-bottom: 1px solid #efeff4;
+}
+
+.header{
+  height: 45px;
+  line-height: 45px;
+}
+.ts-way .icon{
+  position: absolute;
+  top: 16px;
+  left: 10px;
+}
+.ts-way .tsway-btn button{
+  width: 100%;
+  font-size: 16px;
+}
+
+.t-box{
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}

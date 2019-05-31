@@ -1,0 +1,72 @@
+/* pages/mainPackage/spread/posterExpand/posterExpand.wxss */
+.code-imag{
+  width: 90px;
+  height: 90px;
+}
+
+canvas{
+  width: 110px;
+  height: 110px;
+  z-index:100
+}
+
+.share-img{
+  position: fixed;
+  right: 5px;
+  bottom: 10px;
+}
+.share-img image,.head-img{
+  width: 60px;
+  height: 60px;
+}
+
+.posterImg{
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.son-css>view{
+  /* padding: 10px 0px; */
+  background-color: white;
+}
+.son-css button{
+  border:1px solid transparent;
+  background-color:#fff;
+  line-height:normal;
+  font-size: 16px;
+  width: 100%;
+  height: 100%;
+  padding: 10px 15px;
+}
+
+.poster-content{
+  height: 85%;
+  padding: 20px 15px 0;
+ 
+}
+
+
+.clear-icon{
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 24px;
+  height: 24px;
+  transform: translate(50%,-50%);
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: 100% 100%;
+  z-index:1002;
+
+}
+
+.save-btn{
+  line-height: 36px;
+  font-size: 14px;
+}

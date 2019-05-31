@@ -1,0 +1,86 @@
+/* pages/mainPackage/user/userCard/userCard.wxss */
+.pos-bottom-zero{
+  position:absolute;
+  bottom: 20px;
+}
+
+.merc-log-img{
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    overflow: hidden;
+}
+
+.merc-log-img-lg{
+    width: 55px;
+    height: 55px;
+    border-radius: 50%;
+    overflow: hidden;
+}
+
+.pos-code-img{
+  position:absolute;
+  top: 20px;
+  right: 20px
+}
+
+.card{
+  background-color: rgb(96, 190, 78);
+  border-radius: 6px;
+  color: #fff;
+  height: 150px;
+  width: 80%;
+  margin:0px auto;
+}
+
+.m-r-thirty>view{
+  margin-right: 30px
+}
+
+.over-f-h{
+  overflow: hidden;
+  padding: 10px 15px;
+}
+
+
+.text-head>view>view{
+  font-size: 14px;
+  color: #999;
+}
+
+.text-head>view>view:nth-child(2){
+  color:#1aad19;
+}
+
+.p-t-ft{
+  padding:10px 15px;
+}
+
+.tip{
+  box-sizing: border-box;
+  overflow: hidden;
+  max-height: 0;
+  transition: max-height 0.5s cubic-bezier(0, 1, 0, 1) -0.1s;
+}
+.tip-show{
+  max-height: 9999px;
+  transition-timing-function: cubic-bezier(0.5, 0, 1, 0);
+  transition-delay: 0s;
+}
+.card-i{
+  right: 10px;
+  transform: rotate(135deg);
+  transition: transform .3s;
+}
+
+.custom-i{
+  transform: rotate(135deg);
+  transition: transform .3s;
+}
+.custom-i-show{
+  transform: rotate(-45deg)
+}
+.qr-view-size{
+  width:30px;
+  height:30px
+}

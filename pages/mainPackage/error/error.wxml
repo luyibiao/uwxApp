@@ -1,0 +1,2 @@
+<text>{{errMsg}}</text>
+<button bindgetuserinfo='btn' open-type='getUserInfo'>授权</button>

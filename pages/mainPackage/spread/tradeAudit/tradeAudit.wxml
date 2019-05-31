@@ -1,0 +1,65 @@
+<!--pages/mainPackage/spread/tradeAudit/tradeAudit.wxml-->
+<content>
+  <view wx:if="{{headLoding}}">
+    <view wx:if="{{detailsFlag}}">
+      <view class="group">
+        <view wx:for="{{profitList}}" wx:key="{{index}}">
+          <cell bindtap="toDetailFn" data-index="{{index}}">
+            <view slot="title" class=" p-l" >
+              <view class="fz-fift charge-text text-black">{{item.tradeTypeText}}</view>
+              <view class="ft-tve text-cell-muted m-t-f">{{time.dateFormat(item.createTime)}}</view>
+            </view>
+            <view slot="value" wx:if="{{item.income}}" class="text-primary fz-fift">
+              +{{filter.amtFormat(item.income)}}
+            </view>
+            <view slot="value" wx:elif="{{item.expenditure}}" class="text-danger fz-fift">
+              -{{filter.amtFormat(item.expenditure)}}
+            </view>
+            <view slot="value" wx:else>0.00</view>
+          </cell>
+        </view>
+      </view>
+
+      <view wx:if="{{profitList.length===0}}" class='text-center none-order'>
+        <!-- <image src='{{icon.noOrderIcon}}' mode="aspectFit"></image> -->
+        <view class='text-muted m-t-tt'>还没有收支哦</view>
+      </view>
+      <view class='text-center m-t-tt text-muted ft-foten' wx:if="{{profitList.length>0}}">{{loadingText}}</view>
+    </view>
+
+    <view wx:if="{{!detailsFlag}}">
+    <view class="group">
+      <cell>
+        <view slot="title">
+          <view class="text-cell-muted">金额</view>
+        </view>
+        <view slot="value" class="text-black">￥{{filter.amtFormat(detail.income || detail.expenditure || 0)}}</view>
+      </cell>
+      <cell>
+        <view slot="title" class="ft-tve text-cell-muted m-l-f m-father-top l-h-2x">
+          <view>类型</view>
+          <view>时间</view>
+          <view>交易单号</view>
+          <view>剩余余额</view>
+          <view>备注</view>
+        </view>
+          
+        <view slot="value" class="ft-tve text-right text-black m-r-f m-father-top l-h-2x">
+          <view>{{detail.tradeTypeText}}</view>
+          <view >{{time.dateFormat(detail.createTime)}}</view>
+          <view>{{detail.seq || '无'}}</view>
+          <view>{{filter.amtFormat(detail.balance) || '0.00'}}</view>
+          <view>{{detail.remark || '无'}}</view>
+        </view>
+        
+        
+      </cell>
+    </view>
+    <view class="m-t-tt m-l-tf m-r-tf ">
+      <button  class="w-ag bg-white" form-type="submit" bindtap="toListFn"> 返回</button>
+    </view>
+  </view>
+</view>
+</content>
+<wxs src="../../../../utils/wxs/filter.wxs" module="filter"></wxs>
+<wxs src="../../../../utils/wxs/time.wxs" module="time"></wxs>

@@ -1,0 +1,29 @@
+<cell islink  bindtap="onShowPop">
+  <view slot="title" >取件时间</view>
+  <view slot="value">
+    <text class='{{btnFlag ? "text-black" : ""}}'>{{btnFlag ? selectDay.takeDate +" "+selectDay.takeTimeStart+"-"+selectDay.takeTimeEnd: "请选择取件时间"}}</text>
+  </view>
+</cell>
+
+<popup popup="{{popup}}" popstyle="z-index:1002">
+  <view class='ft-foten'>
+    <view class='text-muted text-center m-t-tt m-b-tt'>取件时间</view>
+    <view class='week-wrap m-b-tt'>
+      <view class='text-center week-item {{weekActive==index ? "bd-primary" : ""}}' wx:for="{{weekList}}" bindtap='onSeleceday' data-item="{{item}}" data-index="{{index}}" wx:key="{{item.index}}">
+        <view>{{item.week}}</view>
+        <view>{{item.month}}-{{item.day}}</view>
+      </view>
+    </view>
+
+    <view class='time-wrap text-center m-b-tt'>
+      <view class='time-item bd-muted-vice  {{item.disabled ? "time-item-disable" : timeActive===index ? "time-item-check" : ""}}' wx:for="{{timeList}}" wx:key="{{item.id}}" bindtap='onSelectTime' data-item="{{item}}" data-index="{{index}}">
+        <view wx:if="{{item.limit == 1}}">已约满</view>
+        <view wx:else="">{{item.timeStart}}-{{item.timeEnd}}</view>
+      </view>
+    </view>
+
+    <view class='m-l m-r m-t-tt text-center m-b-tt'>
+      <button type="primary" class='w-bg' bindtap='subSelectDay' disabled='{{!selectDay.serviceTimeId}}'>确认</button>
+    </view>
+  </view>
+</popup>

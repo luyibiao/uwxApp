@@ -1,0 +1,8 @@
+<view class='group bg-group-border-image'>
+  <cell islink bindtap="toCoubord">
+    <view slot="title">
+      <view>{{couboardInfo.name || "请选择智能柜"}}</view>
+    </view>
+    <view slot="desc-ine">{{couboardInfo.district}}{{couboardInfo.details}}</view>
+  </cell>
+</view>

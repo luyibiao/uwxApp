@@ -1,0 +1,12 @@
+<content>
+  <view>
+    <view class='w-bg m-auto'>
+      <rich-text nodes="{{html}}" type="text"></rich-text>
+    </view>
+    <view class='wrap-fix item-fix-bottom bg-white padd-t-b-t'>
+      <view class='w-ag flex-wrap flex-wrap-center'>
+         <button type='primary' class='w-bg ft-foten' bindtap='onAgree' style='line-height: 40px;'>同意本条款</button>
+      </view>
+    </view>
+  </view>
+</content>

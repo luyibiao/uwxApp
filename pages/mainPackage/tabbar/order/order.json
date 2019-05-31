@@ -1,0 +1,10 @@
+{
+  "usingComponents": {
+    "nav": "/component/view/nav/nav",
+    "popup":"/component/view/popup/popup"
+  },
+  "navigationBarTitleText": "我的订单",
+  "enablePullDownRefresh": true,
+  "onReachBottomDistance": 40,
+  "backgroundTextStyle":"dark"
+}

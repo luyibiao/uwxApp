@@ -1,0 +1,39 @@
+/* pages/mainPackage/user/userShopCoupon/userShopCoupon.wxss */
+
+.cell-par {
+    width: 85%;
+    height: 40px;
+    margin: 10px auto;
+}
+
+.cell-styl{
+    display: inline-block;
+    width: 100%;
+    height: 40px;
+    background-color: white;
+    line-height: 40px;
+    text-align: center;
+}
+
+.imgSize{
+  width: 25px;
+  height: 25px
+}
+
+.p-tf-t{
+  padding: 10px 10px
+}
+
+.text-muted-ft{
+  color: #535353;
+}
+
+.pop-head{
+  background-color: #fff;
+  text-align: center;
+  box-sizing: border-box;
+}
+
+.border-one-fb{
+  border: 1px solid #F8F8F8
+}

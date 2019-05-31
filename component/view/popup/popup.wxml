@@ -1,0 +1,8 @@
+<view class='popup-wrap {{wrapShow ? "popup-wrap-active" :""}}' style='{{popstyle1}}'>
+    <slot></slot>
+</view>
+<view class="{{popup ? 'mask mask-active' : ''}}" bindtap='closePop' catchtouchmove="ture"></view>
+
+ 
+
+

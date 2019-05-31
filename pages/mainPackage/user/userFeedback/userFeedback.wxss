@@ -1,0 +1,9 @@
+/* pages/mainPackage/user/userFeedback/userFeedback.wxss */
+
+.text-height{
+  height: 130px;
+}
+
+.border-one-fb{
+  border: 1px solid #fbfbfb;
+}

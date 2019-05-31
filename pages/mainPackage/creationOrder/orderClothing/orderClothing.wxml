@@ -1,0 +1,9 @@
+<content>
+  <view class='flex-array' wx:if="{{list.length}}">
+    <view class='flex-array-item' wx:for="{{list}}" wx:key="{{item.id}}">
+      <view class='cloth-detail bg-muted' style=' background-image: url({{item.cameraImg}})' bindtap='onFindImg' data-imgurl="{{item.cameraImg}}"></view>
+    </view>
+  </view>
+
+  <view wx:else class='text-center none-m'>暂无衣物照片</view>
+</content>

@@ -1,0 +1,16 @@
+/* pages/mainPackage/spread/client/client.wxss */
+
+.image-size{
+  width:20px;
+  height:15px;
+}
+
+.head-imag{
+  width: 60px;
+  height: 60px;
+  border-radius: 6px;
+}
+
+.m-l-seten{
+  margin-left: 70px
+}

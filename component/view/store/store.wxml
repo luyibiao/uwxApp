@@ -1,0 +1,8 @@
+<view class='group bg-group-border-image'>
+  <cell islink bindtap="toStore">
+    <view slot="title">
+      <view>{{storeInfo.name || "请选择门店"}}</view>
+    </view>
+    <view slot="desc-ine">{{storeInfo.regionalDesc || ''}}{{storeInfo.addrDesc || ''}}</view>
+  </cell>
+</view>

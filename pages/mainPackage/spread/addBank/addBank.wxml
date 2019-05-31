@@ -1,0 +1,60 @@
+<!--pages/mainPackage/spread/addBank/addBank.wxml-->
+<content>
+  <view class="m-t-tt">
+    <view class="group" >
+      <view class="bd-muted-vice-bottom">
+        <picker bindchange="selectBank" value="{{multiIndex}}" range="{{bankList}}" custom-item="index" range-key="showText">
+          <cell islink >
+          <view slot="title" class="section__title">银行账户</view>
+              <view slot="value">
+                {{form.bankName ? form.bankName:'请选择'}}
+              </view>
+          </cell>
+        </picker>
+       
+      </view>
+      
+      <view slot="title" class="wrap-rve wrap-text-input bd-muted-vice-bottom text-cell-muted bg-white ">
+        <text class="text-black">持卡人</text>
+        <input type="" maxlength='6' placeholder="请输入持卡人姓名" placeholder-class="text-left" class="text-black" style='padding: 0px 0px'  value='{{form.name}}' bindinput="inputName">
+          
+        </input>
+        <view class="text-info" wx:if="{{form.name.length < 2 && form.name.length >0}}" > <icon type="warn" size='20' cole="red"></icon></view>
+      </view>
+      <view class="wrap-rve wrap-text-input bd-muted-vice-bottom text-cell-muted bg-white">
+        <text class="text-black">卡号</text>
+        <input type="number" maxlength='20' placeholder="请输入卡号" placeholder-class="text-left" class="text-black" style='padding: 0px 0px'  value='{{form.accountNo}}' bindinput="inputAccountNo">
+          
+        </input>
+        <view class="text-info" wx:if="{{form.accountNo.length < 14 && form.accountNo.length >0}}" > <icon type="warn" size='20' cole="red"></icon></view>
+      </view>
+      <view class="wrap-rve wrap-text-input bd-muted-vice-bottom text-cell-muted bg-white">
+        <text class="text-black">手机号</text>
+        <input type="number" maxlength='13' placeholder="请输入手机号" placeholder-class="text-left" class="text-black" style='padding: 0px 0px'  value='{{form.phone}}' bindinput="inputPhone">
+          
+        </input>
+      <!-- <view class="text-info" bindtap="withdrawAll" >全部提现 </view> -->
+      </view>
+      <view class="wrap-rve wrap-text-input bd-muted-vice-bottom text-cell-muted bg-white">
+        <text class="text-black">验证码</text>
+        <input type="number" disabled="{{!startTime}}" placeholder="请输入验证码" placeholder-class="text-left" class="text-black" style='padding: 0px 0px' maxlength='10'  value='{{form.verifyCode}}' bindinput="inputVerifyCode">
+          
+        </input>
+        <!-- <view class="text-info" bindtap="withdrawAll" >全部提现 </view> -->
+        <view class="wrap-rve">
+          <button type="primary" disabled="{{startTime}}" bindtap="getVerificationCode" class="ft-foten item-abs-colum-center code-button">
+            {{startTime ? countdown : countdownText}}
+          </button>
+        </view>
+      </view>
+    </view>
+
+    <view class="m-t-tt m-l-tf m-r-tf">
+      <button type="primary" loading="{{submitLoading}}" disabled="{{submitLoading}}" class="w-ag" bindtap="submit">
+        {{submitLoading ? '正在添加' : '确定'}}
+      </button>
+    </view>
+  </view>
+
+
+</content>

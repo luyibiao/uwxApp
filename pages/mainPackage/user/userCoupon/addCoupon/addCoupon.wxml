@@ -1,0 +1,60 @@
+<!-- <content my-content-class="bg-white" isContetnFotter="{{otherList.length == 0}}" > -->
+  <view class="text-center bg-white" wx:if="{{loginFlag}}">
+    <view class="">
+      <image src="{{mercInfo.logoPath || userHeadImg}}" mode="aspectFit" class="headImg img-border"></image>
+    </view>
+    <view class="ft-siten m-b ft-weight-xs">{{mercInfo.name}}</view>
+    <view class="wrap-rve m-auto" bindtap='receive' wx:if="{{!userInfo.phone}}">
+      <view class=""><image src='{{couponImg}}' style='width:85%;height:100px' mode='widthFix'></image></view>
+      <view  class='coupon-content text-left  text-white '> 
+        <view class='coupon-content-main'>
+        
+           
+            <view class="ft-siten" ><text style='align-self: flex-end;' >{{couponInfo.name}}</text></view>
+         
+          <view class="ft-siten m-t-f " wx:if="{{couponInfo.random==1}}"><text style='align-self: flex-start;' >{{filter.amtFormat(couponInfo.minAmount)+'至'+filter.amtFormat(couponInfo.maxAmount)+'元随机券'}}</text></view>
+          <view class=" ft-siten m-t-f" wx:else><text style='align-self: flex-start'>{{filter.amtFormat(couponInfo.amount)+'元'}}</text></view>
+          
+          <view class=" ft-tve" style='color:rgba(255,255,255,0.7)' wx:if="{{couponInfo.dateType == 1}}"><text>有效期至：{{filter.getDate(couponInfo.timeEnd)}}</text></view>
+          <view class=" ft-tve" style='color:rgba(255,255,255,0.7)' wx:else>有效期：领取后{{couponInfo.term}}天有效 </view>
+        </view>
+        
+      </view>
+    </view>
+    <view class="m-auto coupon-mode-width" wx:else>
+      <view class="text-left p-l bd-radius-xs" style=' border: 1px solid #e94248; color:#e94248' wx:if="{{textFlag}}">
+        <view class="m-t"><text class=" ft-lg ft-weight-xs">{{filter.amtFormat(received.amount)}}</text> 元优惠券</view>
+        <view class="p-b-tt" style='color: rgba(233,66,72,0.8)'>该券已放您的账户，可用于洗衣</view>
+      </view>
+      <view class="text-center p-l bd-radius-xs" style=' border: 1px solid #e94248; color:#e94248' wx:if="{{textErrFlag}}">
+        <view class="m-t-tt m-b-tt padd-t-b-tt ft-siten">该券已领完或不满足领取条件</view>
+      </view>
+      <button type='primary' class="w-ag m-t-tt" style='' bindtap='gotoIndex'>{{received ? '立即使用' : '去逛逛'}}</button>
+    </view>
+
+    <view class="m-t m-b text-muted-vice">已领取{{couponInfo.totalNum}}/{{couponInfo.cnt}}个</view>
+
+    <view class="group select-height m-auto" wx:if="{{otherList.length>0}}">
+      <cell cellstyle="margin-top:0px;padding:13px 0px" wx:for="{{otherList}}" wx:key="index">
+        <view slot="title" class="flex-wrap">
+          <view class="flex-item-center"><image src='{{item.headimgPath || userHeadImg}}' class="small-img"></image></view>
+          <view class="text-left m-l">
+            <view>{{item.userName}}</view>
+            <view class="m-t-f text-muted-vice ft-tve">领取{{filter.amtFormat(item.amount)}}元优惠券</view>
+          </view>
+        </view>
+        <view slot="value" class="ft-tve">
+          {{filter.getDate(item.createTime)}} {{filter.getMinute(item.createTime)}}
+          
+        </view>
+      </cell>
+      <view class="text-center" wx:if="{{otherList.length < total}}" bindtap="queryOtherList">
+        <view class="text-primary" > 更多</view>
+      </view>
+    </view>
+
+
+  </view>
+<!-- </content> -->
+
+<wxs src="../../../../../utils/wxs/filter.wxs" module="filter"></wxs>

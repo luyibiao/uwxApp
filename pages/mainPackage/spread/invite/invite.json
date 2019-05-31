@@ -1,0 +1,7 @@
+{
+  "usingComponents": {
+    "popup": "/component/view/popup/popup",
+    "modal": "/component/view/modal/modal"
+  },
+  "navigationBarTitleText": "邀请好友"
+}

@@ -1,0 +1,84 @@
+/* pages/mainPackage/spread/invite/invite.wxss */
+.h-size-two{
+  height: 2px;
+}
+
+.striping{
+  height:13px;
+  width:13px;
+  border:none
+}
+
+.bg{
+    background: linear-gradient(150deg, #f09c51 20%, #f65550);
+    background-origin: padding-box;
+    box-sizing: border-box;
+    height: 100%
+
+}
+
+.content{
+    flex: 1;
+    min-height: 80%;
+    padding: 10% 0;
+    flex-direction: column;
+    justify-content: space-between;
+    background-color: #fff6ed;
+    border-radius: 6px;
+    border: 4px solid #fff;
+    box-shadow: 0 0 0 1px #ffcba2 inset;
+}
+
+.headImg{
+  height: 70px;
+  width: 70px;
+  border-radius: 50%;
+  margin: 10% 0px 5%;
+}
+
+.name-color{
+  color:#98a6ad;
+}
+.son-css>view{
+  /* padding: 10px 0px; */
+  background-color: white;
+}
+.son-css button{
+  border:1px solid transparent;
+  background-color:#fff;
+  line-height:normal;
+  font-size: 16px;
+  width: 100%;
+  height: 100%;
+  padding: 10px 15px;
+}
+
+
+
+canvas{
+  width: 110px;
+  height: 110px;
+  z-index:100
+}
+
+.head-imag{
+  width: 60px;
+  height: 60px;
+}
+
+.canvas{
+  height: 90%;
+}
+.save-btn{
+  line-height: 36px;
+  font-size: 14px;
+}
+
+.clear-icon{
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 24px;
+  height: 24px;
+  transform: translate(50%,-50%);
+}

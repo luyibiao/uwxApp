@@ -1,0 +1,12 @@
+{
+  "navigationBarTitleText": "",
+  "usingComponents": {
+    "checkLocal": "/component/view/checkLocate/checkLocate",
+    "coupon": "/component/view/coupon/coupon",
+    "business":"/component/view/homeBusiness/business",
+    "cabinet": "/component/view/homeCabinet/cabinet",
+    "protocol":"/component/view/homeProtocol/protocol",
+    "chainMenu": "/component/view/homeChainMenu/homeChainMenu",
+    "hPhotp": "/component/view/homePhoto/homePhoto"
+  }
+}

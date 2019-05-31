@@ -1,0 +1,29 @@
+<!--pages/mainPackage/sys/nearbyCabinet/nearbyCabinet.wxml-->
+<content>
+  <view>
+
+    <view class="padd-tt text-black">
+      附近的智能柜
+      <view class="pull-right text-info" bindtap="queryLocationFn">定位<i class="u_icon" style="background: url({{icon}}) no-repeat center center;background-size:22px 22px;"></i></view>
+    </view>
+
+    <view class="group" wx:if="{{cabinetList.length}}">
+      <cell wx:for="{{cabinetList}}" wx:key="index">
+        <view slot="title" class="m-l">
+          <view class="fn-eiten m-b">{{item.name}}</view>
+          <view class="ft-foten text-cell-muted">{{item.district}}{{item.details}}</view>
+          <view></view>
+        </view>
+        <view slot="value" class="p-l-tt p-r">距您 {{item.distance >= 1 ? item.distance : item.distance*1000}}{{item.distance >= 1 ? 'km': 'm'}} </view>
+      </cell>
+    </view>
+    <view class="group" wx:else>
+      <cell>
+        <view slot="title" class="text-center text-cell-muted">
+          附近未发现智能柜:)
+        </view>
+      </cell>
+    </view>
+
+  </view>
+</content>

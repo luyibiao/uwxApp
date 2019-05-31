@@ -1,0 +1,51 @@
+<!--pages/mainPackage/spread/client/client.wxml-->
+<content> 
+  <view class="padder-t">
+    <view class="item-fix-top wrap-fix bg-color" >
+      <!-- <view class="flexratio bd-muted-vice-right padd-t">全部状态<image class="image-size" src="/static/img/arrow_down.svg"></image></view>
+      <view class="flexratio padd-t">全部时间<image class="image-size" src="/static/img/arrow_down.svg"></image></view> -->
+      <!-- <view class="section__title">多列选择器</view> -->
+      <picker
+        mode="multiSelector"
+        bindchange="bindMultiPickerChange"
+        bindcolumnchange="bindMultiPickerColumnChange"
+        value="{{multiIndex}}"
+        range="{{multiArray}}"
+        range-key="name"
+      >
+        <view class="picker flex-wrap text-center  bd-muted-vice">
+          <view class="flexratio bd-muted-vice-right padd-t">{{multiArray[0][multiIndex[0]].name}}<image class="image-size" src="/static/img/arrow_down.svg"></image></view>
+          <view class="flexratio padd-t">{{multiArray[1][multiIndex[1]].name}}<image class="image-size" src="/static/img/arrow_down.svg"></image></view>
+        </view>
+      </picker>
+    </view>
+   
+     
+    <view class="group">
+      <cell wx:for="{{list}}" wx:key="index">
+        <view slot="title">
+          <image src="{{item.headimgPath || headImg}}"  mode="aspectFit" class="pull-left head-imag"></image>
+          <view class="m-l-seten">
+            <view  class="m-b-tt text-black">{{item.name}}</view>
+            <view class="{{item.settlement ? 'text-primary': 'text-danger'}}">{{
+               (filter.strParseInt(item.testEndDate - timestamp)/ 86400000) +1 > 0 ? '剩'+ (filter.strParseInt((item.testEndDate - timestamp)/ 86400000) +1)+"天考验期" : item.settlement == 1 ? "已结算" : "未结算"
+
+              }}</view> 
+          </view> 
+        </view>
+        <view slot="value" class=" text-right m-r">
+          <view class="m-b-tt">{{filter.getDate(item.createTime)}}</view>
+          <view class="{{item.status == '1' ? 'text-primary' : item.status == '-1' ? 'text-danger':'text-black'}}">{{item.status == '1' ? "已关注" : item.status == '-1'? "已跑路": "未关注"}}</view>
+        </view> 
+      </cell>
+    </view>
+
+     <view wx:if="{{list.length===0}}" class='text-center none-order'>
+      <view class='text-muted m-t-tt'>暂无记录</view>
+    </view>
+    <view class='text-center m-t-tt text-muted ft-foten' wx:if="{{list.length>0}}">{{loadingText}}</view>
+  </view>
+
+</content>
+<wxs src="../../../../utils/wxs/time.wxs" module="time"></wxs>
+<wxs src="../../../../utils/wxs/filter.wxs" module="filter"></wxs>

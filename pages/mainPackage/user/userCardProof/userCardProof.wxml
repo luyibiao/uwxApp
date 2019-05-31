@@ -1,0 +1,16 @@
+<!--pages/mainPackage/user/userCardProof/userCardProof.wxml-->
+<content my-content-class="bg-white" >
+  <view class="text-center">
+    <view class="p-t-b-size">
+      <image src="{{mercInfo.logoPath}}" mode="aspectFit" class="merc-log-img"></image>
+    </view>
+    <view class="ft-foten text-cell-muted">
+      使用时向店员出示此卡
+    </view>
+    <view class="">
+      <view class="flex-wrap  flex-wrap-around"><canvas   canvas-id="qrcode" /></view>
+
+      <view class="ft-twty-tw">{{cardMsg.cardNo}}</view>
+    </view>
+  </view>
+</content>

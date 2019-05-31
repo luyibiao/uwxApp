@@ -1,0 +1,83 @@
+page{
+  padding: 0px;
+  
+}
+.header-wrap{
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+}
+.parent-content{
+  margin: 40px 0px;
+}
+.parent-item+.parent-item{
+  margin-top: 10px;
+}
+.item-header{
+  display: flex;
+  justify-content: space-between;
+  padding: 14px 14px;
+  box-sizing: border-box;
+}
+
+.item-content{
+  padding: 17px 14px 0px;
+  box-sizing: border-box;
+}
+.item-content>view+view{
+  margin-top: 10px;
+}
+.item-fotter{
+  padding: 10px 14px;
+  box-sizing: border-box;
+}
+.item-fotter>view+view{
+  margin-top: 10px;
+}
+.btn-text{
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+.item-btn{
+  padding: 0px 15px;
+ 
+  line-height: 25px;
+  border-radius: 20px;
+  background-color: #fff;
+}
+.btn-hover{
+  opacity: .6
+}
+.pop-head>view{
+  background-color: #fff;
+  text-align: center;
+  box-sizing: border-box;
+}
+.pop-head>view:first-child{
+  padding: 20px 20px;
+}
+.pop-head>view+view{
+  padding: 15px 0;
+}
+.pop-head>view:nth-child(2){
+  border-bottom:1px solid #e5e5e5;
+  
+}
+.pop-head>view:nth-child(3){
+  border-top:1px solid #e5e5e5
+}
+.pop-head>view:active{
+  background-color: #e5e5e5;
+}
+.none-order image{
+  margin-top: 50px;
+  width: 200px;
+  height: 200px;
+}
+
+.is-disabled{
+  background: url(https://cdn.ukaocloud.cn/wxapp/icon/order_cancel.png) no-repeat 98% 90%;
+  background-size: 80px 80px;
+}

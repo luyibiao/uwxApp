@@ -1,0 +1,71 @@
+/* component/view/takeTime/takeTime.wxss */
+.text-muted{
+  color:#98a6ad;
+}
+.text-center{
+  text-align: center;
+}
+.text-black{
+  color: #353535;
+}
+.m-t-tt{
+  margin-top: 20px;
+}
+.m-b-tt{
+  margin-bottom: 20px;
+}
+.m-l{
+  margin-left: 10px;
+}
+.m-r{
+  margin-right: 10px;
+}
+.m-t{
+  margin-top: 10px;
+}
+.w-bg{
+  width: 95%;
+}
+.ft-foten{
+  font-size: 14px;
+}
+.bd-muted-vice{
+  border: 1px solid #DCDCDC;
+}
+.bd-primary{
+  border: 1px solid #1aad19;
+  border-radius: 5px;
+  color: #1aad19;
+}
+.week-wrap{
+  padding: 0 5px;
+  box-sizing: border-box;
+  display: flex;
+  overflow: auto;
+}
+
+.week-item{
+  padding: 5px 0px;
+}
+.time-wrap{
+  display: flex;
+  flex-wrap: wrap;
+}
+.time-item{
+  margin: 5px;
+  min-width: 100px;
+  flex: 1;
+  padding: 10px 3px;
+}
+.time-item-check{
+  background-color: #1aad19;
+  color: #fff;
+}
+.time-item-disable{
+  background-color: #ddd;
+  color: #98a6ad;
+}
+.week-wrap>view{
+  width: 90%;
+  min-width: 50px;
+}

@@ -1,0 +1,7 @@
+{
+  "usingComponents": {
+    "tabbar": "/component/view/tabbar/tabbar"
+  },
+  "navigationBarTitleText": "门店列表"
+
+}
